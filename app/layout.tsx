@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./fixes.css";
+import "./inner.css";
 
 export const metadata: Metadata = {
   title: "Trung Nguyên Legend | Вьетнамский кофе",
