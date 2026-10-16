@@ -447,9 +447,7 @@ export default function CatalogOverviewView() {
       </section>
 
       {/* ================= SECTION 5: IMAGE 4 B2B FORM ================= */}
-      <div className="max-w-7xl mx-auto px-6 md:px-16 py-12">
-        <B2BFormSection />
-      </div>
+      <B2BFormSection />
 
       {/* ================= MODAL QUICK VIEW ================= */}
       {activeModalProduct && (

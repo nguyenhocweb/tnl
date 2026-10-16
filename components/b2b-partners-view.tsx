@@ -238,9 +238,7 @@ export default function B2BPartnersView() {
       </section>
 
       {/* ================= SECTION 5: EXACT IMAGE 4 B2B FORM ================= */}
-      <div className="max-w-7xl mx-auto px-6 md:px-16 py-16">
-        <B2BFormSection />
-      </div>
+      <B2BFormSection />
     </div>
   );
 }

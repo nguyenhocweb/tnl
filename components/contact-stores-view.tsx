@@ -317,98 +317,16 @@ export default function ContactStoresView() {
         </div>
       </section>
 
-      {/* ================= SECTION 4: RUSSIAN SOCIAL ECOSYSTEM ================= */}
-      <section className="py-24 px-6 md:px-16 max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-widest text-[#B38E46] font-bold">
-            ОФИЦИАЛЬНЫЕ СООБЩЕСТВА
-          </span>
-          <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mt-2 mb-3">
-            Мы в российских социальных сетях
-          </h2>
-          <p className="text-sm text-[#7A7269]">
-            Присоединяйтесь к сообществу ценителей аутентичной вьетнамской кофейной культуры
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <a
-            href="https://vk.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-8 rounded-3xl bg-white border border-[#E8E2D7] hover:border-[#0077FF] shadow-sm hover:shadow-xl transition-all text-center group"
-          >
-            <div className="w-14 h-14 rounded-2xl bg-[#0077FF]/10 text-[#0077FF] mx-auto flex items-center justify-center text-2xl font-bold mb-4 group-hover:scale-110 transition-transform">
-              VK
-            </div>
-            <h4 className="font-serif text-lg text-[#181512] mb-1 font-semibold">ВКонтакте</h4>
-            <span className="text-xs text-[#7A7269] block mb-3">&gt; 50 000 подписчиков</span>
-            <p className="text-xs text-[#5C5248] leading-relaxed">
-              Конкурсы, фотоотчёты с дегустаций и живое общение с единомышленниками.
-            </p>
-          </a>
-
-          <a
-            href="https://t.me"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-8 rounded-3xl bg-white border border-[#E8E2D7] hover:border-[#229ED9] shadow-sm hover:shadow-xl transition-all text-center group"
-          >
-            <div className="w-14 h-14 rounded-2xl bg-[#229ED9]/10 text-[#229ED9] mx-auto flex items-center justify-center text-2xl font-bold mb-4 group-hover:scale-110 transition-transform">
-              TG
-            </div>
-            <h4 className="font-serif text-lg text-[#181512] mb-1 font-semibold">Telegram</h4>
-            <span className="text-xs text-[#7A7269] block mb-3">Канал и чат поддержки</span>
-            <p className="text-xs text-[#5C5248] leading-relaxed">
-              Эксклюзивные промокоды для маркетплейсов и молниеносные ответы на вопросы.
-            </p>
-          </a>
-
-          <a
-            href="https://dzen.ru"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-8 rounded-3xl bg-white border border-[#E8E2D7] hover:border-[#181512] shadow-sm hover:shadow-xl transition-all text-center group"
-          >
-            <div className="w-14 h-14 rounded-2xl bg-[#181512]/10 text-[#181512] mx-auto flex items-center justify-center text-2xl font-bold mb-4 group-hover:scale-110 transition-transform">
-              Д
-            </div>
-            <h4 className="font-serif text-lg text-[#181512] mb-1 font-semibold">Яндекс Дзен</h4>
-            <span className="text-xs text-[#7A7269] block mb-3">Альманах осознанности</span>
-            <p className="text-xs text-[#5C5248] leading-relaxed">
-              Глубокие лонгриды о кофейных цивилизациях, истории Буонметхуота и здоровье.
-            </p>
-          </a>
-
-          <a
-            href="https://rutube.ru"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-8 rounded-3xl bg-white border border-[#E8E2D7] hover:border-[#002B49] shadow-sm hover:shadow-xl transition-all text-center group"
-          >
-            <div className="w-14 h-14 rounded-2xl bg-[#002B49]/10 text-[#002B49] mx-auto flex items-center justify-center text-2xl font-bold mb-4 group-hover:scale-110 transition-transform">
-              RU
-            </div>
-            <h4 className="font-serif text-lg text-[#181512] mb-1 font-semibold">Rutube</h4>
-            <span className="text-xs text-[#7A7269] block mb-3">Видео-рецепты</span>
-            <p className="text-xs text-[#5C5248] leading-relaxed">
-              Пошаговые видеоинструкции правильного заваривания через фин и обзоры зёрен.
-            </p>
-          </a>
-        </div>
-      </section>
-
-      {/* ================= SECTION 5: EXACT IMAGE 4 FORM ================= */}
-      <div id="quick-form" className="max-w-7xl mx-auto px-6 md:px-16 py-16">
-        <B2BFormSection
-          eyebrow="ОПЕРАТИВНАЯ СВЯЗЬ"
-          title="Свяжитесь с представительством в Москве"
-          desc="Прямой диалог с официальной командой Trung Nguyên Legend в России. Консультации, оптовые запросы и информационная поддержка."
-          buttonText="ОТПРАВИТЬ ОБРАЩЕНИЕ (ОТВЕТ 2 ЧАСА) ↗"
-          badges={["Москва UTC+3", "Ответ 2 часа", "Все каналы"]}
-          bgImage="/images/moscow_office_contact.jpg"
-        />
-      </div>
+      {/* ================= SECTION 4: EXACT IMAGE 4 FORM ================= */}
+      <B2BFormSection
+        id="quick-form"
+        eyebrow="ОПЕРАТИВНАЯ СВЯЗЬ"
+        title="Свяжитесь с представительством в Москве"
+        desc="Прямой диалог с официальной командой Trung Nguyên Legend в России. Консультации, оптовые запросы и информационная поддержка."
+        buttonText="ОТПРАВИТЬ ОБРАЩЕНИЕ (ОТВЕТ 2 ЧАСА) ↗"
+        badges={["Москва UTC+3", "Ответ 2 часа", "Все каналы"]}
+        bgImage="/images/moscow_office_contact.jpg"
+      />
     </div>
   );
 }

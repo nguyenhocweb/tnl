@@ -13,11 +13,11 @@ interface B2BFormSectionProps {
 }
 
 export default function B2BFormSection({
-  id = "b2b-form",
+  id = "b2b",
   eyebrow = "ДЛЯ БИЗНЕСА И HORECA",
   title = "Прямые оптовые поставки от производителя",
   desc = "Официальный импорт в РФ. Выгодные условия для торговых сетей, региональных дистрибьюторов, кофеен и HoReCa.",
-  buttonText = "ПОЛУЧИТЬ КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ (PDF) ↗",
+  buttonText = "Получить коммерческое предложение (PDF) ↗",
   badges = ["НДС 20%", "Склад в Москве", "Маркетинг & POSM"],
   bgImage = "/images/b2b_logistics.jpg",
 }: B2BFormSectionProps) {
@@ -29,7 +29,7 @@ export default function B2BFormSection({
   };
 
   return (
-    <section className="zen-section" id={id}>
+    <section className="zen-section bg-[#FAF8F5]" id={id}>
       <div className="zen-b2b-box">
         {/* Left Column with Logistics Photo & Overlay */}
         <div
@@ -38,20 +38,20 @@ export default function B2BFormSection({
         >
           <div className="zen-b2b-overlay" />
           <div className="zen-b2b-copy">
-            <span className="text-xs uppercase tracking-widest text-[#D4B26F] font-bold block mb-2">
+            <span className="text-[10px] tracking-widest text-[#B38E46] uppercase font-bold block mb-2">
               {eyebrow}
             </span>
-            <h3 className="serif text-2xl md:text-3xl font-serif text-white mb-3">
+            <h3 className="serif">
               {title}
             </h3>
-            <p className="text-xs md:text-sm text-white/85 leading-relaxed mb-6">
+            <p>
               {desc}
             </p>
             <div className="flex gap-2 flex-wrap">
               {badges.map((badge) => (
                 <span
                   key={badge}
-                  className="bg-white/20 backdrop-blur-sm text-xs text-white px-2.5 py-1 rounded border border-white/20"
+                  className="bg-white/20 backdrop-blur-sm text-xs px-2.5 py-1 rounded"
                 >
                   {badge}
                 </span>
@@ -61,13 +61,13 @@ export default function B2BFormSection({
         </div>
 
         {/* Right Column with Form Inputs */}
-        <div className="zen-b2b-right bg-[#FAF8F5]">
+        <div className="zen-b2b-right">
           {b2bSent ? (
             <div className="text-center py-12">
-              <div className="w-16 h-16 rounded-full bg-[#EFE6D4] text-[#B38E46] text-2xl flex items-center justify-center mx-auto mb-4 font-bold">
+              <div className="w-16 h-16 rounded-full bg-[#EFE6D4] text-[#B38E46] text-2xl flex items-center justify-center mx-auto mb-4">
                 ✓
               </div>
-              <h3 className="serif text-2xl mb-2 text-[#181512]">Заявка успешно принята</h3>
+              <h3 className="serif text-2xl mb-2">Заявка успешно принята</h3>
               <p className="text-sm text-[#6B6259] max-w-sm mx-auto mb-6">
                 Наш менеджер по работе с ключевыми клиентами свяжется с вами в течение 2 часов рабочего времени.
               </p>
@@ -81,7 +81,7 @@ export default function B2BFormSection({
           ) : (
             <form onSubmit={handleSubmit} className="zen-form-grid">
               <div className="zen-field">
-                <label>КОМПАНИЯ / ИП *</label>
+                <label>Компания / ИП *</label>
                 <input
                   required
                   placeholder="ООО «Название компании»"
@@ -89,7 +89,7 @@ export default function B2BFormSection({
               </div>
 
               <div className="zen-field">
-                <label>ИНН (10 ИЛИ 12 ЦИФР) *</label>
+                <label>ИНН (10 или 12 цифр) *</label>
                 <input
                   required
                   pattern="[0-9]{10,12}"
@@ -99,7 +99,7 @@ export default function B2BFormSection({
               </div>
 
               <div className="zen-field">
-                <label>ТИП БИЗНЕСА *</label>
+                <label>Тип бизнеса *</label>
                 <select required defaultValue="">
                   <option value="" disabled>
                     Выберите категорию
@@ -112,7 +112,7 @@ export default function B2BFormSection({
               </div>
 
               <div className="zen-field">
-                <label>РАБОЧИЙ E-MAIL *</label>
+                <label>Рабочий E-mail *</label>
                 <input
                   required
                   type="email"
@@ -121,15 +121,15 @@ export default function B2BFormSection({
               </div>
 
               <div className="zen-field full">
-                <label>КОММЕНТАРИЙ / ПЛАНИРУЕМЫЙ ОБЪЁМ</label>
+                <label>Комментарий / Планируемый объём</label>
                 <textarea
                   rows={2}
                   placeholder="Город, интересующие позиции (G7, зерно, молотый), объём заказа..."
                 />
               </div>
 
-              <div className="zen-field full pt-2">
-                <button type="submit" className="zen-btn-gold w-full py-3.5 uppercase tracking-wider text-xs font-bold">
+              <div className="zen-field full">
+                <button type="submit" className="zen-btn-gold w-full py-3.5">
                   {buttonText}
                 </button>
               </div>

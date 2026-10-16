@@ -175,69 +175,7 @@ export default function NewsSpacesView() {
         </div>
       </section>
 
-      {/* ================= SECTION 3: RUSSIAN FRANCHISE METRO MAP ================= */}
-      <section className="py-24 px-6 md:px-16 bg-[#FAF7F2] border-y border-[#E8E2D7]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs uppercase tracking-widest text-[#B38E46] font-bold">
-              СТРАТЕГИЯ ЭКСПАНСИИ В РФ
-            </span>
-            <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mt-2 mb-3">
-              Города приоритетного открытия
-            </h2>
-            <p className="text-sm text-[#7A7269]">
-              Формируем партнёрскую сеть с эксклюзивным территориальным правом развития
-            </p>
-          </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-16">
-            {[
-              { city: "Москва", status: "Флагманские локации", open: "Приоритет 1" },
-              { city: "Санкт-Петербург", status: "Невский & Петроградка", open: "Приоритет 1" },
-              { city: "Казань", status: "Исторический центр", open: "Приоритет 2" },
-              { city: "Новосибирск", status: "Академгородок & Центр", open: "Приоритет 2" },
-            ].map((node) => (
-              <div key={node.city} className="bg-white p-6 rounded-2xl border border-[#E8E2D7] text-center shadow-sm">
-                <span className="text-[10px] uppercase font-bold text-[#B38E46] block mb-1">{node.open}</span>
-                <strong className="text-xl font-serif text-[#181512] block mb-1">{node.city}</strong>
-                <span className="text-xs text-[#7A7269]">{node.status}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* 4 Pillars of Franchise Support */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: "📦",
-                title: "Прямые поставки сырья",
-                desc: "100% оригинальный кофе, сиропы и сопутствующие товары со склада в Москве по специальным ценам партнера.",
-              },
-              {
-                icon: "🎓",
-                title: "Академия бариста",
-                desc: "Полная программа обучения персонала стандартам сервиса и ритуалам заваривания от мастеров из Вьетнама.",
-              },
-              {
-                icon: "📐",
-                title: "Архитектурный проект",
-                desc: "Готовая адаптация планировочных решений под ваше помещение с надзором дизайнера бренда.",
-              },
-              {
-                icon: "📣",
-                title: "Маркетинг 360°",
-                desc: "Федеральные рекламные кампании, подключение к программе лояльности и PR на открытии заведения.",
-              },
-            ].map((item) => (
-              <div key={item.title} className="bg-white p-6 rounded-2xl border border-[#E8E2D7] shadow-sm">
-                <span className="text-3xl mb-3 block">{item.icon}</span>
-                <h4 className="font-serif text-base text-[#181512] mb-2 font-semibold">{item.title}</h4>
-                <p className="text-xs text-[#5C5248] leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ================= SECTION 4: EDITORIAL EVENTS & EXHIBITIONS ================= */}
       <section className="py-24 px-6 md:px-16 max-w-7xl mx-auto">
@@ -330,17 +268,16 @@ export default function NewsSpacesView() {
         </div>
       </section>
 
-      {/* ================= SECTION 6: EXACT IMAGE 4 FRANCHISE FORM ================= */}
-      <div id="franchise-form" className="max-w-7xl mx-auto px-6 md:px-16 py-16">
-        <B2BFormSection
-          eyebrow="ИНВЕСТИЦИОННАЯ ПРОГРАММА РФ"
-          title="Заявка на открытие кофейни по франшизе"
-          desc="Получите финансовую модель, требования к помещениям и расчёт окупаемости для формата Trung Nguyên Legend Café или E-Coffee."
-          buttonText="ПОЛУЧИТЬ ФРАНЧАЙЗИНГОВЫЙ ПАКЕТ (PDF) ↗"
-          badges={["Окупаемость от 10 мес.", "Обучение персонала", "Поставки 100%"]}
-          bgImage="/images/cafe_space_interior.jpg"
-        />
-      </div>
+      {/* ================= SECTION 5: EXACT IMAGE 4 FRANCHISE FORM ================= */}
+      <B2BFormSection
+        id="franchise-form"
+        eyebrow="ИНВЕСТИЦИОННАЯ ПРОГРАММА РФ"
+        title="Заявка на открытие кофейни по франшизе"
+        desc="Получите финансовую модель, требования к помещениям и расчёт окупаемости для формата Trung Nguyên Legend Café или E-Coffee."
+        buttonText="ПОЛУЧИТЬ ФРАНЧАЙЗИНГОВЫЙ ПАКЕТ (PDF) ↗"
+        badges={["Окупаемость от 10 мес.", "Обучение персонала", "Поставки 100%"]}
+        bgImage="/images/cafe_space_interior.jpg"
+      />
 
       {/* ================= FRANCHISE MODAL ================= */}
       {franchiseModalOpen && (

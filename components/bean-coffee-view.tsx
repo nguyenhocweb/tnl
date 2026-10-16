@@ -438,16 +438,15 @@ export default function BeanCoffeeView() {
       </section>
 
       {/* ================= SECTION 5: EXACT IMAGE 4 B2B FORM ================= */}
-      <div id="sample-kit-form" className="max-w-7xl mx-auto px-6 md:px-16 py-16">
-        <B2BFormSection
-          eyebrow="ДЛЯ БАРИСТА И РЕСТОРАНОВ"
-          title="Заказ бесплатных образцов кофе (Sample Kit) для HoReCa"
-          desc="Доставим дегустационный набор свежеобжаренного зерна в ваше заведение. Поможем с настройкой оборудования и обучением персонала."
-          buttonText="ЗАКАЗАТЬ БЕСПЛАТНЫЙ НАБОР ОБРАЗЦОВ ↗"
-          badges={["Бесплатная доставка", "3 сорта зерна", "Консультация бариста"]}
-          bgImage="/images/cupping_lab_beans.jpg"
-        />
-      </div>
+      <B2BFormSection
+        id="sample-kit-form"
+        eyebrow="ДЛЯ БАРИСТА И РЕСТОРАНОВ"
+        title="Заказ бесплатных образцов кофе (Sample Kit) для HoReCa"
+        desc="Доставим дегустационный набор свежеобжаренного зерна в ваше заведение. Поможем с настройкой оборудования и обучением персонала."
+        buttonText="ЗАКАЗАТЬ БЕСПЛАТНЫЙ НАБОР ОБРАЗЦОВ ↗"
+        badges={["Бесплатная доставка", "3 сорта зерна", "Консультация бариста"]}
+        bgImage="/images/cupping_lab_beans.jpg"
+      />
 
       {/* ================= MODAL QUICK VIEW ================= */}
       {activeModalProduct && (
