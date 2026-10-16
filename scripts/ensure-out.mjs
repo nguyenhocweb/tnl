@@ -17,43 +17,55 @@ function copyRecursive(src, dest) {
   }
 }
 
+// 1. Ensure 'out' directory has all static pages
 if (!fs.existsSync("out")) {
-  console.log("Creating out directory from build artifacts...");
   fs.mkdirSync("out", { recursive: true });
-
-  // 1. Copy public directory assets
-  if (fs.existsSync("public")) {
-    copyRecursive("public", "out");
-  }
-
-  // 2. Copy static files from .next
-  if (fs.existsSync(".next/static")) {
-    copyRecursive(".next/static", "out/_next/static");
-  }
-
-  // 3. Copy HTML pages from .next/server/app
-  if (fs.existsSync(".next/server/app")) {
-    copyRecursive(".next/server/app", "out");
-  }
-
-  // 4. Ensure index.html exists
-  if (fs.existsSync(".next/server/app/index.html") && !fs.existsSync("out/index.html")) {
-    fs.copyFileSync(".next/server/app/index.html", "out/index.html");
-  }
+}
+if (fs.existsSync(".next/server/app")) {
+  copyRecursive(".next/server/app", "out");
+}
+if (fs.existsSync(".next/static")) {
+  copyRecursive(".next/static", "out/_next/static");
+}
+if (fs.existsSync("public")) {
+  copyRecursive("public", "out");
 }
 
-// Guarantee public images are in out/images
-if (fs.existsSync("public/images") && !fs.existsSync("out/images")) {
-  copyRecursive("public/images", "out/images");
-}
-
-// Copy everything from out into dist
+// 2. Ensure dist has all assets
 copyRecursive("out", "dist");
 
-if (fs.existsSync("dist")) {
-  const distFiles = fs.readdirSync("dist");
-  console.log(`✓ Verified output directory 'dist' exists with ${distFiles.length} top-level entries:`, distFiles.slice(0, 10).join(", "));
-} else {
-  console.error("❌ Failed to guarantee 'dist' directory exists!");
-  process.exit(1);
-}
+// 3. Generate Vercel Build Output API v3 (.vercel/output)
+const vercelOutputDir = ".vercel/output";
+const vercelStaticDir = path.join(vercelOutputDir, "static");
+fs.mkdirSync(vercelStaticDir, { recursive: true });
+copyRecursive("out", vercelStaticDir);
+
+const vercelConfig = {
+  version: 3,
+  routes: [
+    { handle: "filesystem" },
+    {
+      src: "^/(?:([^/]+?)(?:/)?)$",
+      dest: "/$1.html",
+      check: true,
+    },
+    {
+      src: "^/(?:([^/]+?)/([^/]+?)(?:/)?)$",
+      dest: "/$1/$2.html",
+      check: true,
+    },
+    {
+      src: "/.*",
+      dest: "/404.html",
+      status: 404,
+    },
+  ],
+};
+fs.writeFileSync(
+  path.join(vercelOutputDir, "config.json"),
+  JSON.stringify(vercelConfig, null, 2),
+);
+
+console.log("✓ Vercel Build Output API v3 ready at .vercel/output");
+console.log("✓ dist/ directory ready with static output");
+console.log("✓ out/ directory ready with static output");
