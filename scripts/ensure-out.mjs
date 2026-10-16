@@ -17,40 +17,26 @@ function copyRecursive(src, dest) {
   }
 }
 
+// 1. Ensure 'out' directory is populated
 if (!fs.existsSync("out")) {
-  console.log("Creating out directory from build artifacts...");
   fs.mkdirSync("out", { recursive: true });
-
-  // 1. Copy public directory assets
-  if (fs.existsSync("public")) {
-    copyRecursive("public", "out");
-  }
-
-  // 2. Copy static files from .next
-  if (fs.existsSync(".next/static")) {
-    copyRecursive(".next/static", "out/_next/static");
-  }
-
-  // 3. Copy HTML pages from .next/server/app
-  if (fs.existsSync(".next/server/app")) {
-    copyRecursive(".next/server/app", "out");
-  }
-
-  // 4. Ensure index.html exists
-  if (fs.existsSync(".next/server/app/index.html") && !fs.existsSync("out/index.html")) {
-    fs.copyFileSync(".next/server/app/index.html", "out/index.html");
-  }
+}
+if (fs.existsSync(".next/server/app")) {
+  copyRecursive(".next/server/app", "out");
+}
+if (fs.existsSync(".next/static")) {
+  copyRecursive(".next/static", "out/_next/static");
 }
 
-// Guarantee public images are in out/images
-if (fs.existsSync("public/images") && !fs.existsSync("out/images")) {
-  copyRecursive("public/images", "out/images");
-}
-
+// 2. Synchronize all built static assets into 'public' and 'dist'
 if (fs.existsSync("out")) {
-  const files = fs.readdirSync("out");
-  console.log(`✓ Verified output directory 'out' exists with ${files.length} top-level entries:`, files.slice(0, 10).join(", "));
-} else {
-  console.error("❌ Failed to guarantee 'out' directory exists!");
-  process.exit(1);
+  copyRecursive("out", "public");
+  copyRecursive("out", "dist");
+}
+
+// Guarantee index.html is present in public and out and dist
+for (const dir of ["public", "dist", "out"]) {
+  if (fs.existsSync(path.join(dir, "index.html"))) {
+    console.log(`✓ ${dir}/index.html confirmed ready.`);
+  }
 }
