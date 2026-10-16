@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import B2BFormSection from "./b2b-form-section";
 
 const storeLocations = [
   {
@@ -397,96 +398,17 @@ export default function ContactStoresView() {
         </div>
       </section>
 
-      {/* ================= SECTION 5: FAST 2-HOUR RESPONSE FORM ================= */}
-      <section id="quick-form" className="py-24 px-6 md:px-16 bg-[#F5F2EB] border-t border-[#E8E2D7]">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-10">
-            <span className="text-xs uppercase tracking-widest text-[#B38E46] font-bold">
-              ОПЕРАТИВНАЯ СВЯЗЬ
-            </span>
-            <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mt-2 mb-3">
-              Напишите нам напрямую
-            </h2>
-            <p className="text-xs text-[#7A7269]">
-              Ответим в течение 2 рабочих часов в рабочие дни с 09:00 до 18:00 (MSK)
-            </p>
-          </div>
-
-          <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#E8E2D7] shadow-xl">
-            {!quickContactSent ? (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setQuickContactSent(true);
-                }}
-                className="flex flex-col gap-4"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-xs text-[#4A4238] font-semibold block mb-1">Ваше имя *</label>
-                    <input
-                      required
-                      placeholder="Алексей"
-                      className="w-full px-4 py-3 rounded-xl border border-[#D9D2C7] outline-none text-sm focus:border-[#B38E46]"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs text-[#4A4238] font-semibold block mb-1">Телефон или Telegram *</label>
-                    <input
-                      required
-                      placeholder="+7 (999) 000-00-00 / @username"
-                      className="w-full px-4 py-3 rounded-xl border border-[#D9D2C7] outline-none text-sm focus:border-[#B38E46]"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="text-xs text-[#4A4238] font-semibold block mb-1">E-mail *</label>
-                  <input
-                    required
-                    type="email"
-                    placeholder="alex@domain.ru"
-                    className="w-full px-4 py-3 rounded-xl border border-[#D9D2C7] outline-none text-sm focus:border-[#B38E46]"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-xs text-[#4A4238] font-semibold block mb-1">Ваше сообщение или вопрос *</label>
-                  <textarea
-                    required
-                    rows={4}
-                    placeholder="Здравствуйте! Хочу уточнить наличие..."
-                    className="w-full px-4 py-3 rounded-xl border border-[#D9D2C7] outline-none text-sm focus:border-[#B38E46] resize-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-4 rounded-xl bg-[#B38E46] hover:bg-[#967434] text-white text-xs uppercase tracking-wider font-semibold transition-colors mt-2 shadow-lg"
-                >
-                  Отправить сообщение ↗
-                </button>
-              </form>
-            ) : (
-              <div className="text-center py-8">
-                <span className="text-5xl mb-4 block">✓</span>
-                <h3 className="text-2xl font-serif text-[#181512] mb-2 font-semibold">
-                  Сообщение отправлено
-                </h3>
-                <p className="text-xs text-[#7A7269] max-w-sm mx-auto mb-6">
-                  Дежурный специалист уже получил ваше обращение и ответит в течение 2 часов.
-                </p>
-                <button
-                  onClick={() => setQuickContactSent(false)}
-                  className="px-6 py-2.5 rounded-xl bg-[#181512] text-white text-xs font-semibold"
-                >
-                  Написать ещё одно
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
+      {/* ================= SECTION 5: EXACT IMAGE 4 FORM ================= */}
+      <div id="quick-form" className="max-w-7xl mx-auto px-6 md:px-16 py-16">
+        <B2BFormSection
+          eyebrow="ОПЕРАТИВНАЯ СВЯЗЬ"
+          title="Свяжитесь с представительством в Москве"
+          desc="Прямой диалог с официальной командой Trung Nguyên Legend в России. Консультации, оптовые запросы и информационная поддержка."
+          buttonText="ОТПРАВИТЬ ОБРАЩЕНИЕ (ОТВЕТ 2 ЧАСА) ↗"
+          badges={["Москва UTC+3", "Ответ 2 часа", "Все каналы"]}
+          bgImage="/images/moscow_office_contact.jpg"
+        />
+      </div>
     </div>
   );
 }

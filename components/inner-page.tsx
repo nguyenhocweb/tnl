@@ -13,6 +13,7 @@ import BeanCoffeeView from "./bean-coffee-view";
 import NewsSpacesView from "./news-spaces-view";
 import B2BPartnersView from "./b2b-partners-view";
 import ContactStoresView from "./contact-stores-view";
+import SiteFooter from "./site-footer";
 
 function Link({ href, className, children }: { href: string; className?: string; children: React.ReactNode }) {
   return <a href={href} className={className}>{children}</a>;
@@ -427,5 +428,6 @@ export default function InnerPage() {
     ) : (
       <AboutCompanyView />
     )}
+    <SiteFooter />
   </main>;
 }

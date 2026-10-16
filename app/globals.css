@@ -1273,11 +1273,19 @@ button {
 .zen-market-card b {
   font-size: 20px;
   letter-spacing: -0.02em;
+  color: var(--zen-ink);
+  transition: color 0.2s ease;
 }
 
-.zen-market-card.ozon b { color: #005BFF; }
-.zen-market-card.wb b { color: #CB11AB; }
-.zen-market-card.yandex b { color: #FC3F1D; }
+.zen-market-card:hover b {
+  color: var(--zen-gold);
+}
+
+.zen-market-card.ozon b,
+.zen-market-card.wb b,
+.zen-market-card.yandex b {
+  color: var(--zen-ink);
+}
 
 .zen-market-card span {
   font-size: 12px;

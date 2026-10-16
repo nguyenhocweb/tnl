@@ -1,6 +1,21 @@
 "use client";
 
 import React, { useState } from "react";
+import B2BFormSection from "./b2b-form-section";
+
+type BeanProduct = {
+  id: string;
+  name: string;
+  subname: string;
+  detail: string;
+  strength: number;
+  aroma: string;
+  brewMethod: string;
+  image: string;
+  desc: string;
+  ozonUrl: string;
+  wbUrl: string;
+};
 
 const sangTaoSeries = [
   {
@@ -12,6 +27,8 @@ const sangTaoSeries = [
     desc: "Плотный, терпкий настой с традиционной глубокой горчинкой. Идеален для классического вьетнамского фина со сгущенным молоком.",
     notes: ["Горький шоколад", "Жжёная карамель", "Дымный оттенок"],
     intensity: 5,
+    ozonUrl: "https://ozon.ru",
+    wbUrl: "https://wildberries.ru",
   },
   {
     num: "2",
@@ -22,6 +39,8 @@ const sangTaoSeries = [
     desc: "Изысканное сочетание насыщенной плотности робусты и утончённого аромата арабики. Сбалансированный мягкий вкус на каждый день.",
     notes: ["Жареный фундук", "Пряная выпечка", "Мягкий финал"],
     intensity: 4,
+    ozonUrl: "https://ozon.ru",
+    wbUrl: "https://wildberries.ru",
   },
   {
     num: "3",
@@ -32,6 +51,8 @@ const sangTaoSeries = [
     desc: "Редкий сорт высокогорной вьетнамской арабики. Изысканная ягодная кислинка, цветочное благоухание и чистое шелковое тело.",
     notes: ["Лесные ягоды", "Цитрусовый цвет", "Винный шлейф"],
     intensity: 3,
+    ozonUrl: "https://ozon.ru",
+    wbUrl: "https://wildberries.ru",
   },
   {
     num: "4",
@@ -42,6 +63,8 @@ const sangTaoSeries = [
     desc: "Сложный гармоничный купаж четырёх сортов. Богатый аромат, раскрывающийся каскадом ореховых, фруктовых и шоколадных оттенков.",
     notes: ["Спелый чернослив", "Мускатный орех", "Тёмный какао"],
     intensity: 5,
+    ozonUrl: "https://ozon.ru",
+    wbUrl: "https://wildberries.ru",
   },
   {
     num: "5",
@@ -52,6 +75,37 @@ const sangTaoSeries = [
     desc: "Аристократический кофе из отборных круглых зёрен арабики Culi. Непревзойдённый аромат, бархатное послевкусие и ноты благородного коньяка.",
     notes: ["Цветочный мёд", "Сушёный инжир", "Ваниль"],
     intensity: 4,
+    ozonUrl: "https://ozon.ru",
+    wbUrl: "https://wildberries.ru",
+  },
+];
+
+const horecaProducts: BeanProduct[] = [
+  {
+    id: "gourmet-1kg",
+    name: "Gourmet Blend (1 кг)",
+    subname: "Профессиональный бленд для эспрессо-машин",
+    detail: "ФАСОВКА 1 КГ С ДЕГАЗАЦИОННЫМ КЛАПАНОМ",
+    strength: 4,
+    aroma: "Густая Crema · Обжаренный фундук · Шоколад",
+    brewMethod: "Рожковая кофемашина (Espresso)",
+    image: "/images/cupping_lab_beans.jpg",
+    desc: "Специально разработанный купаж для ресторанного сектора HoReCa. Обеспечивает стабильную золотистую пенку Crema и благородный баланс при работе на высоких нагрузках.",
+    ozonUrl: "https://ozon.ru",
+    wbUrl: "https://wildberries.ru",
+  },
+  {
+    id: "premium-culi-1kg",
+    name: "Premium Culi Beans (1 кг)",
+    subname: "Редкие моносортовые круглые зёрна Кули",
+    detail: "100% SINGLE PEABERRY · 1000 Г",
+    strength: 5,
+    aroma: "Двойной кофеин · Горький трюфель · Карамель",
+    brewMethod: "Кофемашина / Традиционный фин",
+    image: "/images/cupping_lab_beans.jpg",
+    desc: "Отборные цельные круглые зёрна с повышенным содержанием эфирных масел. Дарят напитку предельно плотное тело и яркий бодрящий импульс.",
+    ozonUrl: "https://ozon.ru",
+    wbUrl: "https://wildberries.ru",
   },
 ];
 
@@ -92,8 +146,7 @@ const brewingCompass = [
 
 export default function BeanCoffeeView() {
   const [activeSangTaoIndex, setActiveSangTaoIndex] = useState(0);
-  const [sampleModalOpen, setSampleModalOpen] = useState(false);
-  const [sampleSubmitted, setSampleSubmitted] = useState(false);
+  const [activeModalProduct, setActiveModalProduct] = useState<BeanProduct | null>(null);
 
   const currentST = sangTaoSeries[activeSangTaoIndex];
 
@@ -125,12 +178,12 @@ export default function BeanCoffeeView() {
             >
               Исследовать сорта зёрен ↘
             </a>
-            <button
-              onClick={() => setSampleModalOpen(true)}
+            <a
+              href="#sample-kit-form"
               className="px-7 py-3.5 rounded-2xl bg-white/20 hover:bg-white/30 backdrop-blur-md text-white border border-white/40 text-xs uppercase tracking-wider font-semibold transition-all"
             >
               Бесплатный Sample Kit для кофеен ↗
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -215,29 +268,39 @@ export default function BeanCoffeeView() {
             <div className="flex items-center gap-4 pt-4 border-t border-[#F0EBE1]">
               <div className="flex items-center gap-1.5">
                 <span className="text-xs text-[#7A7269] font-medium">Крепость:</span>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <span
-                    key={i}
-                    className={`inline-block w-2.5 h-2.5 rounded-full ${
-                      i < currentST.intensity ? "bg-[#B38E46]" : "bg-[#DDD7CC]"
-                    }`}
-                  />
-                ))}
+                <div className="zen-beans-meter">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <span
+                      key={i}
+                      className={i < currentST.intensity ? "filled" : ""}
+                    />
+                  ))}
+                </div>
               </div>
-              <a
-                href="https://ozon.ru"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ml-auto px-6 py-2.5 rounded-xl bg-[#005BFF] hover:bg-[#0047C6] text-white text-xs font-semibold transition-colors"
-              >
-                Купить на OZON ↗
-              </a>
+              <div className="ml-auto flex gap-2">
+                <a
+                  href={currentST.ozonUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="zen-btn-market-sm ozon px-5 py-2.5"
+                >
+                  OZON ↗
+                </a>
+                <a
+                  href={currentST.wbUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="zen-btn-market-sm wb px-5 py-2.5"
+                >
+                  WB ↗
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ================= SECTION 3: HORECA & COFFEE SHOP PACKS (1KG) ================= */}
+      {/* ================= SECTION 3: HORECA & COFFEE SHOP PACKS (EXACT IMAGE 3 CARDS) ================= */}
       <section className="py-24 px-6 md:px-16 bg-[#FAF7F2] border-y border-[#E8E2D7]">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
@@ -249,46 +312,79 @@ export default function BeanCoffeeView() {
                 Зёрна 1 кг для кофеен и ресторанов
               </h2>
             </div>
-            <button
-              onClick={() => setSampleModalOpen(true)}
-              className="px-6 py-3.5 rounded-2xl bg-[#B38E46] hover:bg-[#967434] text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-lg"
+            <a
+              href="#sample-kit-form"
+              className="px-6 py-3.5 rounded-md bg-[#B38E46] hover:bg-[#967434] text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-lg"
             >
               🎁 Запросить Sample Kit бесплатно ↗
-            </button>
+            </a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-3xl border border-[#E8E2D7] shadow-sm flex flex-col md:flex-row gap-6 items-center">
-              <div className="w-36 h-48 bg-[#F7F4EE] rounded-2xl p-4 flex items-center justify-center shrink-0">
-                <img src="/images/cupping_lab_beans.jpg" alt="Gourmet Blend" className="max-h-full object-cover rounded-xl" />
-              </div>
-              <div>
-                <span className="text-[10px] uppercase font-bold text-[#B38E46] block mb-1">ФАСОВКА 1 КГ С КЛАПАНОМ</span>
-                <h3 className="text-2xl font-serif text-[#181512] mb-1">Gourmet Blend (1 кг)</h3>
-                <p className="text-xs text-[#7A7269] leading-relaxed mb-4">
-                  Специальный бленд для профессиональных рожковых кофемашин. Даёт устойчивую эластичную пенку Crema цвета лесного ореха. Идеальная основа для раф-кофе, капучино и латте.
-                </p>
-                <span className="inline-block px-3 py-1 rounded-md bg-[#FAF7F2] text-xs text-[#5C5248] font-semibold">
-                  Плотная крема · Шоколадный профиль
-                </span>
-              </div>
-            </div>
+          <div className="zen-product-grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
+            {horecaProducts.map((p) => (
+              <article key={p.id} className="zen-product-card">
+                <div className="zen-product-visual">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className="zen-product-img"
+                    loading="lazy"
+                  />
+                </div>
 
-            <div className="bg-white p-8 rounded-3xl border border-[#E8E2D7] shadow-sm flex flex-col md:flex-row gap-6 items-center">
-              <div className="w-36 h-48 bg-[#F7F4EE] rounded-2xl p-4 flex items-center justify-center shrink-0">
-                <img src="/images/cupping_lab_beans.jpg" alt="Premium Culi" className="max-h-full object-cover rounded-xl" />
-              </div>
-              <div>
-                <span className="text-[10px] uppercase font-bold text-[#B38E46] block mb-1">100% SINGLE PEABERRY</span>
-                <h3 className="text-2xl font-serif text-[#181512] mb-1">Premium Culi Beans (1 кг)</h3>
-                <p className="text-xs text-[#7A7269] leading-relaxed mb-4">
-                  Одиночные шаровидные зёрна Кули, впитавшие двойную дозу минералов и кофеина. Непревзойденный энергетик для авторских кофейных карт и ценителей предельной крепости.
-                </p>
-                <span className="inline-block px-3 py-1 rounded-md bg-[#FAF7F2] text-xs text-[#5C5248] font-semibold">
-                  Двойной кофеин · Максимальный импульс
-                </span>
-              </div>
-            </div>
+                <div className="zen-product-meta">{p.detail}</div>
+                <h3 className="zen-product-title">{p.name}</h3>
+                <p className="zen-product-subname">{p.subname}</p>
+
+                {/* Sensory Profile Box */}
+                <div className="zen-sensory-box">
+                  <div className="zen-sensory-item">
+                    <span className="zen-sensory-label">Крепость:</span>
+                    <div className="zen-beans-meter">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <span key={i} className={i < p.strength ? "filled" : ""} />
+                      ))}
+                    </div>
+                  </div>
+                  <div className="zen-sensory-item">
+                    <span className="zen-sensory-label">Аромат:</span>
+                    <span className="zen-sensory-val">{p.aroma}</span>
+                  </div>
+                  <div className="zen-sensory-item">
+                    <span className="zen-sensory-label">Способ:</span>
+                    <span className="zen-sensory-val">{p.brewMethod}</span>
+                  </div>
+                </div>
+
+                {/* Actions & Brand Direct Buttons (NO BLUE/MAGENTA) */}
+                <div className="zen-product-actions">
+                  <button
+                    className="zen-btn-ritual-view"
+                    onClick={() => setActiveModalProduct(p)}
+                  >
+                    О ритуале <span className="arrow">↗</span>
+                  </button>
+                  <a
+                    href={p.ozonUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="zen-btn-market-sm ozon"
+                    title="Купить на Ozon"
+                  >
+                    OZON
+                  </a>
+                  <a
+                    href={p.wbUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="zen-btn-market-sm wb"
+                    title="Купить на Wildberries"
+                  >
+                    WB
+                  </a>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -341,108 +437,98 @@ export default function BeanCoffeeView() {
         </div>
       </section>
 
-      {/* ================= SECTION 5: HORECA SUPPLY PARTNERSHIP ================= */}
-      <section className="py-20 px-6 md:px-16 bg-[#181512] text-white">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-          <div>
-            <span className="text-xs uppercase tracking-widest text-[#D4B26F] font-bold block mb-2">
-              ГАРАНТИЯ БЕСПЕРЕБОЙНОСТИ
-            </span>
-            <h2 className="text-3xl md:text-4xl font-serif mb-3">
-              Поставки для вашего заведения за 48 часов
-            </h2>
-            <p className="text-sm text-[#BFB7AA] max-w-lg leading-relaxed">
-              Собственный складской запас свежеобжаренного кофе в Москве и Санкт-Петербурге. Бесплатная настройка кофемолок и обучение персонала.
-            </p>
-          </div>
-          <button
-            onClick={() => setSampleModalOpen(true)}
-            className="px-8 py-4 rounded-2xl bg-[#B38E46] hover:bg-[#C9A257] text-white text-xs font-bold uppercase tracking-wider transition-colors shrink-0 shadow-xl"
-          >
-            Получить дегустационный сет ↗
-          </button>
-        </div>
-      </section>
+      {/* ================= SECTION 5: EXACT IMAGE 4 B2B FORM ================= */}
+      <div id="sample-kit-form" className="max-w-7xl mx-auto px-6 md:px-16 py-16">
+        <B2BFormSection
+          eyebrow="ДЛЯ БАРИСТА И РЕСТОРАНОВ"
+          title="Заказ бесплатных образцов кофе (Sample Kit) для HoReCa"
+          desc="Доставим дегустационный набор свежеобжаренного зерна в ваше заведение. Поможем с настройкой оборудования и обучением персонала."
+          buttonText="ЗАКАЗАТЬ БЕСПЛАТНЫЙ НАБОР ОБРАЗЦОВ ↗"
+          badges={["Бесплатная доставка", "3 сорта зерна", "Консультация бариста"]}
+          bgImage="/images/cupping_lab_beans.jpg"
+        />
+      </div>
 
-      {/* ================= SAMPLE KIT MODAL ================= */}
-      {sampleModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-8 border border-[#E8E2D7] shadow-2xl relative">
+      {/* ================= MODAL QUICK VIEW ================= */}
+      {activeModalProduct && (
+        <div
+          className="zen-modal-backdrop"
+          onClick={() => setActiveModalProduct(null)}
+        >
+          <div
+            className="zen-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
-              onClick={() => {
-                setSampleModalOpen(false);
-                setSampleSubmitted(false);
-              }}
-              className="absolute top-6 right-6 text-xl text-[#7A7269] hover:text-[#181512]"
+              className="zen-modal-close"
+              onClick={() => setActiveModalProduct(null)}
             >
               ✕
             </button>
+            <div className="zen-modal-left">
+              <img
+                src={activeModalProduct.image}
+                alt={activeModalProduct.name}
+                className="zen-modal-img"
+              />
+            </div>
 
-            {!sampleSubmitted ? (
-              <>
-                <span className="text-xs uppercase tracking-widest text-[#B38E46] font-bold block mb-1">
-                  ДЛЯ КОФЕЕН И РЕСТОРАНОВ
+            <div className="zen-modal-right">
+              <div className="flex items-center justify-between mb-2">
+                <span className="zen-eyebrow mb-0">HORECA SPECIALTY</span>
+                <span className="text-xs text-[#8F877D] font-medium">
+                  {activeModalProduct.detail}
                 </span>
-                <h3 className="text-2xl font-serif text-[#181512] mb-2">
-                  Запрос бесплатного набора образцов
-                </h3>
-                <p className="text-xs text-[#7A7269] mb-6">
-                  Мы бесплатно доставим дегустационный набор (3 образца по 250 г) прямо в ваше заведение для каппинга.
-                </p>
-
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setSampleSubmitted(true);
-                  }}
-                  className="flex flex-col gap-4"
-                >
-                  <input
-                    required
-                    placeholder="Название кофейни / ресторана *"
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#D9D2C7] outline-none text-sm focus:border-[#B38E46]"
-                  />
-                  <input
-                    required
-                    placeholder="Город и точный адрес заведения *"
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#D9D2C7] outline-none text-sm focus:border-[#B38E46]"
-                  />
-                  <input
-                    required
-                    placeholder="Имя шеф-бариста или управляющего *"
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#D9D2C7] outline-none text-sm focus:border-[#B38E46]"
-                  />
-                  <input
-                    required
-                    placeholder="Телефон для курьера *"
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#D9D2C7] outline-none text-sm focus:border-[#B38E46]"
-                  />
-                  <button
-                    type="submit"
-                    className="w-full py-3 rounded-xl bg-[#B38E46] hover:bg-[#967434] text-white text-xs uppercase tracking-wider font-semibold transition-colors mt-2"
-                  >
-                    Заказать бесплатный Sample Kit ↗
-                  </button>
-                </form>
-              </>
-            ) : (
-              <div className="text-center py-8">
-                <span className="text-4xl mb-3 block">✓</span>
-                <h4 className="text-xl font-serif text-[#181512] mb-2">Набор отправлен в сборку</h4>
-                <p className="text-xs text-[#7A7269] mb-6">
-                  Наш кофе-тренер свяжется с вами для согласования удобного времени доставки образцов.
-                </p>
-                <button
-                  onClick={() => {
-                    setSampleModalOpen(false);
-                    setSampleSubmitted(false);
-                  }}
-                  className="px-6 py-2.5 rounded-xl bg-[#181512] text-white text-xs font-semibold"
-                >
-                  Закрыть
-                </button>
               </div>
-            )}
+
+              <h2 className="serif text-2xl mb-1 text-[#181512]">{activeModalProduct.name}</h2>
+              <p className="text-xs text-[#9E958A] uppercase tracking-wider mb-3">
+                {activeModalProduct.subname}
+              </p>
+              <p className="text-sm text-[#5C5349] leading-relaxed mb-4">
+                {activeModalProduct.desc}
+              </p>
+
+              {/* Sensory Info */}
+              <div className="bg-[#FAF8F5] border border-[#ECE6DC] rounded-lg p-3 mb-4 space-y-1.5 text-xs">
+                <div className="flex justify-between">
+                  <span className="text-[#8E867C]">Крепость:</span>
+                  <div className="zen-beans-meter">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <span key={i} className={i < activeModalProduct.strength ? "filled" : ""} />
+                    ))}
+                  </div>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#8E867C]">Аромат:</span>
+                  <span className="font-semibold text-[#181512]">{activeModalProduct.aroma}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#8E867C]">Способ заваривания:</span>
+                  <span className="font-semibold text-[#181512]">{activeModalProduct.brewMethod}</span>
+                </div>
+              </div>
+
+              {/* Brand Buttons */}
+              <div className="flex gap-2">
+                <a
+                  href={activeModalProduct.ozonUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="zen-btn-market-sm ozon flex-1 text-center py-2.5"
+                >
+                  Купить на Ozon ↗
+                </a>
+                <a
+                  href={activeModalProduct.wbUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="zen-btn-market-sm wb flex-1 text-center py-2.5"
+                >
+                  Купить на WB ↗
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       )}

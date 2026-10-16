@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import B2BFormSection from "./b2b-form-section";
 
 const eventsList = [
   {
@@ -322,12 +323,24 @@ export default function NewsSpacesView() {
               </button>
             </form>
           ) : (
-            <div className="p-4 rounded-2xl bg-white/10 text-white text-xs max-w-md mx-auto">
-              ✓ Вы успешно подписаны. Первое письмо прибудет в начале следующего месяца.
-            </div>
+            <p className="text-emerald-400 text-sm font-medium">
+              Спасибо за подписку! Мы отправили приветственный выпуск альманаха на вашу почту.
+            </p>
           )}
         </div>
       </section>
+
+      {/* ================= SECTION 6: EXACT IMAGE 4 FRANCHISE FORM ================= */}
+      <div id="franchise-form" className="max-w-7xl mx-auto px-6 md:px-16 py-16">
+        <B2BFormSection
+          eyebrow="ИНВЕСТИЦИОННАЯ ПРОГРАММА РФ"
+          title="Заявка на открытие кофейни по франшизе"
+          desc="Получите финансовую модель, требования к помещениям и расчёт окупаемости для формата Trung Nguyên Legend Café или E-Coffee."
+          buttonText="ПОЛУЧИТЬ ФРАНЧАЙЗИНГОВЫЙ ПАКЕТ (PDF) ↗"
+          badges={["Окупаемость от 10 мес.", "Обучение персонала", "Поставки 100%"]}
+          bgImage="/images/cafe_space_interior.jpg"
+        />
+      </div>
 
       {/* ================= FRANCHISE MODAL ================= */}
       {franchiseModalOpen && (

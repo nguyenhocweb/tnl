@@ -2,58 +2,72 @@
 
 import React, { useState } from "react";
 
-const g7Archetypes = [
+type G7Product = {
+  id: string;
+  name: string;
+  subname: string;
+  detail: string;
+  strength: number;
+  aroma: string;
+  brewMethod: string;
+  image: string;
+  desc: string;
+  ozonUrl: string;
+  wbUrl: string;
+};
+
+const g7Archetypes: G7Product[] = [
   {
     id: "g7-3in1",
-    nameRu: "G7 3 в 1 Classic",
-    nameVi: "G7 CÀ PHÊ HÒA TAN 3IN1",
-    spec: "18 саше × 16 г / Эконом 50 саше",
-    badge: "АБСОЛЮТНЫЙ БЕСТСЕЛЛЕР",
+    name: "G7 3 в 1 Classic",
+    subname: "Золотой баланс кофе, сливок и тростникового сахара",
+    detail: "18 САШЕ × 16 Г",
+    strength: 4,
+    aroma: "Сливочный ирис · Тёмный шоколад",
+    brewMethod: "В чашке за 30 секунд",
     image: "/images/prod_g7.jpg",
     desc: "Идеальный баланс крепкого вьетнамского кофе, нежных сливок и сахара. Сливочная текстура, дарящая заряд энергии.",
-    notes: ["Какао", "Сливочный ирис", "Карамель"],
-    intensity: "4/5",
-    ozon: "https://ozon.ru",
-    wb: "https://wildberries.ru",
+    ozonUrl: "https://ozon.ru",
+    wbUrl: "https://wildberries.ru",
   },
   {
     id: "g7-black",
-    nameRu: "G7 Pure Black (Чёрный)",
-    nameVi: "G7 CÀ PHÊ ĐEN ĐẬM VỊ",
-    spec: "15 саше × 2 г (Без сахара)",
-    badge: "100% ЧИСТАЯ РОБУСТА",
+    name: "G7 Чёрный (Pure Black)",
+    subname: "100% чистый чёрный кофе без сахара",
+    detail: "15 САШЕ × 2 Г",
+    strength: 5,
+    aroma: "Глубокая обжарка · Горький какао",
+    brewMethod: "В чашке за 30 секунд",
     image: "/images/prod_g7.jpg",
     desc: "Чистый концентрат энергии без сахара и молока. Мощный терпкий вкус для максимальной концентрации и работы.",
-    notes: ["Глубокий шоколад", "Дымные нотки", "Ясная бодрость"],
-    intensity: "5/5",
-    ozon: "https://ozon.ru",
-    wb: "https://wildberries.ru",
+    ozonUrl: "https://ozon.ru",
+    wbUrl: "https://wildberries.ru",
   },
   {
     id: "g7-cappuccino",
-    nameRu: "G7 Cappuccino Series",
-    nameVi: "G7 BỘ BA CAPPUCCINO Ý",
-    spec: "12 саше × 18 г (3 изысканных вкуса)",
-    badge: "ГУСТАЯ ПЫШНАЯ ПЕНКА",
+    name: "G7 Cappuccino Hazelnut",
+    subname: "Нежный капучино с ароматом жареного лесного ореха",
+    detail: "12 САШЕ × 18 Г",
+    strength: 3,
+    aroma: "Жареный фундук · Пышная пенка",
+    brewMethod: "В чашке за 30 секунд",
     image: "/images/prod_g7.jpg",
-    desc: "Коллекция итальянского капучино с богатой пенкой: Лесной орех (Hazelnut), Ирландский крем (Irish Cream) и Мокка (Mocha).",
-    notes: ["Фундук", "Ирландский ликер", "Бельгийский шоколад"],
-    intensity: "3/5",
-    ozon: "https://ozon.ru",
-    wb: "https://wildberries.ru",
+    desc: "Итальянский стиль с роскошной густой пенкой. Бархатистый десертный вкус с глубоким ореховым шлейфом.",
+    ozonUrl: "https://ozon.ru",
+    wbUrl: "https://wildberries.ru",
   },
   {
     id: "g7-espresso",
-    nameRu: "G7 Espresso Crema",
-    nameVi: "G7 ESPRESSO ĐẬM ĐÀ",
-    spec: "15 саше × 2.5 г",
-    badge: "ИТАЛЬЯНСКИЙ СТИЛЬ",
+    name: "G7 Espresso Crema",
+    subname: "Итальянский шот бодрости с плотной пенкой",
+    detail: "15 САШЕ × 2.5 Г",
+    strength: 5,
+    aroma: "Жареный миндаль · Горький шоколад",
+    brewMethod: "В чашке за 20 секунд",
     image: "/images/prod_g7.jpg",
     desc: "Плотное бархатное тело напитка с естественной золотистой пенкой Crema. Быстрый шот бодрости перед важной встречей.",
-    notes: ["Жареный миндаль", "Плотная пенка", "Мягкая горчинка"],
-    intensity: "5/5",
-    ozon: "https://ozon.ru",
-    wb: "https://wildberries.ru",
+    ozonUrl: "https://ozon.ru",
+    wbUrl: "https://wildberries.ru",
   },
 ];
 
@@ -68,7 +82,7 @@ const retailChains = [
 ];
 
 export default function InstantCoffeeView() {
-  const [selectedSubTab, setSelectedSubTab] = useState<string>("all");
+  const [activeModalProduct, setActiveModalProduct] = useState<G7Product | null>(null);
 
   return (
     <div className="instant-coffee-page">
@@ -94,7 +108,7 @@ export default function InstantCoffeeView() {
           <div className="flex flex-wrap gap-4">
             <a
               href="#g7-archetypes"
-              className="px-7 py-3.5 rounded-2xl bg-[#BC291D] hover:bg-[#9E2016] text-white text-xs uppercase tracking-wider font-semibold transition-all shadow-xl shadow-red-900/40"
+              className="px-7 py-3.5 rounded-2xl bg-[#B38E46] hover:bg-[#967434] text-white text-xs uppercase tracking-wider font-semibold transition-all shadow-xl"
             >
               Выбрать свой G7 ↘
             </a>
@@ -108,10 +122,10 @@ export default function InstantCoffeeView() {
         </div>
       </section>
 
-      {/* ================= SECTION 2: THE 4 G7 FLAVOR ARCHETYPES ================= */}
+      {/* ================= SECTION 2: THE 4 G7 FLAVOR ARCHETYPES (EXACT IMAGE 3 LAYOUT) ================= */}
       <section id="g7-archetypes" className="py-24 px-6 md:px-16 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-widest text-[#BC291D] font-bold">
+          <span className="text-xs uppercase tracking-widest text-[#B38E46] font-bold">
             ЛЕГЕНДАРНАЯ ЧЕТВЕРКА
           </span>
           <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mt-2 mb-3">
@@ -122,67 +136,70 @@ export default function InstantCoffeeView() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {g7Archetypes.map((item) => (
-            <div
-              key={item.id}
-              className="group bg-white rounded-3xl overflow-hidden border border-[#E8E2D7] hover:border-[#BC291D] hover:shadow-2xl transition-all duration-500 flex flex-col"
-            >
-              <div className="relative h-60 bg-[#FAF7F2] p-6 flex items-center justify-center overflow-hidden">
+        <div className="zen-product-grid">
+          {g7Archetypes.map((p) => (
+            <article key={p.id} className="zen-product-card">
+              <div className="zen-product-visual">
                 <img
-                  src={item.image}
-                  alt={item.nameRu}
-                  className="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-700"
+                  src={p.image}
+                  alt={p.name}
+                  className="zen-product-img"
+                  loading="lazy"
                 />
-                <span className="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-[#BC291D] text-white text-[9px] font-bold uppercase tracking-wider">
-                  {item.badge}
-                </span>
-                <span className="absolute bottom-4 right-4 bg-white/95 px-2.5 py-1 rounded-full text-[10px] font-semibold text-[#181512] shadow-sm border border-[#E8E2D7]">
-                  Крепость: {item.intensity}
-                </span>
               </div>
 
-              <div className="p-6 flex-1 flex flex-col justify-between">
-                <div>
-                  <span className="text-[11px] text-[#7A7269] font-medium block mb-1">{item.spec}</span>
-                  <h3 className="text-xl font-serif text-[#181512] group-hover:text-[#BC291D] transition-colors">
-                    {item.nameRu}
-                  </h3>
-                  <p className="text-xs text-[#8C827A] italic mt-0.5 mb-3">{item.nameVi}</p>
-                  <p className="text-xs text-[#5C5248] leading-relaxed mb-4">{item.desc}</p>
+              <div className="zen-product-meta">{p.detail}</div>
+              <h3 className="zen-product-title">{p.name}</h3>
+              <p className="zen-product-subname">{p.subname}</p>
 
-                  <div className="flex flex-wrap gap-1.5 mb-6">
-                    {item.notes.map((note) => (
-                      <span
-                        key={note}
-                        className="px-2 py-0.5 rounded-md bg-[#FAF7F2] text-[10px] text-[#7A7269] border border-[#EDE6DC]"
-                      >
-                        {note}
-                      </span>
+              {/* Sensory Profile Box */}
+              <div className="zen-sensory-box">
+                <div className="zen-sensory-item">
+                  <span className="zen-sensory-label">Крепость:</span>
+                  <div className="zen-beans-meter">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <span key={i} className={i < p.strength ? "filled" : ""} />
                     ))}
                   </div>
                 </div>
-
-                <div className="grid grid-cols-2 gap-2 pt-4 border-t border-[#F0EBE1]">
-                  <a
-                    href={item.ozon}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="py-2.5 rounded-xl bg-[#005BFF] hover:bg-[#0047C6] text-white text-xs font-semibold text-center transition-colors shadow-sm"
-                  >
-                    OZON ↗
-                  </a>
-                  <a
-                    href={item.wb}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="py-2.5 rounded-xl bg-[#CB11AB] hover:bg-[#A50C8B] text-white text-xs font-semibold text-center transition-colors shadow-sm"
-                  >
-                    WB ↗
-                  </a>
+                <div className="zen-sensory-item">
+                  <span className="zen-sensory-label">Аромат:</span>
+                  <span className="zen-sensory-val">{p.aroma}</span>
+                </div>
+                <div className="zen-sensory-item">
+                  <span className="zen-sensory-label">Способ:</span>
+                  <span className="zen-sensory-val">{p.brewMethod}</span>
                 </div>
               </div>
-            </div>
+
+              {/* Actions & Brand Direct Buttons (NO BLUE/MAGENTA) */}
+              <div className="zen-product-actions">
+                <button
+                  className="zen-btn-ritual-view"
+                  onClick={() => setActiveModalProduct(p)}
+                >
+                  О ритуале <span className="arrow">↗</span>
+                </button>
+                <a
+                  href={p.ozonUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="zen-btn-market-sm ozon"
+                  title="Купить на Ozon"
+                >
+                  OZON
+                </a>
+                <a
+                  href={p.wbUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="zen-btn-market-sm wb"
+                  title="Купить на Wildberries"
+                >
+                  WB
+                </a>
+              </div>
+            </article>
           ))}
         </div>
       </section>
@@ -228,7 +245,7 @@ export default function InstantCoffeeView() {
       {/* ================= SECTION 4: 3 REASONS WHY RUSSIANS LOVE G7 ================= */}
       <section className="py-24 px-6 md:px-16 max-w-7xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-widest text-[#BC291D] font-bold">
+          <span className="text-xs uppercase tracking-widest text-[#B38E46] font-bold">
             ФОРМУЛА УСПЕХА
           </span>
           <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mt-2 mb-3">
@@ -245,7 +262,7 @@ export default function InstantCoffeeView() {
               num: "01",
               title: "Холодная экстракция",
               tagline: "Сохранение живых эфирных масел",
-              desc: "В отличие от термосушки обычного растворимого кофе, технология сублимации при низких температурах бережёт истинный аромат свежеобжаренного зерна.",
+              desc: "В отличие от термосушки обычного кофе, технология сублимации при низких температурах бережёт истинный аромат свежеобжаренного зерна.",
               icon: "❄️",
             },
             {
@@ -265,21 +282,21 @@ export default function InstantCoffeeView() {
           ].map((card) => (
             <div
               key={card.num}
-              className="bg-white p-8 rounded-3xl border border-[#E8E2D7] hover:border-[#BC291D] shadow-sm hover:shadow-xl transition-all"
+              className="bg-white p-8 rounded-3xl border border-[#E8E2D7] hover:border-[#B38E46] shadow-sm hover:shadow-xl transition-all"
             >
               <div className="flex items-center justify-between mb-6">
                 <span className="text-3xl">{card.icon}</span>
                 <span className="text-3xl font-serif text-[#E8E2D7] font-bold">{card.num}</span>
               </div>
               <h3 className="text-xl font-serif text-[#181512] mb-1 font-semibold">{card.title}</h3>
-              <span className="text-xs text-[#BC291D] font-semibold block mb-3">{card.tagline}</span>
+              <span className="text-xs text-[#B38E46] font-semibold block mb-3">{card.tagline}</span>
               <p className="text-xs text-[#5C5248] leading-relaxed">{card.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ================= SECTION 5: FAST COMMERCE DIRECT CHANNELS ================= */}
+      {/* ================= SECTION 5: FAST COMMERCE DIRECT CHANNELS (BRAND-COLORED BUTTONS) ================= */}
       <section className="py-20 px-6 md:px-16 bg-[#181512] text-white">
         <div className="max-w-5xl mx-auto text-center">
           <span className="text-xs uppercase tracking-widest text-[#D4B26F] font-bold block mb-3">
@@ -297,29 +314,111 @@ export default function InstantCoffeeView() {
               href="https://ozon.ru"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 rounded-2xl bg-[#005BFF] hover:bg-[#0047C6] text-white text-sm font-bold shadow-lg transition-transform hover:-translate-y-0.5 flex items-center gap-2"
+              className="zen-btn-market-sm ozon px-8 py-3.5 text-xs uppercase tracking-wider font-semibold"
             >
-              <span>Заказать на OZON</span> ↗
+              Заказать на OZON ↗
             </a>
             <a
               href="https://wildberries.ru"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 rounded-2xl bg-[#CB11AB] hover:bg-[#A50C8B] text-white text-sm font-bold shadow-lg transition-transform hover:-translate-y-0.5 flex items-center gap-2"
+              className="zen-btn-market-sm wb px-8 py-3.5 text-xs uppercase tracking-wider font-semibold"
             >
-              <span>Заказать на Wildberries</span> ↗
+              Заказать на Wildberries ↗
             </a>
             <a
-              href="https://megamarket.ru"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-4 rounded-2xl bg-[#6A0DAD] hover:bg-[#520A88] text-white text-sm font-bold shadow-lg transition-transform hover:-translate-y-0.5 flex items-center gap-2"
+              href="/kontakty"
+              className="px-8 py-3.5 rounded-md bg-[#B38E46] hover:bg-[#967434] text-white text-xs uppercase tracking-wider font-semibold transition-colors"
             >
-              <span>Заказать на Мегамаркет</span> ↗
+              Точки продаж в городе ↗
             </a>
           </div>
         </div>
       </section>
+
+      {/* ================= MODAL QUICK VIEW ================= */}
+      {activeModalProduct && (
+        <div
+          className="zen-modal-backdrop"
+          onClick={() => setActiveModalProduct(null)}
+        >
+          <div
+            className="zen-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="zen-modal-close"
+              onClick={() => setActiveModalProduct(null)}
+            >
+              ✕
+            </button>
+            <div className="zen-modal-left">
+              <img
+                src={activeModalProduct.image}
+                alt={activeModalProduct.name}
+                className="zen-modal-img"
+              />
+            </div>
+
+            <div className="zen-modal-right">
+              <div className="flex items-center justify-between mb-2">
+                <span className="zen-eyebrow mb-0">КОФЕ G7</span>
+                <span className="text-xs text-[#8F877D] font-medium">
+                  {activeModalProduct.detail}
+                </span>
+              </div>
+
+              <h2 className="serif text-2xl mb-1 text-[#181512]">{activeModalProduct.name}</h2>
+              <p className="text-xs text-[#9E958A] uppercase tracking-wider mb-3">
+                {activeModalProduct.subname}
+              </p>
+              <p className="text-sm text-[#5C5349] leading-relaxed mb-4">
+                {activeModalProduct.desc}
+              </p>
+
+              {/* Sensory Info */}
+              <div className="bg-[#FAF8F5] border border-[#ECE6DC] rounded-lg p-3 mb-4 space-y-1.5 text-xs">
+                <div className="flex justify-between">
+                  <span className="text-[#8E867C]">Крепость:</span>
+                  <div className="zen-beans-meter">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <span key={i} className={i < activeModalProduct.strength ? "filled" : ""} />
+                    ))}
+                  </div>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#8E867C]">Аромат:</span>
+                  <span className="font-semibold text-[#181512]">{activeModalProduct.aroma}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#8E867C]">Способ приготовления:</span>
+                  <span className="font-semibold text-[#181512]">{activeModalProduct.brewMethod}</span>
+                </div>
+              </div>
+
+              {/* Brand Buttons */}
+              <div className="flex gap-2">
+                <a
+                  href={activeModalProduct.ozonUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="zen-btn-market-sm ozon flex-1 text-center py-2.5"
+                >
+                  Купить на Ozon ↗
+                </a>
+                <a
+                  href={activeModalProduct.wbUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="zen-btn-market-sm wb flex-1 text-center py-2.5"
+                >
+                  Купить на WB ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

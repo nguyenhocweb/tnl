@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import B2BFormSection from "./b2b-form-section";
 
 const businessSegments = [
   {
@@ -236,149 +237,10 @@ export default function B2BPartnersView() {
         </div>
       </section>
 
-      {/* ================= SECTION 5: RUSSIAN INN ENTERPRISE FORM ================= */}
-      <section id="b2b-form" className="py-24 px-6 md:px-16 bg-[#F5F2EB] border-t border-[#E8E2D7]">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <span className="text-xs uppercase tracking-widest text-[#B38E46] font-bold">
-              НАЧАТЬ СОТРУДНИЧЕСТВО
-            </span>
-            <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mt-2 mb-3">
-              Заявка на оптовые поставки
-            </h2>
-            <p className="text-sm text-[#7A7269]">
-              Заполните карточку партнера для получения оптового прайс-листа и закрепления персонального менеджера
-            </p>
-          </div>
-
-          <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#E8E2D7] shadow-xl">
-            {!formSubmitted ? (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setFormSubmitted(true);
-                }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-6"
-              >
-                <div>
-                  <label className="text-xs text-[#4A4238] font-semibold block mb-1">
-                    Наименование организации или ИП *
-                  </label>
-                  <input
-                    required
-                    placeholder="ООО «Восток-Ритейл»"
-                    className="w-full px-4 py-3 rounded-xl border border-[#D9D2C7] outline-none text-sm focus:border-[#B38E46]"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-xs text-[#4A4238] font-semibold block mb-1">
-                    ИНН компании (10 цифр для юрлиц, 12 для ИП) *
-                  </label>
-                  <input
-                    required
-                    pattern="[0-9]{10,12}"
-                    value={innValue}
-                    onChange={(e) => setInnValue(e.target.value)}
-                    placeholder="7701234567"
-                    className="w-full px-4 py-3 rounded-xl border border-[#D9D2C7] outline-none text-sm focus:border-[#B38E46]"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-xs text-[#4A4238] font-semibold block mb-1">
-                    Город и регион поставок *
-                  </label>
-                  <input
-                    required
-                    placeholder="Москва / Санкт-Петербург / Казань..."
-                    className="w-full px-4 py-3 rounded-xl border border-[#D9D2C7] outline-none text-sm focus:border-[#B38E46]"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-xs text-[#4A4238] font-semibold block mb-1">
-                    Тип деятельности *
-                  </label>
-                  <select className="w-full px-4 py-3 rounded-xl border border-[#D9D2C7] outline-none text-sm bg-white">
-                    <option>Дистрибьютор / Оптовая база</option>
-                    <option>Торговая сеть / Ритейл</option>
-                    <option>Кофейня / Сеть HoReCa</option>
-                    <option>Корпоративный заказчик (Офис / Подарки)</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="text-xs text-[#4A4238] font-semibold block mb-1">
-                    Контактное лицо и должность *
-                  </label>
-                  <input
-                    required
-                    placeholder="Иван Иванов, Руководитель закупок"
-                    className="w-full px-4 py-3 rounded-xl border border-[#D9D2C7] outline-none text-sm focus:border-[#B38E46]"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-xs text-[#4A4238] font-semibold block mb-1">
-                    Телефон (+7...) *
-                  </label>
-                  <input
-                    required
-                    type="tel"
-                    placeholder="+7 (999) 000-00-00"
-                    className="w-full px-4 py-3 rounded-xl border border-[#D9D2C7] outline-none text-sm focus:border-[#B38E46]"
-                  />
-                </div>
-
-                <div className="md:col-span-2">
-                  <label className="text-xs text-[#4A4238] font-semibold block mb-1">
-                    Корпоративный e-mail для отправки договора и прайс-листа *
-                  </label>
-                  <input
-                    required
-                    type="email"
-                    placeholder="order@company.ru"
-                    className="w-full px-4 py-3 rounded-xl border border-[#D9D2C7] outline-none text-sm focus:border-[#B38E46]"
-                  />
-                </div>
-
-                <div className="md:col-span-2 flex items-start gap-2 pt-2">
-                  <input required type="checkbox" id="fz152" className="mt-1" />
-                  <label htmlFor="fz152" className="text-xs text-[#7A7269] leading-relaxed">
-                    Я согласен на обработку персональных данных в соответствии с Федеральным законом РФ № 152-ФЗ «О персональных данных».
-                  </label>
-                </div>
-
-                <div className="md:col-span-2 pt-4">
-                  <button
-                    type="submit"
-                    className="w-full py-4 rounded-xl bg-[#B38E46] hover:bg-[#967434] text-white text-xs uppercase tracking-wider font-semibold transition-colors shadow-lg"
-                  >
-                    Отправить заявку на сотрудничество ↗
-                  </button>
-                </div>
-              </form>
-            ) : (
-              <div className="text-center py-12">
-                <span className="text-5xl mb-4 block">✓</span>
-                <h3 className="text-2xl font-serif text-[#181512] mb-2 font-semibold">
-                  Заявка принята в работу
-                </h3>
-                <p className="text-sm text-[#7A7269] max-w-md mx-auto mb-6">
-                  Коммерческий отдел проверит данные по ИНН и направит индивидуальное коммерческое предложение в течение 2 часов.
-                </p>
-                <button
-                  onClick={() => setFormSubmitted(false)}
-                  className="px-8 py-3 rounded-xl bg-[#181512] text-white text-xs font-semibold"
-                >
-                  Отправить ещё одну заявку
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
+      {/* ================= SECTION 5: EXACT IMAGE 4 B2B FORM ================= */}
+      <div className="max-w-7xl mx-auto px-6 md:px-16 py-16">
+        <B2BFormSection />
+      </div>
     </div>
   );
 }
