@@ -1,6 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { useParams } from "next/navigation";
+import AboutCompanyView from "./about-company-view";
+import FounderMessageView from "./founder-message-view";
+import VisionValuesView from "./vision-values-view";
 
 function Link({ href, className, children }: { href: string; className?: string; children: React.ReactNode }) {
   return <a href={href} className={className}>{children}</a>;
@@ -18,16 +22,17 @@ type Page = {
 
 const pages: Record<string, Page> = {
   "o-kompanii": {
-    kicker: "О КОМПАНИИ · 01",
-    title: "Из Буонметхуота — в мир кофе",
-    intro: "Trung Nguyên Legend представляет Вьетнам на мировом рынке кофе. Мы соединяем характер робусты Буонметхуота, современное производство и культуру осознанного потребления для России.",
-    label: "МАСШТАБ И ДОВЕРИЕ",
+    kicker: "О БРЕНДЕ & ИСТОРИЯ · 02",
+    title: "Из кофейной столицы — в мировую элиту",
+    intro: "16 июня 1996 года в Буонметхуоте началась история великой мечты. От старого велосипеда и страсти основателя Данг Ле Нгуен Ву — до флагманских пространств в Шанхае, Сеуле и официальной дистрибуции в России.",
+    label: "ВЕХИ ВЕЛИКОГО ПУТИ",
     cta: "Открыть каталог",
+    quote: "«Кофе — сокровище Неба и Земли, чистая энергия, пробуждающая осознанность и созидание.»",
     items: [
-      { title: "Путь развития", text: "От Буонметхуота до международной кофейной группы — история амбиций, вкуса и системной работы." },
-      { title: "Столица робусты", text: "Буонметхуот — регион, где рождается выразительный характер вьетнамской робусты." },
-      { title: "Производство", text: "Современные мощности и контроль качества на каждом этапе производства." },
-      { title: "Документы", text: "EAC · GOST · ISO · HACCP · Halal — набор подтверждений для работы с рынком." },
+      { title: "1996 · Рождение мечты", text: "Старт с единственного старого велосипеда в Буонметхуоте и непоколебимой веры в величие вьетнамского кофе." },
+      { title: "2003 · Триумф G7", text: "Победа в слепом тесте (89% голосов) над мировыми гигантами и триумфальный экспорт в более чем 80 стран." },
+      { title: "2018 · Музей Кофе & Дзэн", text: "Открытие Музея Мира Кофе (>10 000 экспонатов) и провозглашение философии Lối Sống Tỉnh Thức (Осознанной Жизни)." },
+      { title: "2026 · Стандарты РФ & Мира", text: "Сертификация EAC, ГОСТ-Р, ISO 22000, Halal и прямая логистическая сеть по всей России." },
     ],
   },
   "o-kompanii/obrashchenie-osnovatelya": {
@@ -165,44 +170,256 @@ const pages: Record<string, Page> = {
   },
 };
 
-const routeMap: Record<string, string> = {
-  "О компании": "/o-kompanii",
-  "Философия": "/filosofiya-kofe",
-  "Каталог": "/katalog",
-  "Кафе и новости": "/novosti",
-  "Партнёрам": "/partneram",
-  "Контакты": "/kontakty",
-};
-
 export default function InnerPage() {
   const params = useParams<{ slug: string[] }>();
   const key = Array.isArray(params.slug) ? params.slug.join("/") : "";
   const page = pages[key] ?? pages["o-kompanii"];
   const isCatalog = key.startsWith("katalog");
   const isPartner = key === "partneram" || key === "novosti";
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   return <main className="inner-page">
-    <header className="inner-header">
-      <Link className="brand" href="/"><b>TNL</b><span>TRUNG NGUYÊN<br /><strong>LEGEND</strong></span></Link>
-      <nav>{Object.entries(routeMap).map(([label, href]) => <Link key={label} href={href}>{label}</Link>)}</nav>
-      <Link className="buy" href="/kontakty">Где купить</Link>
-    </header>
-    <section className="inner-hero">
-      <div>
-        <p className="eyebrow">{page.kicker}</p>
-        <h1>{page.title}</h1>
-        <p>{page.intro}</p>
-        <Link className="button gold" href={isPartner ? "/partneram#form" : isCatalog ? "/kontakty" : "/katalog"}>{page.cta} <span>↗</span></Link>
+    {/* ================= HEADER ================= */}
+    <header className="zen-header">
+      <a href="/" className="zen-brand">
+        <div className="zen-logo-mark">TNL</div>
+        <div className="zen-brand-text">
+          <span>Trung Nguyên</span>
+          <strong>Legend</strong>
+        </div>
+      </a>
+
+      {/* Desktop Navigation (All 12 Pages from Sitemap) */}
+      <nav className="zen-nav">
+        <a href="/" className="zen-nav-btn">
+          Главная
+        </a>
+
+        {/* Group: О компании (Pages 02, 03, 04) */}
+        <div
+          className={`zen-nav-item ${openDropdown === "company" ? "is-open" : ""}`}
+          onMouseEnter={() => setOpenDropdown("company")}
+          onMouseLeave={() => setOpenDropdown(null)}
+        >
+          <button
+            type="button"
+            className="zen-nav-btn"
+            onClick={() => setOpenDropdown(openDropdown === "company" ? null : "company")}
+          >
+            О компании <span className="zen-nav-chevron">▼</span>
+          </button>
+          <div className="zen-dropdown-menu">
+            <a href="/o-kompanii" onClick={() => setOpenDropdown(null)} className="zen-dropdown-item">
+              <div className="zen-dropdown-content">
+                <span className="zen-dropdown-title">О бренде & История</span>
+                <span className="zen-dropdown-desc">Наследие из Буонметхуота и мировые стандарты</span>
+              </div>
+            </a>
+            <a href="/o-kompanii/obrashchenie-osnovatelya" onClick={() => setOpenDropdown(null)} className="zen-dropdown-item">
+              <div className="zen-dropdown-content">
+                <span className="zen-dropdown-title">Послание Основателя</span>
+                <span className="zen-dropdown-desc">Данг Ле Нгуен Ву: Энергия, меняющая жизнь</span>
+              </div>
+            </a>
+            <a href="/o-kompanii/missiya-i-cennosti" onClick={() => setOpenDropdown(null)} className="zen-dropdown-item">
+              <div className="zen-dropdown-content">
+                <span className="zen-dropdown-title">Видение и Миссия</span>
+                <span className="zen-dropdown-desc">Стратегия, осознанность и принципы в России</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        {/* Page 05: Философия */}
+        <a href="/filosofiya-kofe" className="zen-nav-btn">
+          Философия
+        </a>
+
+        {/* Group: Каталог (Pages 06, 07, 08, 09) */}
+        <div
+          className={`zen-nav-item ${openDropdown === "catalog" ? "is-open" : ""}`}
+          onMouseEnter={() => setOpenDropdown("catalog")}
+          onMouseLeave={() => setOpenDropdown(null)}
+        >
+          <button
+            type="button"
+            className="zen-nav-btn"
+            onClick={() => setOpenDropdown(openDropdown === "catalog" ? null : "catalog")}
+          >
+            Каталог <span className="zen-nav-chevron">▼</span>
+          </button>
+          <div className="zen-dropdown-menu">
+            <a href="/katalog" onClick={() => setOpenDropdown(null)} className="zen-dropdown-item">
+              <div className="zen-dropdown-content">
+                <span className="zen-dropdown-title">Каталог продукции (Все)</span>
+                <span className="zen-dropdown-desc">Полный официальный ассортимент в России</span>
+              </div>
+            </a>
+            <a href="/katalog/rastvorimyj-kofe" onClick={() => setOpenDropdown(null)} className="zen-dropdown-item">
+              <div className="zen-dropdown-content">
+                <span className="zen-dropdown-title">Растворимый кофе G7</span>
+                <span className="zen-dropdown-desc">G7 3in1, Pure Black, Cappuccino & Espresso</span>
+              </div>
+            </a>
+            <a href="/katalog/molotyj-kofe" onClick={() => setOpenDropdown(null)} className="zen-dropdown-item">
+              <div className="zen-dropdown-content">
+                <span className="zen-dropdown-title">Молотый кофе Legend</span>
+                <span className="zen-dropdown-desc">Special Edition, Creative 1–5 & Drip Coffee</span>
+              </div>
+            </a>
+            <a href="/katalog/kofe-v-zernah" onClick={() => setOpenDropdown(null)} className="zen-dropdown-item">
+              <div className="zen-dropdown-content">
+                <span className="zen-dropdown-title">Кофе в зёрнах & Culi</span>
+                <span className="zen-dropdown-desc">Отборные зёрна ручной обжарки для HoReCa</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        {/* Page 10: Пространства */}
+        <a href="/novosti" className="zen-nav-btn">
+          Пространства
+        </a>
+
+        {/* Page 11: Партнёрам */}
+        <a href="/dlya-partnerov" className="zen-nav-btn">
+          Партнёрам (B2B)
+        </a>
+
+        {/* Page 12: Контакты */}
+        <a href="/kontakty" className="zen-nav-btn">
+          Контакты
+        </a>
+      </nav>
+
+      {/* Header Actions (Right cluster removed per request; hamburger toggle for mobile) */}
+      <div className="zen-actions">
+        <button
+          className="zen-hamburger"
+          aria-label="Открыть меню"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? "✕" : "☰"}
+        </button>
       </div>
-      <aside><span>{isCatalog ? "☕" : isPartner ? "✦" : "01"}</span><small>TRUNG NGUYÊN LEGEND<br />РОССИЯ</small></aside>
-    </section>
-    {page.quote && <blockquote>{page.quote}</blockquote>}
-    <section className="inner-content">
-      <p className="eyebrow">{page.label}</p>
-      <div className="inner-grid">{page.items.map((item, index) => <article key={item.title}><b>{String(index + 1).padStart(2, "0")}</b><h2>{item.title}</h2><p>{item.text}</p>{isCatalog && <Link href="/kontakty">Где купить ↗</Link>}</article>)}</div>
-    </section>
-    {key === "partneram" && <section className="mini-form" id="form"><p className="eyebrow">НАЧАТЬ ДИАЛОГ</p><h2>Оставьте заявку<br />на сотрудничество</h2><div><input placeholder="Компания" /><input placeholder="Город / регион" /><input placeholder="E-mail" /><input placeholder="Потребность в импорте" /><button className="button gold">Отправить заявку ↗</button></div></section>}
-    {key === "kontakty" && <section className="map-placeholder"><div><b>Y</b><span>Карта точек продаж</span></div><p>Yandex Maps будет подключён после передачи API-ключа и утверждённого списка точек продаж.</p></section>}
-    <footer className="inner-footer"><span>© 1996–2026 Trung Nguyên Legend</span><Link href="/">Главная</Link><span>Политика обработки данных</span></footer>
+    </header>
+
+    {/* Mobile Drawer Navigation (All 12 Pages) */}
+    {mobileMenuOpen && (
+      <div className="fixed inset-0 z-40 bg-[#FAF8F5] pt-24 pb-12 px-6 flex flex-col gap-5 overflow-y-auto border-b border-[#E8E2D7]">
+        <div className="flex justify-between items-center pb-3 border-b border-[#EDE6DC]">
+          <span className="text-xs uppercase tracking-widest text-[#B38E46] font-semibold">12 Разделов сайта</span>
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-xl p-2 text-[#181512]"
+            aria-label="Закрыть меню"
+          >
+            ✕
+          </button>
+        </div>
+
+        <a
+          href="/"
+          onClick={() => setMobileMenuOpen(false)}
+          className="text-base font-medium py-1.5 flex items-center justify-between border-b border-[#EDE6DC]"
+        >
+          <span>Главная страница</span>
+          <span className="text-[#B38E46]">→</span>
+        </a>
+
+        <div className="flex flex-col gap-1.5 pb-2 border-b border-[#EDE6DC]">
+          <span className="text-xs uppercase tracking-wider text-[#7A7269] font-medium">О компании</span>
+          <a href="/o-kompanii" onClick={() => setMobileMenuOpen(false)} className="text-sm py-1 pl-3 text-[#181512] hover:text-[#B38E46]">
+            О бренде & История
+          </a>
+          <a href="/o-kompanii/obrashchenie-osnovatelya" onClick={() => setMobileMenuOpen(false)} className="text-sm py-1 pl-3 text-[#181512] hover:text-[#B38E46]">
+            Послание Основателя
+          </a>
+          <a href="/o-kompanii/missiya-i-cennosti" onClick={() => setMobileMenuOpen(false)} className="text-sm py-1 pl-3 text-[#181512] hover:text-[#B38E46]">
+            Видение и Миссия
+          </a>
+        </div>
+
+        <a
+          href="/filosofiya-kofe"
+          onClick={() => setMobileMenuOpen(false)}
+          className="text-base font-medium py-1.5 flex items-center justify-between border-b border-[#EDE6DC]"
+        >
+          <span>Философия 3-х Цивилизаций</span>
+          <span className="text-[#B38E46]">→</span>
+        </a>
+
+        <div className="flex flex-col gap-1.5 pb-2 border-b border-[#EDE6DC]">
+          <span className="text-xs uppercase tracking-wider text-[#7A7269] font-medium">Каталог кофе</span>
+          <a href="/katalog" onClick={() => setMobileMenuOpen(false)} className="text-sm py-1 pl-3 text-[#181512] hover:text-[#B38E46]">
+            Обзор каталога (Все)
+          </a>
+          <a href="/katalog/rastvorimyj-kofe" onClick={() => setMobileMenuOpen(false)} className="text-sm py-1 pl-3 text-[#181512] hover:text-[#B38E46]">
+            Растворимый кофе G7
+          </a>
+          <a href="/katalog/molotyj-kofe" onClick={() => setMobileMenuOpen(false)} className="text-sm py-1 pl-3 text-[#181512] hover:text-[#B38E46]">
+            Молотый кофе Legend
+          </a>
+          <a href="/katalog/kofe-v-zernah" onClick={() => setMobileMenuOpen(false)} className="text-sm py-1 pl-3 text-[#181512] hover:text-[#B38E46]">
+            Кофе в зёрнах & Culi
+          </a>
+        </div>
+
+        <a
+          href="/novosti"
+          onClick={() => setMobileMenuOpen(false)}
+          className="text-base font-medium py-1.5 flex items-center justify-between border-b border-[#EDE6DC]"
+        >
+          <span>Пространства и Новости</span>
+          <span className="text-[#B38E46]">→</span>
+        </a>
+
+        <a
+          href="/dlya-partnerov"
+          onClick={() => setMobileMenuOpen(false)}
+          className="text-base font-medium py-1.5 flex items-center justify-between border-b border-[#EDE6DC]"
+        >
+          <span>Для Партнёров (B2B Hub)</span>
+          <span className="text-[#B38E46]">→</span>
+        </a>
+
+        <a
+          href="/kontakty"
+          onClick={() => setMobileMenuOpen(false)}
+          className="text-base font-medium py-1.5 flex items-center justify-between border-b border-[#EDE6DC]"
+        >
+          <span>Контакты và Сеть продаж</span>
+          <span className="text-[#B38E46]">→</span>
+        </a>
+      </div>
+    )}
+    {key === "o-kompanii" ? (
+      <AboutCompanyView />
+    ) : key === "o-kompanii/obrashchenie-osnovatelya" ? (
+      <FounderMessageView />
+    ) : key === "o-kompanii/missiya-i-cennosti" ? (
+      <VisionValuesView />
+    ) : (
+      <>
+        <section className="inner-hero">
+          <div>
+            <p className="eyebrow">{page.kicker}</p>
+            <h1>{page.title}</h1>
+            <p>{page.intro}</p>
+            <Link className="button gold" href={isPartner ? "/partneram#form" : isCatalog ? "/kontakty" : "/katalog"}>{page.cta} <span>↗</span></Link>
+          </div>
+          <aside><span>{isCatalog ? "☕" : isPartner ? "✦" : "01"}</span><small>TRUNG NGUYÊN LEGEND<br />РОССИЯ</small></aside>
+        </section>
+        {page.quote && <blockquote>{page.quote}</blockquote>}
+        <section className="inner-content">
+          <p className="eyebrow">{page.label}</p>
+          <div className="inner-grid">{page.items.map((item, index) => <article key={item.title}><b>{String(index + 1).padStart(2, "0")}</b><h2>{item.title}</h2><p>{item.text}</p>{isCatalog && <Link href="/kontakty">Где купить ↗</Link>}</article>)}</div>
+        </section>
+        {key === "partneram" && <section className="mini-form" id="form"><p className="eyebrow">НАЧАТЬ ДИАЛОГ</p><h2>Оставьте заявку<br />на сотрудничество</h2><div><input placeholder="Компания" /><input placeholder="Город / регион" /><input placeholder="E-mail" /><input placeholder="Потребность в импорте" /><button className="button gold">Отправить заявку ↗</button></div></section>}
+        {key === "kontakty" && <section className="map-placeholder"><div><b>Y</b><span>Карта точек продаж</span></div><p>Yandex Maps будет подключён после передачи API-ключа и утверждённого списка точек продаж.</p></section>}
+        <footer className="inner-footer"><span>© 1996–2026 Trung Nguyên Legend</span><Link href="/">Главная</Link><span>Политика обработки данных</span></footer>
+      </>
+    )}
   </main>;
 }
