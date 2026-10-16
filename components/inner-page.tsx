@@ -5,6 +5,14 @@ import { useParams } from "next/navigation";
 import AboutCompanyView from "./about-company-view";
 import FounderMessageView from "./founder-message-view";
 import VisionValuesView from "./vision-values-view";
+import CoffeePhilosophyView from "./coffee-philosophy-view";
+import CatalogOverviewView from "./catalog-overview-view";
+import InstantCoffeeView from "./instant-coffee-view";
+import RoastedCoffeeView from "./roasted-coffee-view";
+import BeanCoffeeView from "./bean-coffee-view";
+import NewsSpacesView from "./news-spaces-view";
+import B2BPartnersView from "./b2b-partners-view";
+import ContactStoresView from "./contact-stores-view";
 
 function Link({ href, className, children }: { href: string; className?: string; children: React.ReactNode }) {
   return <a href={href} className={className}>{children}</a>;
@@ -389,7 +397,7 @@ export default function InnerPage() {
           onClick={() => setMobileMenuOpen(false)}
           className="text-base font-medium py-1.5 flex items-center justify-between border-b border-[#EDE6DC]"
         >
-          <span>Контакты và Сеть продаж</span>
+          <span>Контакты и Сеть продаж</span>
           <span className="text-[#B38E46]">→</span>
         </a>
       </div>
@@ -400,26 +408,24 @@ export default function InnerPage() {
       <FounderMessageView />
     ) : key === "o-kompanii/missiya-i-cennosti" ? (
       <VisionValuesView />
+    ) : key === "filosofiya-kofe" ? (
+      <CoffeePhilosophyView />
+    ) : key === "katalog" ? (
+      <CatalogOverviewView />
+    ) : key === "katalog/rastvorimyj-kofe" ? (
+      <InstantCoffeeView />
+    ) : key === "katalog/molotyj-kofe" ? (
+      <RoastedCoffeeView />
+    ) : key === "katalog/kofe-v-zernah" ? (
+      <BeanCoffeeView />
+    ) : key === "novosti" ? (
+      <NewsSpacesView />
+    ) : key === "dlya-partnerov" || key === "partneram" ? (
+      <B2BPartnersView />
+    ) : key === "kontakty" ? (
+      <ContactStoresView />
     ) : (
-      <>
-        <section className="inner-hero">
-          <div>
-            <p className="eyebrow">{page.kicker}</p>
-            <h1>{page.title}</h1>
-            <p>{page.intro}</p>
-            <Link className="button gold" href={isPartner ? "/partneram#form" : isCatalog ? "/kontakty" : "/katalog"}>{page.cta} <span>↗</span></Link>
-          </div>
-          <aside><span>{isCatalog ? "☕" : isPartner ? "✦" : "01"}</span><small>TRUNG NGUYÊN LEGEND<br />РОССИЯ</small></aside>
-        </section>
-        {page.quote && <blockquote>{page.quote}</blockquote>}
-        <section className="inner-content">
-          <p className="eyebrow">{page.label}</p>
-          <div className="inner-grid">{page.items.map((item, index) => <article key={item.title}><b>{String(index + 1).padStart(2, "0")}</b><h2>{item.title}</h2><p>{item.text}</p>{isCatalog && <Link href="/kontakty">Где купить ↗</Link>}</article>)}</div>
-        </section>
-        {key === "partneram" && <section className="mini-form" id="form"><p className="eyebrow">НАЧАТЬ ДИАЛОГ</p><h2>Оставьте заявку<br />на сотрудничество</h2><div><input placeholder="Компания" /><input placeholder="Город / регион" /><input placeholder="E-mail" /><input placeholder="Потребность в импорте" /><button className="button gold">Отправить заявку ↗</button></div></section>}
-        {key === "kontakty" && <section className="map-placeholder"><div><b>Y</b><span>Карта точек продаж</span></div><p>Yandex Maps будет подключён после передачи API-ключа и утверждённого списка точек продаж.</p></section>}
-        <footer className="inner-footer"><span>© 1996–2026 Trung Nguyên Legend</span><Link href="/">Главная</Link><span>Политика обработки данных</span></footer>
-      </>
+      <AboutCompanyView />
     )}
   </main>;
 }
