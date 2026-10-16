@@ -8,9 +8,9 @@
   "scripts": {
     "install:ci": "node scripts/install-ci.mjs",
     "dev": "node scripts/run-framework.mjs dev",
-    "dev:next": "next dev",
-    "build": "next build --webpack",
-    "vercel-build": "next build --webpack",
+    "prebuild": "node scripts/prebuild.mjs",
+    "build": "node scripts/prebuild.mjs && next build --webpack && node scripts/postbuild.mjs",
+    "vercel-build": "node scripts/prebuild.mjs && next build --webpack && node scripts/postbuild.mjs",
     "build:vinext": "node scripts/run-framework.mjs build",
     "start": "next start",
     "start:vinext": "node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --inspector-port 0",
