@@ -95,10 +95,7 @@ export default function InstantCoffeeView() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
         <div className="relative z-10 max-w-4xl">
-          <span className="inline-block px-4 py-1.5 mb-4 rounded-full bg-[#BC291D] text-white text-[11px] font-bold tracking-widest uppercase shadow-xl border border-red-400/30">
-            ★ №1 РАСТВОРИМЫЙ КОФЕ ИЗ ВЬЕТНАМА В РОССИИ ★
-          </span>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white tracking-wide font-normal drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] leading-tight mb-3">
+                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white tracking-wide font-normal drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] leading-tight mb-3">
             G7: Энергия, Согревающая Сердца
           </h1>
           <p className="text-base md:text-xl text-[#FCEEE3] font-light drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] mb-8">
@@ -112,12 +109,6 @@ export default function InstantCoffeeView() {
             >
               Выбрать свой G7 ↘
             </a>
-            <a
-              href="#retail-network"
-              className="px-7 py-3.5 rounded-2xl bg-white/20 hover:bg-white/30 backdrop-blur-md text-white border border-white/40 text-xs uppercase tracking-wider font-semibold transition-all"
-            >
-              15 000+ магазинов в РФ
-            </a>
           </div>
         </div>
       </section>
@@ -125,10 +116,7 @@ export default function InstantCoffeeView() {
       {/* ================= SECTION 2: THE 4 G7 FLAVOR ARCHETYPES (EXACT IMAGE 3 LAYOUT) ================= */}
       <section id="g7-archetypes" className="py-24 px-6 md:px-16 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-widest text-[#B38E46] font-bold">
-            ЛЕГЕНДАРНАЯ ЧЕТВЕРКА
-          </span>
-          <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mt-2 mb-3">
+          <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mb-3">
             Коллекция вкусов G7
           </h2>
           <p className="text-sm text-[#7A7269]">
@@ -150,7 +138,6 @@ export default function InstantCoffeeView() {
 
               <div className="zen-product-meta">{p.detail}</div>
               <h3 className="zen-product-title">{p.name}</h3>
-              <p className="zen-product-subname">{p.subname}</p>
 
               {/* Sensory Profile Box */}
               <div className="zen-sensory-box">
@@ -178,7 +165,7 @@ export default function InstantCoffeeView() {
                   className="zen-btn-ritual-view"
                   onClick={() => setActiveModalProduct(p)}
                 >
-                  О ритуале <span className="arrow">↗</span>
+                  О ритуале
                 </button>
                 <a
                   href={p.ozonUrl}
@@ -209,10 +196,7 @@ export default function InstantCoffeeView() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
-              <span className="text-xs uppercase tracking-widest text-[#B38E46] font-semibold">
-                ШАГОВАЯ ДОСТУПНОСТЬ ПО ВСЕЙ РОССИИ
-              </span>
-              <h2 className="text-2xl md:text-4xl font-serif text-[#181512] mt-2">
+              <h2 className="text-2xl md:text-4xl font-serif text-[#181512]">
                 Более 15 000 магазинов от Калининграда до Владивостока
               </h2>
             </div>

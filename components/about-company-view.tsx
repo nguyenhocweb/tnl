@@ -165,24 +165,9 @@ export default function AboutCompanyView() {
             <span className="text-[#F8D78C] italic">в мировую элиту</span>
           </h1>
 
-          <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto font-light leading-relaxed mb-6">
+          <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto font-light leading-relaxed mb-8 sm:mb-10">
             От старого велосипеда в Буонметхуоте — до флагманских пространств в Шанхае, Сеуле и официальной сети дистрибуции в России.
           </p>
-
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <a
-              href="#odyssey"
-              className="px-7 py-3.5 rounded-md bg-[#B38E46] text-white hover:bg-[#9B7735] text-xs font-semibold tracking-wider uppercase transition shadow-md"
-            >
-              Хроника 30 лет ↘
-            </a>
-            <a
-              href="#seals"
-              className="px-7 py-3.5 rounded-md bg-white/15 backdrop-blur-md border border-white/30 text-white hover:bg-white/25 text-xs font-semibold tracking-wider uppercase transition"
-            >
-              Сертификаты РФ & ЕАЭС ↗
-            </a>
-          </div>
 
           {/* Floating Glass Metrics Bar */}
           <div className="zen-floating-metrics">
@@ -205,9 +190,7 @@ export default function AboutCompanyView() {
       {/* ================= SECTION 2: BỘ 3 BỨC HỌA BIỂU TƯỢNG (SACRED SYMBOLISM) ================= */}
       <section className="w-full py-16 lg:py-24 max-w-7xl mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-[11px] font-bold tracking-[0.22em] text-[#B38E46] uppercase block mb-2">
-            САКРАЛЬНАЯ СИМВОЛИКА
-          </span>
+
           <h2 className="font-serif text-3xl sm:text-4xl text-[#181512] mb-3">
             Гармония Неба, Земли и Человека
           </h2>
@@ -230,9 +213,7 @@ export default function AboutCompanyView() {
                 <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white font-serif text-lg mb-3">
                   {s.shape}
                 </div>
-                <div className="text-[10px] tracking-widest text-[#F8D78C] uppercase font-bold mb-1">
-                  {s.badge}
-                </div>
+
                 <h3 className="font-serif text-2xl text-white mb-2">
                   {s.title}
                 </h3>
@@ -261,12 +242,7 @@ export default function AboutCompanyView() {
 
             <div className="zen-stage-content">
               <div className="max-w-3xl">
-                <div className="inline-block px-3 py-1 rounded bg-[#B38E46] text-white text-[10px] tracking-widest font-bold uppercase mb-3">
-                  {activeMilestone.badge}
-                </div>
-                <div className="text-xs text-[#F8D78C] tracking-wider uppercase mb-1 font-medium">
-                  {activeMilestone.location}
-                </div>
+
                 <h3 className="font-serif text-2xl sm:text-3xl text-white mb-3">
                   {activeMilestone.title}
                 </h3>
@@ -331,9 +307,7 @@ export default function AboutCompanyView() {
         <div className="zen-heritage-container">
           {/* Section Header */}
           <div className="zen-heritage-header">
-            <span className="text-[11px] font-bold tracking-[0.24em] text-[#B38E46] uppercase block mb-1.5">
-              ДИ СẢN &amp; ĐỊA LÝ
-            </span>
+
             <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#181512] mb-2 leading-tight">
               Сердце Кофейной Столицы
             </h2>
@@ -353,9 +327,7 @@ export default function AboutCompanyView() {
               />
               <div className="zen-bento-overlay" />
               <div className="absolute bottom-6 left-6 right-6 text-white z-10">
-                <span className="text-[10px] tracking-widest text-[#F8D78C] uppercase font-bold block mb-1.5">
-                  АРХИТЕКТУРНЫЙ ШЕДЕВР
-                </span>
+
                 <h4 className="font-serif text-2xl lg:text-3xl text-white mb-2 leading-tight">
                   Музей Мира Кофе в Буонметхуоте
                 </h4>
@@ -376,9 +348,7 @@ export default function AboutCompanyView() {
                 />
                 <div className="zen-bento-overlay" />
                 <div className="absolute bottom-5 left-5 right-5 text-white z-10">
-                  <span className="text-[9px] tracking-widest text-[#F8D78C] uppercase font-bold block mb-1">
-                    ТЕРРУАР 160 МЛН ЛЕТ
-                  </span>
+
                   <h5 className="font-serif text-base lg:text-lg text-white font-medium leading-snug">
                     Красная базальтовая земля
                   </h5>
@@ -394,9 +364,7 @@ export default function AboutCompanyView() {
                 />
                 <div className="zen-bento-overlay" />
                 <div className="absolute bottom-5 left-5 right-5 text-white z-10">
-                  <span className="text-[9px] tracking-widest text-[#F8D78C] uppercase font-bold block mb-1">
-                    100% РУЧНОЙ СБОР
-                  </span>
+
                   <h5 className="font-serif text-base lg:text-lg text-white font-medium leading-snug">
                     Отбор спелых ягод робусты
                   </h5>
@@ -409,12 +377,9 @@ export default function AboutCompanyView() {
 
 
       {/* ================= SECTION 5: TƯỜNG 4 HUÂN CHƯƠNG BẢO CHỨNG VÀNG ================= */}
-      <section id="seals" className="w-full py-16 lg:py-24 bg-[#F3EFEA] border-t border-[#E5DDD2]">
+      <section id="seals" className="w-full py-10 lg:py-14 bg-[#F3EFEA] border-t border-[#E5DDD2]">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-[11px] font-bold tracking-[0.22em] text-[#B38E46] uppercase block mb-2">
-              СТАНДАРТЫ И БЕЗОПАСНОСТЬ
-            </span>
+          <div className="text-center max-w-2xl mx-auto mb-8">
             <h2 className="font-serif text-3xl sm:text-4xl text-[#181512] mb-3">
               Государственные Сертификаты
             </h2>

@@ -38,49 +38,68 @@ export default function NewsSpacesView() {
 
   return (
     <div className="news-spaces-page">
-      {/* ================= SECTION 1: HERO ARCHITECTURAL SANCTUARY (100VH) ================= */}
-      <section className="relative w-full h-screen min-h-[700px] flex flex-col justify-end pb-16 px-6 md:px-16 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center brightness-[0.98] transition-transform duration-1000 scale-105 hover:scale-100"
-          style={{ backgroundImage: `url('/images/cafe_space_interior.jpg')` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+      {/* ================= SECTION 1: HERO ARCHITECTURAL SANCTUARY (MẪU ẢNH 1 - ORGANIC CURVED SPLIT 100VH) ================= */}
+      <section className="spaces-m1-hero">
+        {/* Left Photo Layer: Grand Cathedral Vault Library & Reader */}
+        <div className="spaces-m1-bg-wrap">
+          <img
+            src="/images/cafe_space_interior.jpg"
+            alt="Пространство Осознанности Trung Nguyên Legend"
+            className="spaces-m1-bg-img"
+          />
+        </div>
 
-        <div className="relative z-10 max-w-4xl">
-          <span className="inline-block px-4 py-1.5 mb-4 rounded-full bg-[#B38E46] text-white text-[11px] font-bold tracking-widest uppercase shadow-xl">
-            ТРЕТЬЕ МЕСТО ОСОЗНАННОСТИ И КУЛЬТУРЫ
-          </span>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white tracking-wide font-normal drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] leading-tight mb-3">
-            Пространство Осознанности
-          </h1>
-          <p className="text-base md:text-xl text-[#F2EBD9] font-light drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] mb-8">
-            Место силы для творческих и пробуждённых людей.
-          </p>
+        {/* Vector Organic Wave Stencil Layer */}
+        <div className="spaces-m1-stencil-layer">
+          <svg
+            viewBox="0 0 1600 900"
+            preserveAspectRatio="none"
+            className="spaces-m1-svg"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            {/* White Organic Curved Panel */}
+            <path
+              d="M 980 0 C 820 150, 750 310, 720 480 C 690 640, 610 780, 520 900 L 1600 900 L 1600 0 Z"
+              fill="#FAF8F5"
+            />
+            {/* Elegant Hairline Accent along the wave */}
+            <path
+              d="M 980 0 C 820 150, 750 310, 720 480 C 690 640, 610 780, 520 900"
+              fill="none"
+              stroke="rgba(179, 142, 70, 0.3)"
+              strokeWidth="1.5"
+            />
+          </svg>
+        </div>
 
-          <div className="flex flex-wrap gap-4">
-            <a
-              href="#concept-split"
-              className="px-7 py-3.5 rounded-2xl bg-[#B38E46] hover:bg-[#967434] text-white text-xs uppercase tracking-wider font-semibold transition-all shadow-xl"
-            >
-              Концепции пространств ↘
-            </a>
-            <button
-              onClick={() => setFranchiseModalOpen(true)}
-              className="px-7 py-3.5 rounded-2xl bg-white/20 hover:bg-white/30 backdrop-blur-md text-white border border-white/40 text-xs uppercase tracking-wider font-semibold transition-all"
-            >
-              Франшиза в России ↗
-            </button>
+        {/* Content Container (Right Side) */}
+        <div className="spaces-m1-container">
+          <div className="spaces-m1-content-right">
+            <h1 className="spaces-m1-title">
+              Пространство Осознанности
+            </h1>
+
+            <p className="spaces-m1-lead">
+              Место силы для творческих и пробуждённых людей — гармония природной архитектуры, книг, меняющих жизнь, и чистой энергии кофе.
+            </p>
+
+            {/* Action Button */}
+            <div className="spaces-m1-actions">
+              <a href="#concept-split" className="spaces-m1-btn">
+                <span>Концепции пространств</span>
+                <span className="spaces-m1-btn-arrow">↘</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ================= SECTION 2: 50/50 CONCEPT SPLIT SHOWCASE ================= */}
-      <section id="concept-split" className="py-24 px-6 md:px-16 max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-widest text-[#B38E46] font-bold">
-            ФОРМАТЫ ПРИСУТСТВИЯ
-          </span>
-          <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mt-2 mb-3">
+      <section id="concept-split" className="w-full border-b border-[#E8E2D7]">
+        <div className="pt-12 sm:pt-16 pb-10 sm:pb-12 px-6 md:px-16 max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+          <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mb-3">
             Два формата кофейного гостеприимства
           </h2>
           <p className="text-sm text-[#7A7269]">
@@ -95,18 +114,12 @@ export default function NewsSpacesView() {
               <img
                 src="/images/cafe_space_interior.jpg"
                 alt="Trung Nguyen Legend Cafe"
-                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover"
               />
-              <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#181512]/90 text-[#B38E46] text-xs font-bold border border-[#B38E46]/30">
-                ПЛОЩАДЬ: 150 – 400 М²
-              </span>
             </div>
 
             <div className="p-8 flex-1 flex flex-col justify-between">
               <div>
-                <span className="text-xs uppercase font-bold text-[#B38E46] block mb-1">
-                  КУЛЬТУРНОЕ СВЯТИЛИЩЕ
-                </span>
                 <h3 className="text-2xl font-serif text-[#181512] mb-3">Trung Nguyên Legend Café</h3>
                 <p className="text-xs text-[#5C5248] leading-relaxed mb-6">
                   Флагманские пространства в стиле природного минимализма: сводчатые потолки из светлого ясеня, гигантские библиотеки книг, меняющих жизнь, дегустационные зоны трёх кофейных цивилизаций и неспешная атмосфера для глубоких размышлений.
@@ -137,18 +150,12 @@ export default function NewsSpacesView() {
               <img
                 src="/images/journey_1998_first_cafe.jpg"
                 alt="Trung Nguyen E-Coffee"
-                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover"
               />
-              <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#181512]/90 text-[#D4B26F] text-xs font-bold border border-[#D4B26F]/30">
-                ПЛОЩАДЬ: 30 – 60 М²
-              </span>
             </div>
 
             <div className="p-8 flex-1 flex flex-col justify-between">
               <div>
-                <span className="text-xs uppercase font-bold text-[#D4B26F] block mb-1">
-                  ЭНЕРГИЯ ГОРОДСКОГО РИТМА
-                </span>
                 <h3 className="text-2xl font-serif text-[#181512] mb-3">Trung Nguyên E-Coffee</h3>
                 <p className="text-xs text-[#5C5248] leading-relaxed mb-6">
                   Умный модульный формат «Coffee To Go & Retail»: сверхскоростная выдача напитков, интегрированная полка продажи розничных пачек G7 и зёрен, низкий порог входа для молодых предпринимателей и быстрая окупаемость в крупных мегаполисах.
@@ -173,17 +180,13 @@ export default function NewsSpacesView() {
             </div>
           </div>
         </div>
-      </section>
-
-
+      </div>
+    </section>
 
       {/* ================= SECTION 4: EDITORIAL EVENTS & EXHIBITIONS ================= */}
-      <section className="py-24 px-6 md:px-16 max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-widest text-[#B38E46] font-bold">
-            КУЛЬТУРНЫЙ ДНЕВНИК
-          </span>
-          <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mt-2 mb-3">
+      <section className="pt-10 sm:pt-14 pb-12 sm:pb-14 px-6 md:px-16 max-w-7xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+          <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mb-3">
             События, выставки и новости
           </h2>
           <p className="text-sm text-[#7A7269]">
@@ -201,15 +204,11 @@ export default function NewsSpacesView() {
                 <img
                   src={evt.image}
                   alt={evt.title}
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover"
                 />
-                <span className="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-[#181512]/90 text-white text-[10px] font-bold uppercase tracking-wider">
-                  {evt.tag}
-                </span>
               </div>
               <div className="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <span className="text-[11px] text-[#B38E46] font-semibold block mb-2">{evt.date}</span>
                   <h3 className="text-lg font-serif text-[#181512] mb-3 group-hover:text-[#B38E46] transition-colors leading-snug">
                     {evt.title}
                   </h3>
@@ -225,7 +224,7 @@ export default function NewsSpacesView() {
       </section>
 
       {/* ================= SECTION 5: ZEN NEWSLETTER BAR ================= */}
-      <section className="py-20 px-6 md:px-16 bg-[#181512] text-white">
+      <section className="py-12 sm:py-16 px-6 md:px-16 bg-[#181512] text-white">
         <div className="max-w-3xl mx-auto text-center">
           <span className="text-xs uppercase tracking-widest text-[#D4B26F] font-bold block mb-2">
             ВЕСТНИК ОСОЗНАННОСТИ
@@ -271,11 +270,10 @@ export default function NewsSpacesView() {
       {/* ================= SECTION 5: EXACT IMAGE 4 FRANCHISE FORM ================= */}
       <B2BFormSection
         id="franchise-form"
-        eyebrow="ИНВЕСТИЦИОННАЯ ПРОГРАММА РФ"
+        className="!pt-10 sm:!pt-12 !pb-14 sm:!pb-16"
         title="Заявка на открытие кофейни по франшизе"
         desc="Получите финансовую модель, требования к помещениям и расчёт окупаемости для формата Trung Nguyên Legend Café или E-Coffee."
         buttonText="ПОЛУЧИТЬ ФРАНЧАЙЗИНГОВЫЙ ПАКЕТ (PDF) ↗"
-        badges={["Окупаемость от 10 мес.", "Обучение персонала", "Поставки 100%"]}
         bgImage="/images/cafe_space_interior.jpg"
       />
 

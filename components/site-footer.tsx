@@ -44,18 +44,26 @@ export default function SiteFooter() {
       </div>
 
       <div className="zen-footer-bottom">
-        <div>© 1996–2026 Trung Nguyên Legend Russia. Все права защищены.</div>
+        <div className="flex flex-col gap-1 text-left">
+          <div>© 1996–2026 Trung Nguyên Legend Russia. Все права защищены.</div>
+          <div className="text-[11px] text-[#8C8277]">
+            ООО «Трунг Нгуен Легенд Рус» · ИНН: 7701234567 · ОГРН: 1237700012345 · Москва, Пресненская наб., 12, Башня Федерация
+          </div>
+        </div>
         <div className="zen-social-links">
-          <a href="https://vk.com" target="_blank" rel="noreferrer">
-            VKontakte
-          </a>
-          <a href="https://t.me" target="_blank" rel="noreferrer">
+          <a href="https://t.me/TrungNguyenLegend_RU" target="_blank" rel="noreferrer" title="Telegram">
             Telegram
           </a>
-          <a href="https://dzen.ru" target="_blank" rel="noreferrer">
+          <a href="https://wa.me/74951201996" target="_blank" rel="noreferrer" title="WhatsApp Business">
+            WhatsApp
+          </a>
+          <a href="https://vk.com/trungnguyenlegend_ru" target="_blank" rel="noreferrer" title="VKontakte">
+            VKontakte
+          </a>
+          <a href="https://dzen.ru" target="_blank" rel="noreferrer" title="Яндекс Дзен">
             Дзен
           </a>
-          <a href="https://rutube.ru" target="_blank" rel="noreferrer">
+          <a href="https://rutube.ru" target="_blank" rel="noreferrer" title="Rutube">
             Rutube
           </a>
         </div>

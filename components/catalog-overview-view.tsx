@@ -8,6 +8,8 @@ type Product = {
   name: string;
   subname: string;
   detail: string;
+  priceRub: number;
+  priceEstimated?: boolean;
   line: "g7" | "legend" | "sang-tao";
   format: "instant" | "beans" | "ground" | "drip" | "capsule";
   strength: number; // 1-5
@@ -22,6 +24,7 @@ type Product = {
 const catalogProducts: Product[] = [
   {
     id: "g7-black",
+    priceRub: 350,
     name: "G7 Чёрный (Pure Black)",
     subname: "100% чистый чёрный кофе без сахара",
     detail: "15 САШЕ × 2 Г",
@@ -37,6 +40,8 @@ const catalogProducts: Product[] = [
   },
   {
     id: "vietnamese-drip",
+    priceRub: 550,
+    priceEstimated: true,
     name: "Vietnamese Drip Coffee",
     subname: "Кофе в индивидуальных фильтр-пакетах",
     detail: "5 ДРИП-ПАКЕТОВ × 15 Г",
@@ -52,6 +57,8 @@ const catalogProducts: Product[] = [
   },
   {
     id: "premium-culi",
+    priceRub: 950,
+    priceEstimated: true,
     name: "Premium Culi Beans",
     subname: "Редкие круглые зёрна ручного сбора",
     detail: "КОФЕ В ЗЁРНАХ · 500 Г",
@@ -67,6 +74,7 @@ const catalogProducts: Product[] = [
   },
   {
     id: "g7-3in1",
+    priceRub: 450,
     name: "G7 3 в 1 Classic",
     subname: "Золотой баланс кофе, сливок и тростникового сахара",
     detail: "18 САШЕ × 16 Г",
@@ -82,6 +90,7 @@ const catalogProducts: Product[] = [
   },
   {
     id: "legend-special",
+    priceRub: 8422,
     name: "Legend Special Edition",
     subname: "Коллекционный шедевр ферментации Weasel",
     detail: "МОЛОТЫЙ КОФЕ · 225 Г",
@@ -97,6 +106,7 @@ const catalogProducts: Product[] = [
   },
   {
     id: "sang-tao-4",
+    priceRub: 900,
     name: "Sáng Tạo 4 (Премиум Бленд)",
     subname: "Купаж 4 сортов: Culi, Robusta, Arabica, Catimor",
     detail: "МОЛОТЫЙ КОФЕ · 340 Г",
@@ -172,10 +182,7 @@ export default function CatalogOverviewView() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/15" />
 
         <div className="relative z-10 max-w-5xl">
-          <span className="inline-block px-3.5 py-1 mb-4 rounded-full bg-[#B38E46]/90 text-white text-[11px] font-semibold tracking-widest uppercase shadow-lg">
-            ОФИЦИАЛЬНАЯ КОЛЛЕКЦИЯ В РОССИИ
-          </span>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white tracking-wide font-normal drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] leading-tight mb-3">
+                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white tracking-wide font-normal drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] leading-tight mb-3">
             Коллекция Энергии Trung Nguyên Legend
           </h1>
           <p className="text-base md:text-xl text-[#F2EBD9] font-light drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] mb-8">
@@ -302,7 +309,13 @@ export default function CatalogOverviewView() {
 
               <div className="zen-product-meta">{p.detail}</div>
               <h3 className="zen-product-title">{p.name}</h3>
-              <p className="zen-product-subname">{p.subname}</p>
+
+              <div className="zen-product-price">
+                <div className="zen-product-price-main">
+                  <strong>{p.priceEstimated ? "≈ " : ""}{p.priceRub.toLocaleString("ru-RU")} ₽</strong>
+                  <span>за упаковку</span>
+                </div>
+              </div>
 
               {/* Sensory Profile Box */}
               <div className="zen-sensory-box">
@@ -324,13 +337,13 @@ export default function CatalogOverviewView() {
                 </div>
               </div>
 
-              {/* Actions & Brand Direct Buttons (IMAGE 1 & IMAGE 3 SPEC: NO BLUE/MAGENTA) */}
+              {/* Actions & Brand Direct Buttons */}
               <div className="zen-product-actions">
                 <button
                   className="zen-btn-ritual-view"
                   onClick={() => setActiveModalProduct(p)}
                 >
-                  О ритуале <span className="arrow">↗</span>
+                  О ритуале
                 </button>
                 <a
                   href={p.ozonUrl}
@@ -351,6 +364,7 @@ export default function CatalogOverviewView() {
                   WB
                 </a>
               </div>
+
             </article>
           ))}
         </div>

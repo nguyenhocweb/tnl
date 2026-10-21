@@ -51,7 +51,7 @@ const dailyRoutine = [
     nameRu: "Творчество",
     nameVi: "NĂNG LƯỢNG SÁNG TẠO",
     image: "/images/basalt_cherries.jpg",
-    microQuote: "Импульс для смелых решений và преодоления невозможного.",
+    microQuote: "Импульс для смелых решений и преодоления невозможного.",
   },
   {
     time: "14:00",
@@ -96,45 +96,60 @@ const phinSteps = [
 export default function CoffeePhilosophyView() {
   return (
     <div className="coffee-philosophy-page">
-      {/* ================= SECTION 1: KHỞI TÂM (TRIẾT ĐẠO TRONG TỪNG GIỌT CÀ PHÊ - 100VH) ================= */}
-      <section className="zen-philo-hero-wrapper">
-        <div className="zen-philo-hero-bg" />
-        <div className="zen-philo-hero-overlay" />
-
-        <div className="zen-philo-hero-content">
-          <div className="max-w-[640px]">
-            {/* Main Title - Đặt trực tiếp trên nền ảnh, nét chữ sắc nét, bóng đổ đa tầng */}
-            <h1 className="font-serif text-[36px] sm:text-[46px] md:text-[54px] lg:text-[62px] leading-[1.08] text-[#FFFFFF] mb-4 drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
-              Философия
-              <br />
-              <span className="italic font-normal text-[#F5DC9A] drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]">
-                в Капле Кофе
-              </span>
-            </h1>
-
-            {/* Micro Tagline: Rút gọn tối đa, 5 từ, cực kỳ sắc sảo */}
-            <p className="text-[17px] sm:text-[21px] font-medium text-[#FAF8F5] leading-snug max-w-[500px] mb-8 drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]">
-              «Осознанность, рождающаяся в моменте.»
-            </p>
-
-            {/* Action Button */}
-            <div>
-              <a
-                href="#three-civilizations"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#B38E46] text-[#181512] text-[13px] font-bold tracking-wide hover:bg-[#D4AF37] transition-all shadow-[0_6px_22px_rgba(0,0,0,0.45)] hover:scale-[1.02]"
-              >
-                <span>3 Цивилизации кофе</span>
-                <span>↘</span>
-              </a>
-            </div>
-          </div>
+      {/* ================= SECTION 1: KHỞI TÂM (MẪU 1 - EDITORIAL ORGANIC STENCIL 100VH) ================= */}
+      <section className="zen-philo-m1-hero">
+        {/* Photographic Background: Authentic Vietnamese Phin Drip over misty morning plantation */}
+        <div className="zen-philo-m1-bg-wrap">
+          <img
+            src="/images/hero_zen_coffee.jpg"
+            alt="Философия кофе Trung Nguyên Legend"
+            className="zen-philo-m1-bg-img"
+          />
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 text-[10px] uppercase tracking-[0.2em] pointer-events-none z-10">
-          <span>Прокрутите вниз</span>
-          <div className="w-5 h-8 rounded-full border border-white/25 flex items-start justify-center p-1">
-            <div className="w-1 h-2 bg-[#E5C989] rounded-full animate-bounce" />
+        {/* Vector Stencil Mask Layer (Exact Green Summer 3-Window Layout: Sunrise Wedge, Lush Bushes, Center Sacred Phin) */}
+        <div className="zen-philo-m1-stencil-layer">
+          <svg
+            viewBox="0 0 1600 900"
+            preserveAspectRatio="none"
+            className="zen-philo-m1-svg"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            {/* White Organic Stencil Surface */}
+            <path
+              d="M 0 0 L 1600 0 L 1600 900 L 0 900 Z M 620 0 L 1600 0 L 1600 100 L 1005 435 Z M 1040 465 L 1600 135 L 1600 900 L 1355 900 Z M 380 900 L 1000 470 L 1315 900 Z"
+              fill="#FAF8F5"
+              fillRule="evenodd"
+            />
+            {/* Subtle Hairline Contour along the cuts */}
+            <path
+              d="M 620 0 L 1005 435 L 1600 100 M 1600 135 L 1040 465 L 1355 900 M 380 900 L 1000 470 L 1315 900"
+              fill="none"
+              stroke="rgba(179, 142, 70, 0.35)"
+              strokeWidth="1.5"
+            />
+          </svg>
+        </div>
+
+        {/* Hero Content Container (Placed in Left Organic Panel matching Green Summer Mẫu 1) */}
+        <div className="zen-philo-m1-container">
+          <div className="zen-philo-m1-content-left">
+            {/* Poetic Calligraphic Title matching Green Summer */}
+            <h1 className="zen-m1-title-greensummer">
+              Философия <br />
+              <em>в Капле Кофе</em>
+            </h1>
+
+            {/* Micro Poetry / Body matching Green Summer */}
+            <div className="zen-m1-quote-box">
+              <p className="zen-m1-quote-text">
+                Осознанность, рождающаяся в моменте. <br />
+                Капля за каплей — пробуждение чистого духа <br />
+                и великая гармония созидания в тишине <br />
+                священных гор Буонметхуот.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -144,12 +159,7 @@ export default function CoffeePhilosophyView() {
         <div className="zen-vision-triptych-container">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-[#E5DDD0]">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-[#B38E46] font-semibold mb-1">
-                <span>◎ 3 NỀN VĂN MINH</span>
-                <span>·</span>
-                <span>THE 3 COFFEE CIVILIZATIONS</span>
-              </div>
-              <h2 className="font-serif text-[28px] md:text-[36px] text-[#181512] leading-tight">
+                            <h2 className="font-serif text-[28px] md:text-[36px] text-[#181512] leading-tight">
                 Три Великие Цивилизации Кофе
               </h2>
             </div>
@@ -170,10 +180,7 @@ export default function CoffeePhilosophyView() {
 
                 <div className="zen-vision-triptych-content">
                   {/* Top Badge */}
-                  <div className="flex justify-between items-center">
-                    <span className="px-3 py-1 rounded-full bg-[rgba(18,15,12,0.7)] backdrop-blur-md border border-[rgba(229,201,137,0.3)] text-[10px] font-semibold tracking-widest text-[#E5C989] uppercase">
-                      {civ.badgeRu}
-                    </span>
+                  <div className="flex justify-end items-center">
                     <span className="font-serif text-[#E5C989] font-bold text-lg">
                       {civ.roman}
                     </span>
@@ -181,10 +188,7 @@ export default function CoffeePhilosophyView() {
 
                   {/* Bottom Text */}
                   <div>
-                    <span className="text-[10px] uppercase tracking-widest text-[#B38E46] font-bold block mb-1">
-                      {civ.titleVi}
-                    </span>
-                    <h3 className="font-serif text-[20px] md:text-[22px] text-white font-semibold mb-2 leading-snug">
+                                        <h3 className="font-serif text-[20px] md:text-[22px] text-white font-semibold mb-2 leading-snug">
                       {civ.titleRu}
                     </h3>
                     <p className="text-xs text-[#EDE6DC] font-light leading-relaxed mb-3">
@@ -209,12 +213,7 @@ export default function CoffeePhilosophyView() {
         <div className="zen-vision-pledge-container">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-[#E5DDD0]">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-[#B38E46] font-semibold mb-1">
-                <span>✦ LỐI SỐNG TỈNH THỨC</span>
-                <span>·</span>
-                <span>MINDFUL LIVING 24H</span>
-              </div>
-              <h2 className="font-serif text-[28px] md:text-[36px] text-[#181512] leading-tight">
+                            <h2 className="font-serif text-[28px] md:text-[36px] text-[#181512] leading-tight">
                 4 Момента Осознанности в Сутках
               </h2>
             </div>
@@ -238,9 +237,6 @@ export default function CoffeePhilosophyView() {
                     <span className="font-serif text-[#E5C989] font-bold text-lg tracking-wider">
                       {item.time}
                     </span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-[rgba(18,15,12,0.7)] backdrop-blur-md border border-[rgba(229,201,137,0.3)] text-[9px] font-semibold text-[#E5C989] uppercase tracking-wider">
-                      {item.nameVi}
-                    </span>
                   </div>
 
                   <div>
@@ -263,12 +259,7 @@ export default function CoffeePhilosophyView() {
         <div className="zen-vision-mission-container">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-[#E5DDD0]">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-[#B38E46] font-semibold mb-1">
-                <span>▣ NGHỆ THUẬT PHA PHIN</span>
-                <span>·</span>
-                <span>THE VIETNAMESE DRIP RITUAL</span>
-              </div>
-              <h2 className="font-serif text-[28px] md:text-[36px] text-[#181512] leading-tight">
+                            <h2 className="font-serif text-[28px] md:text-[36px] text-[#181512] leading-tight">
                 Ритуал Приготовления в Традиционном Фин
               </h2>
             </div>
@@ -297,7 +288,7 @@ export default function CoffeePhilosophyView() {
                     Искусство Капельного Заваривания
                   </h3>
                   <p className="text-xs md:text-sm text-[#EDE6DC] font-light max-w-[480px] leading-relaxed">
-                    Идеальная температура 96°C và гравитационное прохождение воды через слой свежего помола.
+                    Идеальная температура 96°C и гравитационное прохождение воды через слой свежего помола.
                   </p>
                 </div>
               </div>
@@ -338,10 +329,6 @@ export default function CoffeePhilosophyView() {
             </div>
 
             <div className="relative z-10 max-w-[560px]">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(255,255,255,0.12)] border border-[rgba(229,201,137,0.4)] text-[10px] font-semibold uppercase tracking-widest text-[#E5C989] mb-4">
-                <span>БИЗНЕС-ПОДАРКИ И ДИПЛОМАТИЯ</span>
-              </div>
-
               <h2 className="font-serif text-[28px] md:text-[38px] leading-tight text-white mb-3">
                 Подарки со Смыслом
                 <br />
@@ -351,7 +338,7 @@ export default function CoffeePhilosophyView() {
               </h2>
 
               <p className="text-xs md:text-sm text-[#EDE6DC] font-light leading-relaxed mb-6">
-                Премиальные наборы Legend Special Edition в комплекте с позолоченным фин và книгами для лидеров.
+                Премиальные наборы Legend Special Edition в комплекте с позолоченным фин и книгами для лидеров.
               </p>
 
               <div className="flex flex-wrap gap-4 items-center">

@@ -1,40 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
-type FounderQuote = {
-  id: number;
-  theme: string;
-  quote: string;
-  context: string;
-};
-
-const founderQuotes: FounderQuote[] = [
-  {
-    id: 1,
-    theme: "ЭНЕРГИЯ ЖИЗНИ",
-    quote: "Кофе — это не просто напиток. Это сокровище Неба и Земли, чистая энергия, пробуждающая сознание и меняющая жизнь человека и целых народов.",
-    context: "Данг Ле Нгуен Ву · Основатель Trung Nguyên Legend",
-  },
-  {
-    id: 2,
-    theme: "ВОЛЯ К ВЕЛИЧИЮ",
-    quote: "Если другие народы смогли совершить исторический прорыв — значит, и мы можем это сделать, и обязаны сделать это ещё лучше и гармоничнее.",
-    context: "О национальной воле и глобальной амбиции",
-  },
-  {
-    id: 3,
-    theme: "СИЛА МЫСЛИ",
-    quote: "Истинно великие мыслители, изменившие ход мировой истории, черпали свою предельную концентрацию и прозрение в чашке крепкого кофе.",
-    context: "О кофе как топливе для интеллекта",
-  },
-  {
-    id: 4,
-    theme: "СЛУЖЕНИЕ ОБЩЕСТВУ",
-    quote: "Бизнес ради одной лишь финансовой прибыли лишён души. Подлинное предпринимательство — это священный долг служения обществу и пробуждения нации.",
-    context: "О миссии созидания и пробуждения",
-  },
-];
 
 type SacredPillar = {
   number: string;
@@ -103,8 +68,6 @@ const energyBooks: EnergyBook[] = [
 ];
 
 export default function FounderMessageView() {
-  const [activeQuoteIdx, setActiveQuoteIdx] = useState(0);
-
   return (
     <div className="founder-message-view w-full bg-[#FAF8F5] text-[#181512]">
       {/* ================= SECTION 1: HERO CHÂN DUNG TỈNH THỨC (FULL SCREEN HEIGHT) ================= */}
@@ -119,9 +82,6 @@ export default function FounderMessageView() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#181512]/90 via-[#181512]/20 to-transparent pointer-events-none" />
             <div className="absolute bottom-6 left-6 right-6 text-white z-10">
-              <span className="text-[10px] tracking-[0.25em] text-[#F8D78C] uppercase font-bold block mb-1">
-                ОСНОВАТЕЛЬ &amp; МЫСЛИТЕЛЬ
-              </span>
               <h2 className="font-serif text-2xl lg:text-3xl text-white font-medium mb-1">
                 Đặng Lê Nguyên Vũ
               </h2>
@@ -131,59 +91,20 @@ export default function FounderMessageView() {
             </div>
           </div>
 
-          {/* Cột phải: Khối tuyên ngôn cốt lõi & Chữ ký */}
+          {/* Cột phải: Khối tuyên ngôn cốt lõi */}
           <div className="flex flex-col justify-center lg:pl-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EFE9DF] border border-[#E0D8CB] w-fit mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#B38E46]" />
-              <span className="text-[10px] font-bold tracking-[0.2em] text-[#7A6F62] uppercase">
-                ПОСЛАНИЕ ОСНОВАТЕЛЯ · СТРАНИЦА 03
-              </span>
-            </div>
-
-            <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#181512] leading-tight mb-4">
+            <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#181512] leading-tight mb-5 lg:mb-6">
               «Кофе — чистая энергия, <br className="hidden sm:block" />
               <span className="italic text-[#B38E46]">меняющая жизнь и сознание.»</span>
             </h1>
 
-            {/* Quote Callout Box */}
-            <div className="border-l-2 border-[#B38E46] pl-5 py-2 my-2 bg-[#F3ECE0]/60 rounded-r-xl max-w-xl">
-              <p className="font-serif italic text-sm sm:text-base text-[#2C2723] leading-snug m-0 p-0">
+            {/* Quote / Description */}
+            <div className="max-w-xl">
+              <p className="font-serif italic text-base sm:text-lg text-[#3D352E] leading-relaxed m-0 p-0">
                 «Там, где есть вера и непреклонная воля к величию, даже старый велосипед и чашка крепкого кофе способны покорить весь мир.»
               </p>
-              <div className="mt-2 text-[11px] tracking-wider text-[#8C8071] uppercase font-semibold">
+              <div className="mt-3 text-xs tracking-wider text-[#8C8071] uppercase font-medium">
                 — Данг Ле Нгуен Ву (1996 · Буонметхуот)
-              </div>
-            </div>
-
-            {/* Golden Signature & Action Buttons */}
-            <div className="mt-6 flex flex-wrap items-center gap-5 pt-5 border-t border-[#E8E2D7]">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full border border-[#B38E46] flex items-center justify-center text-[#B38E46] font-serif text-base font-bold bg-[#FAF6F0] shadow-sm">
-                  ◯
-                </div>
-                <div>
-                  <div className="text-[11px] uppercase tracking-widest text-[#B38E46] font-bold">
-                    Lối Sống Tỉnh Thức
-                  </div>
-                  <div className="text-[10px] text-[#7A7065]">
-                    Осознанная Жизнь · Дзэн
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex gap-2.5">
-                <a
-                  href="#pillars"
-                  className="px-5 py-2.5 rounded-lg bg-[#B38E46] text-white hover:bg-[#9B7735] text-[11px] font-semibold tracking-wider uppercase transition shadow-sm"
-                >
-                  3 Столпа мысли ↘
-                </a>
-                <a
-                  href="#books"
-                  className="px-5 py-2.5 rounded-lg border border-[#D5CBBF] bg-white text-[#181512] hover:bg-[#F3EFEA] text-[11px] font-semibold tracking-wider uppercase transition"
-                >
-                  Библиотека созидания ↘
-                </a>
               </div>
             </div>
           </div>
@@ -195,9 +116,6 @@ export default function FounderMessageView() {
         <div className="w-full max-w-7xl mx-auto px-4">
           {/* Header */}
           <div className="text-center max-w-2xl mx-auto mb-6">
-            <span className="text-[10px] font-bold tracking-[0.24em] text-[#B38E46] uppercase block mb-1">
-              ФИЛОСОФИЯ СОЗИДАНИЯ
-            </span>
             <h2 className="font-serif text-2xl sm:text-3xl text-[#181512] mb-1.5 leading-tight">
               Три Столпа Пробуждённого Духа
             </h2>
@@ -216,12 +134,9 @@ export default function FounderMessageView() {
                 <img
                   src={pillar.image}
                   alt={pillar.titleRu}
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-90"
+                  className="w-full h-full object-cover opacity-90"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#181512]/90 via-[#181512]/30 to-transparent" />
-                <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-md border border-white/20 text-[#F8D78C] px-2.5 py-0.5 rounded text-[10px] tracking-widest font-bold">
-                  СТОЛП {pillar.number}
-                </div>
                 <div className="absolute bottom-5 left-5 right-5 text-white z-10">
                   <span className="text-[9px] tracking-widest text-[#F8D78C] uppercase font-bold block mb-0.5">
                     {pillar.titleVi}
@@ -239,101 +154,12 @@ export default function FounderMessageView() {
         </div>
       </section>
 
-      {/* ================= SECTION 3: SÂN KHẤU DANH NGÔN TRIẾT ĐẠO (THE WISDOM PAVILION) ================= */}
-      <section id="quotes" className="zen-wisdom-pavilion-wrapper">
-        <div className="w-full max-w-7xl mx-auto px-4 flex flex-col items-center">
-          {/* Header */}
-          <div className="text-center max-w-2xl mx-auto mb-6">
-            <span className="text-[10px] font-bold tracking-[0.24em] text-[#B38E46] uppercase block mb-1">
-              ИЗРЕЧЕНИЯ &amp; ТРИБУНА МЫСЛИ
-            </span>
-            <h2 className="font-serif text-2xl sm:text-3xl text-[#181512] mb-1 leading-tight">
-              Энергия Мудрости
-            </h2>
-          </div>
-
-          {/* Sân khấu Pavilion */}
-          <div className="zen-wisdom-pavilion-card">
-            {/* Top Bar: Chủ đề & Số mốc */}
-            <div className="flex justify-between items-center pb-4 border-b border-[#F0EAE1]">
-              <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#B38E46]" />
-                <span className="text-[11px] font-bold tracking-[0.22em] text-[#B38E46] uppercase">
-                  {founderQuotes[activeQuoteIdx].theme}
-                </span>
-              </div>
-              <div className="text-xs font-mono text-[#A3998D] tracking-wider">
-                0{activeQuoteIdx + 1} / 0{founderQuotes.length}
-              </div>
-            </div>
-
-            {/* Nội dung danh ngôn chính */}
-            <div className="py-6 lg:py-8 flex flex-col justify-center">
-              <p className="font-serif italic text-lg sm:text-xl lg:text-2xl text-[#181512] leading-relaxed font-normal mb-4 m-0 p-0">
-                «{founderQuotes[activeQuoteIdx].quote}»
-              </p>
-              <div className="text-xs sm:text-sm font-medium text-[#7A6E61]">
-                — {founderQuotes[activeQuoteIdx].context}
-              </div>
-            </div>
-
-            {/* Bottom Bar: Tabs & Điều hướng */}
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 border-t border-[#F0EAE1]">
-              {/* 4 Theme Pills */}
-              <div className="flex flex-wrap gap-2">
-                {founderQuotes.map((q, idx) => (
-                  <button
-                    key={q.id}
-                    onClick={() => setActiveQuoteIdx(idx)}
-                    className={`px-3 py-1.5 rounded-full text-[10px] tracking-wider font-semibold uppercase transition ${
-                      activeQuoteIdx === idx
-                        ? "bg-[#B38E46] text-white shadow-sm"
-                        : "bg-[#FAF8F5] text-[#7A7065] border border-[#E5DDD2] hover:border-[#B38E46]"
-                    }`}
-                  >
-                    {q.theme}
-                  </button>
-                ))}
-              </div>
-
-              {/* Navigation arrows */}
-              <div className="flex gap-2">
-                <button
-                  onClick={() =>
-                    setActiveQuoteIdx((prev) =>
-                      prev === 0 ? founderQuotes.length - 1 : prev - 1
-                    )
-                  }
-                  className="w-10 h-10 rounded-full border border-[#DCD3C7] bg-[#FAF8F5] hover:bg-[#B38E46] hover:text-white hover:border-[#B38E46] flex items-center justify-center text-sm transition"
-                  aria-label="Предыдущая мысль"
-                >
-                  ←
-                </button>
-                <button
-                  onClick={() =>
-                    setActiveQuoteIdx((prev) =>
-                      prev === founderQuotes.length - 1 ? 0 : prev + 1
-                    )
-                  }
-                  className="w-10 h-10 rounded-full border border-[#DCD3C7] bg-[#FAF8F5] hover:bg-[#B38E46] hover:text-white hover:border-[#B38E46] flex items-center justify-center text-sm transition"
-                  aria-label="Следующая мысль"
-                >
-                  →
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ================= SECTION 4: KỆ SÁCH NĂNG LƯỢNG ĐỔI ĐỜI (THE ENERGY LIBRARY) ================= */}
       <section id="books" className="zen-library-wrapper">
         <div className="w-full max-w-7xl mx-auto px-4">
           {/* Header */}
           <div className="text-center max-w-2xl mx-auto mb-6">
-            <span className="text-[10px] font-bold tracking-[0.24em] text-[#B38E46] uppercase block mb-1">
-              ИНИЦИАТИВА ПРЕДСЕДАТЕЛЯ
-            </span>
             <h2 className="font-serif text-2xl sm:text-3xl text-[#181512] mb-1.5 leading-tight">
               Библиотека Созидательной Энергии
             </h2>
@@ -349,14 +175,11 @@ export default function FounderMessageView() {
               <img
                 src="/images/energy_books.jpg"
                 alt="Библиотека созидания Trung Nguyên Legend"
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+                className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
               <div className="absolute bottom-5 left-5 right-5 text-white z-10 flex justify-between items-end">
                 <div>
-                  <span className="text-[9px] uppercase tracking-widest text-[#F8D78C] font-bold block mb-1">
-                    HÀNH TRÌNH LẬP CHÍ VĨ ĐẠI
-                  </span>
                   <h4 className="font-serif text-lg sm:text-xl text-white leading-tight">
                     «Книги, меняющие судьбы»
                   </h4>
@@ -383,9 +206,6 @@ export default function FounderMessageView() {
                   className="bg-white p-4 sm:p-5 rounded-2xl border border-[#E3DBD0] shadow-sm flex flex-col justify-between hover:border-[#B38E46] hover:shadow-md transition duration-300"
                 >
                   <div>
-                    <span className="text-[9px] uppercase tracking-widest text-[#B38E46] font-bold block mb-1">
-                      {book.tag}
-                    </span>
                     <h5 className="font-serif text-base text-[#181512] font-semibold mb-0.5 leading-snug">
                       {book.title}
                     </h5>

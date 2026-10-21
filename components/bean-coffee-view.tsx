@@ -161,10 +161,7 @@ export default function BeanCoffeeView() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
         <div className="relative z-10 max-w-4xl">
-          <span className="inline-block px-4 py-1.5 mb-4 rounded-full bg-[#B38E46] text-white text-[11px] font-bold tracking-widest uppercase shadow-xl">
-            SPECIALTY COFFEE LAB · HORECA
-          </span>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white tracking-wide font-normal drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] leading-tight mb-3">
+                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white tracking-wide font-normal drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] leading-tight mb-3">
             Искусство Зерна и Обжарки
           </h1>
           <p className="text-base md:text-xl text-[#F2EBD9] font-light drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] mb-8">
@@ -178,12 +175,6 @@ export default function BeanCoffeeView() {
             >
               Исследовать сорта зёрен ↘
             </a>
-            <a
-              href="#sample-kit-form"
-              className="px-7 py-3.5 rounded-2xl bg-white/20 hover:bg-white/30 backdrop-blur-md text-white border border-white/40 text-xs uppercase tracking-wider font-semibold transition-all"
-            >
-              Бесплатный Sample Kit для кофеен ↗
-            </a>
           </div>
         </div>
       </section>
@@ -191,10 +182,7 @@ export default function BeanCoffeeView() {
       {/* ================= SECTION 2: SÁNG TẠO 1 TO 5 INTERACTIVE CAROUSEL ================= */}
       <section id="sang-tao-carousel" className="py-24 px-6 md:px-16 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-widest text-[#B38E46] font-bold">
-            ЛЕГЕНДАРНАЯ СЕРИЯ SÁNG TẠO
-          </span>
-          <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mt-2 mb-3">
+          <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mb-3">
             Пять ступеней кофейного мастерства
           </h2>
           <p className="text-sm text-[#7A7269]">
@@ -305,10 +293,7 @@ export default function BeanCoffeeView() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
-              <span className="text-xs uppercase tracking-widest text-[#B38E46] font-bold">
-                ПРОФЕССИОНАЛЬНАЯ ЛИНИЯ ДЛЯ БАРИСТА
-              </span>
-              <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mt-2">
+              <h2 className="text-3xl md:text-5xl font-serif text-[#181512]">
                 Зёрна 1 кг для кофеен и ресторанов
               </h2>
             </div>
@@ -334,7 +319,6 @@ export default function BeanCoffeeView() {
 
                 <div className="zen-product-meta">{p.detail}</div>
                 <h3 className="zen-product-title">{p.name}</h3>
-                <p className="zen-product-subname">{p.subname}</p>
 
                 {/* Sensory Profile Box */}
                 <div className="zen-sensory-box">
@@ -362,7 +346,7 @@ export default function BeanCoffeeView() {
                     className="zen-btn-ritual-view"
                     onClick={() => setActiveModalProduct(p)}
                   >
-                    О ритуале <span className="arrow">↗</span>
+                    О ритуале
                   </button>
                   <a
                     href={p.ozonUrl}
@@ -440,11 +424,9 @@ export default function BeanCoffeeView() {
       {/* ================= SECTION 5: EXACT IMAGE 4 B2B FORM ================= */}
       <B2BFormSection
         id="sample-kit-form"
-        eyebrow="ДЛЯ БАРИСТА И РЕСТОРАНОВ"
         title="Заказ бесплатных образцов кофе (Sample Kit) для HoReCa"
         desc="Доставим дегустационный набор свежеобжаренного зерна в ваше заведение. Поможем с настройкой оборудования и обучением персонала."
         buttonText="ЗАКАЗАТЬ БЕСПЛАТНЫЙ НАБОР ОБРАЗЦОВ ↗"
-        badges={["Бесплатная доставка", "3 сорта зерна", "Консультация бариста"]}
         bgImage="/images/cupping_lab_beans.jpg"
       />
 

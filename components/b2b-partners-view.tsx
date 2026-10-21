@@ -55,26 +55,14 @@ export default function B2BPartnersView() {
   return (
     <div className="b2b-partners-page">
       {/* ================= SECTION 1: HERO LOGISTICS CANVAS (100VH) ================= */}
-      <section className="relative w-full h-screen min-h-[700px] flex flex-col justify-end pb-16 px-6 md:px-16 overflow-hidden">
+      <section className="relative w-full h-screen min-h-[100dvh] flex flex-col justify-end pb-16 px-6 md:px-16 overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center brightness-[0.98] transition-transform duration-1000 scale-105 hover:scale-100"
+          className="absolute inset-0 bg-cover bg-center brightness-[0.98]"
           style={{ backgroundImage: `url('/images/b2b_logistics.jpg')` }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
         <div className="relative z-10 max-w-4xl">
-          <div className="flex flex-wrap gap-2 mb-4">
-            <span className="px-3.5 py-1 rounded-full bg-[#B38E46] text-white text-[10px] font-bold tracking-widest uppercase shadow">
-              100% ПРЯМЫЕ ПОСТАВКИ
-            </span>
-            <span className="px-3.5 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/30">
-              СЕРТИФИКАТЫ ЕАС И ГОСТ-Р
-            </span>
-            <span className="px-3.5 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase border border-white/30">
-              СКЛАДСКИЕ ХАБЫ В МОСКВЕ
-            </span>
-          </div>
-
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white tracking-wide font-normal drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] leading-tight mb-3">
             Прямые Поставки Trung Nguyên Legend в Россию
           </h1>
@@ -89,23 +77,14 @@ export default function B2BPartnersView() {
             >
               Стать партнёром ↘
             </a>
-            <a
-              href="#legal-compliance"
-              className="px-7 py-3.5 rounded-2xl bg-white/20 hover:bg-white/30 backdrop-blur-md text-white border border-white/40 text-xs uppercase tracking-wider font-semibold transition-all"
-            >
-              Сертификаты и регламенты
-            </a>
           </div>
         </div>
       </section>
 
-      {/* ================= SECTION 2: 4 BUSINESS SEGMENTS ================= */}
-      <section className="py-24 px-6 md:px-16 max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-widest text-[#B38E46] font-bold">
-            НАПРАВЛЕНИЯ СОТРУДНИЧЕСТВА
-          </span>
-          <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mt-2 mb-3">
+      {/* ================= SECTION 2: BUSINESS SEGMENTS ================= */}
+      <section className="pt-12 sm:pt-16 pb-10 sm:pb-12 px-6 md:px-16 max-w-7xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+          <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mb-3">
             С кем мы строим долгосрочный бизнес
           </h2>
           <p className="text-sm text-[#7A7269]">
@@ -113,39 +92,133 @@ export default function B2BPartnersView() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {businessSegments.map((seg) => (
-            <div
-              key={seg.title}
-              className="bg-white p-8 rounded-3xl border border-[#E8E2D7] hover:border-[#B38E46] shadow-sm hover:shadow-xl transition-all flex flex-col justify-between"
-            >
-              <div>
-                <span className="text-4xl mb-4 block">{seg.icon}</span>
-                <span className="text-[10px] uppercase font-bold text-[#B38E46] block mb-1">
-                  {seg.badge}
-                </span>
-                <h3 className="text-xl font-serif text-[#181512] mb-3 font-semibold">{seg.title}</h3>
-                <p className="text-xs text-[#5C5248] leading-relaxed mb-6">{seg.desc}</p>
+        {/* Editorial Asymmetric Layout Matching Sample 1 */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+          {/* Main Large Feature Card (Regional Distributors) */}
+          <div className="lg:col-span-6 group relative rounded-2xl overflow-hidden border border-[#E5DFD5]/40 flex flex-col justify-end p-6 sm:p-8 min-h-[480px] lg:min-h-[520px] shadow-sm">
+            {/* Background warehouse image with dark cinematic gradient */}
+            <img
+              src="/images/b2b_logistics.jpg"
+              alt="Складской логистический хаб в Москве"
+              className="absolute inset-0 w-full h-full object-cover brightness-[0.85]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/35" />
+
+            {/* Bottom Content */}
+            <div className="relative z-10 mt-auto">
+              <h3 className="text-2xl sm:text-3xl font-serif text-white font-normal leading-snug mb-3">
+                Региональным дистрибьюторам
+              </h3>
+              <p className="text-xs sm:text-sm text-white/80 font-light leading-relaxed mb-5">
+                Контейнерные поставки напрямую с фабрик Trung Nguyên Legend. Регулярный сток на распределительном складе класса «A» в Москве с гарантированным резервом.
+              </p>
+
+              {/* 3-Column Specifications Grid */}
+              <div className="grid grid-cols-3 gap-3 pt-4 border-t border-white/20 text-left">
+                <div>
+                  <span className="text-[10px] uppercase tracking-wider text-[#D4AF37] font-bold block mb-0.5">
+                    ПОСТАВКИ
+                  </span>
+                  <span className="text-xs sm:text-sm text-white font-medium">
+                    Контейнерный объем
+                  </span>
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-wider text-[#D4AF37] font-bold block mb-0.5">
+                    ЛОГИСТИКА
+                  </span>
+                  <span className="text-xs sm:text-sm text-white font-medium">
+                    Хаб в Москве
+                  </span>
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-wider text-[#D4AF37] font-bold block mb-0.5">
+                    СТАТУС
+                  </span>
+                  <span className="text-xs sm:text-sm text-white font-medium">
+                    Защита территории
+                  </span>
+                </div>
               </div>
-              <a
-                href="#b2b-form"
-                className="text-xs font-semibold text-[#181512] hover:text-[#B38E46] flex items-center gap-1 transition-colors pt-4 border-t border-[#F0EBE1]"
-              >
-                Оставить заявку <span>→</span>
-              </a>
             </div>
-          ))}
+          </div>
+
+          {/* Right Column (3 Staggered Horizontal Media Strips) */}
+          <div className="lg:col-span-6 flex flex-col justify-between gap-4 sm:gap-5">
+            {/* Strip 1: Retail & Federal Chains */}
+            <div className="group bg-white rounded-2xl border border-[#E5DFD5] overflow-hidden flex flex-col sm:flex-row items-stretch shadow-sm hover:border-[#9B783E]/50 transition-colors">
+              <div className="w-full sm:w-44 md:w-48 h-36 sm:h-auto flex-shrink-0 overflow-hidden bg-[#FAF8F5]">
+                <img
+                  src="/images/prod_g7.jpg"
+                  alt="Федеральный ритейл & сети"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-5 sm:p-6 flex flex-col justify-center flex-1">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="text-base sm:text-lg font-serif text-[#181512] font-semibold leading-snug">
+                    Федеральный ритейл &amp; сети
+                  </h4>
+                  <span className="text-[#8C8277] font-semibold text-xs">SL 98.4%</span>
+                </div>
+                <p className="text-xs text-[#5C5248] font-light leading-relaxed">
+                  Полная интеграция с EDI-провайдерами, маркировка «Честный Знак», штрихкоды EAN-13 и промо-поддержка.
+                </p>
+              </div>
+            </div>
+
+            {/* Strip 2: HoReCa & Coffee Shops */}
+            <div className="group bg-white rounded-2xl border border-[#E5DFD5] overflow-hidden flex flex-col sm:flex-row items-stretch shadow-sm hover:border-[#9B783E]/50 transition-colors">
+              <div className="w-full sm:w-44 md:w-48 h-36 sm:h-auto flex-shrink-0 overflow-hidden bg-[#FAF8F5]">
+                <img
+                  src="/images/ritual_phin_brewing.jpg"
+                  alt="Кофейни & рестораны"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-5 sm:p-6 flex flex-col justify-center flex-1">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="text-base sm:text-lg font-serif text-[#181512] font-semibold leading-snug">
+                    Кофейни &amp; рестораны
+                  </h4>
+                  <span className="text-[#8C8277] font-semibold text-xs">B2B Прайс</span>
+                </div>
+                <p className="text-xs text-[#5C5248] font-light leading-relaxed">
+                  Профессиональные зерновые бленды фасовкой 1 кг, калибровка помола и рецептурные карты.
+                </p>
+              </div>
+            </div>
+
+            {/* Strip 3: Corporate Gifts */}
+            <div className="group bg-white rounded-2xl border border-[#E5DFD5] overflow-hidden flex flex-col sm:flex-row items-stretch shadow-sm hover:border-[#9B783E]/50 transition-colors">
+              <div className="w-full sm:w-44 md:w-48 h-36 sm:h-auto flex-shrink-0 overflow-hidden bg-[#FAF8F5]">
+                <img
+                  src="/images/legend_luxury_still_life.jpg"
+                  alt="Корпоративные подарки"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-5 sm:p-6 flex flex-col justify-center flex-1">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="text-base sm:text-lg font-serif text-[#181512] font-semibold leading-snug">
+                    Корпоративные подарки
+                  </h4>
+                  <span className="text-[#8C8277] font-semibold text-xs">Подарочные сеты</span>
+                </div>
+                <p className="text-xs text-[#5C5248] font-light leading-relaxed">
+                  Эксклюзивные подарочные коллекции Tuyệt Phẩm с персонализацией и тиснением логотипа.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ================= SECTION 3: 3 PARTNER ADVANTAGES ================= */}
-      <section className="py-24 px-6 md:px-16 bg-[#FAF7F2] border-y border-[#E8E2D7]">
+      <section className="pt-10 sm:pt-14 pb-10 sm:pb-14 px-6 md:px-16 bg-[#FAF7F2] border-y border-[#E8E2D7]">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs uppercase tracking-widest text-[#B38E46] font-bold">
-              КОММЕРЧЕСКИЕ ПРЕИМУЩЕСТВА
-            </span>
-            <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mt-2 mb-3">
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+            <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mb-3">
               Почему работать с нами надёжно и выгодно
             </h2>
             <p className="text-sm text-[#7A7269]">
@@ -153,92 +226,185 @@ export default function B2BPartnersView() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-3xl border border-[#E8E2D7] shadow-sm">
-              <span className="text-2xl font-serif font-bold text-[#B38E46] block mb-3">01</span>
-              <h3 className="text-xl font-serif text-[#181512] mb-2 font-semibold">
-                Прогрессивные скидки и отсрочка
-              </h3>
-              <p className="text-xs text-[#5C5248] leading-relaxed mb-4">
-                Гибкая дифференциация цен в зависимости от регулярности и объема заказов. Возможность предоставления кредитной линии и факторинга для постоянных партнёров.
-              </p>
-              <span className="text-[11px] font-semibold text-[#7A7269] block">
-                ✦ Маржинальность категории до 35%
-              </span>
+          {/* 3 Horizontal Editorial Rows Matching Sample 1 */}
+          <div className="flex flex-col gap-6 lg:gap-8">
+            {/* ROW 1: Финансовый режим / Прогрессивные скидки */}
+            <div className="bg-[#F5EFE6] rounded-2xl border border-[#E2DACD] p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-center hover:border-[#9B783E]/50 transition-colors">
+              {/* Left Column: Heading & Description (4 cols) */}
+              <div className="md:col-span-4 flex flex-col justify-between h-full">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-serif text-[#181512] font-normal leading-snug mb-3">
+                    Прогрессивные скидки и отсрочка
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#5C5248] font-light leading-relaxed">
+                    Гибкие кредитные лимиты для сетевого ритейла, HoReCa и оптовых дистрибьюторов с защитой от валютных колебаний.
+                  </p>
+                </div>
+              </div>
+
+              {/* Center Column: Photo (5 cols) */}
+              <div className="md:col-span-5 relative h-52 sm:h-56 md:h-60 rounded-xl overflow-hidden border border-[#E8E2D7] bg-[#FAF8F5]">
+                <img
+                  src="/images/legend_luxury_still_life.jpg"
+                  alt="Премиальный сегмент"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Right Column: Stats & Action Link (3 cols) */}
+              <div className="md:col-span-3 flex flex-col justify-between h-full">
+                <div>
+
+                  <div className="text-3xl sm:text-4xl font-serif text-[#181512] font-normal mb-2">
+                    до 35%
+                  </div>
+                  <p className="text-xs text-[#5C5248] font-light leading-relaxed mb-4">
+                    Факторинг и индивидуальные кредитные линии · Дифференцированная шкала оптовых цен от объёма поставки
+                  </p>
+                </div>
+                <a
+                  href="#b2b-form"
+                  className="text-xs font-semibold text-[#181512] hover:text-[#9B783E] uppercase tracking-wider transition-colors flex items-center gap-1.5"
+                >
+                  <span>УСЛОВИЯ ОТСРОЧКИ</span>
+                  <span className="text-sm">→</span>
+                </a>
+              </div>
             </div>
 
-            <div className="bg-white p-8 rounded-3xl border border-[#E8E2D7] shadow-sm">
-              <span className="text-2xl font-serif font-bold text-[#B38E46] block mb-3">02</span>
-              <h3 className="text-xl font-serif text-[#181512] mb-2 font-semibold">
-                Маркетинг и брендовые POSM
-              </h3>
-              <p className="text-xs text-[#5C5248] leading-relaxed mb-4">
-                Предоставляем фирменные стойки из массива дерева, стильные шелфтокеры, стопперы, буклеты и образцы для проведения дегустаций на полках ваших магазинов.
-              </p>
-              <span className="text-[11px] font-semibold text-[#7A7269] block">
-                ✦ Бесплатные рекламные наборы
-              </span>
+            {/* ROW 2: Трейд-маркетинг / POSM */}
+            <div className="bg-[#F5EFE6] rounded-2xl border border-[#E2DACD] p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-center hover:border-[#9B783E]/50 transition-colors">
+              {/* Left Column: Heading & Description (4 cols) */}
+              <div className="md:col-span-4 flex flex-col justify-between h-full">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-serif text-[#181512] font-normal leading-snug mb-3">
+                    Маркетинг и брендовые POSM
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#5C5248] font-light leading-relaxed">
+                    Полное маркетинговое сопровождение полочного пространства и локальные промо-программы для стимулирования уходимости товара.
+                  </p>
+                </div>
+              </div>
+
+              {/* Center Column: Photo (5 cols) */}
+              <div className="md:col-span-5 relative h-52 sm:h-56 md:h-60 rounded-xl overflow-hidden border border-[#E8E2D7] bg-[#FAF8F5]">
+                <img
+                  src="/images/prod_g7.jpg"
+                  alt="Выкладка в сетях Москвы"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Right Column: Stats & Action Link (3 cols) */}
+              <div className="md:col-span-3 flex flex-col justify-between h-full">
+                <div>
+
+                  <div className="text-3xl sm:text-4xl font-serif text-[#181512] font-normal mb-2">
+                    100% Free
+                  </div>
+                  <p className="text-xs text-[#5C5248] font-light leading-relaxed mb-4">
+                    Фирменные стойки из массива дерева · Шелфтокеры, акриловые стопперы и наборы для профессиональных дегустаций
+                  </p>
+                </div>
+                <a
+                  href="#b2b-form"
+                  className="text-xs font-semibold text-[#181512] hover:text-[#9B783E] uppercase tracking-wider transition-colors flex items-center gap-1.5"
+                >
+                  <span>КАТАЛОГ POSM</span>
+                  <span className="text-sm">→</span>
+                </a>
+              </div>
             </div>
 
-            <div className="bg-white p-8 rounded-3xl border border-[#E8E2D7] shadow-sm">
-              <span className="text-2xl font-serif font-bold text-[#B38E46] block mb-3">03</span>
-              <h3 className="text-xl font-serif text-[#181512] mb-2 font-semibold">
-                Отгрузка за 24–72 часа по всей РФ
-              </h3>
-              <p className="text-xs text-[#5C5248] leading-relaxed mb-4">
-                Постоянный неснижаемый запас продукции на лицензированном логистическом хабе класса А в Москве и складе во Владивостоке. Отправка любыми транспортными компаниями.
-              </p>
-              <span className="text-[11px] font-semibold text-[#7A7269] block">
-                ✦ 100% соблюдение температурного режима
-              </span>
+            {/* ROW 3: Складская сеть / Отгрузка за 24-72 ч */}
+            <div className="bg-[#F5EFE6] rounded-2xl border border-[#E2DACD] p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-center hover:border-[#9B783E]/50 transition-colors">
+              {/* Left Column: Heading & Description (4 cols) */}
+              <div className="md:col-span-4 flex flex-col justify-between h-full">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-serif text-[#181512] font-normal leading-snug mb-3">
+                    Отгрузка за 24–72 часа по всей РФ
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#5C5248] font-light leading-relaxed">
+                    Бесперебойное наличие товарного запаса на федеральных логистических терминалах и электронный документооборот (ЭДО).
+                  </p>
+                </div>
+              </div>
+
+              {/* Center Column: Photo (5 cols) */}
+              <div className="md:col-span-5 relative h-52 sm:h-56 md:h-60 rounded-xl overflow-hidden border border-[#E8E2D7] bg-[#FAF8F5]">
+                <img
+                  src="/images/b2b_logistics.jpg"
+                  alt="Хаб Москва & Владивосток"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Right Column: Stats & Action Link (3 cols) */}
+              <div className="md:col-span-3 flex flex-col justify-between h-full">
+                <div>
+
+                  <div className="text-3xl sm:text-4xl font-serif text-[#181512] font-normal mb-2">
+                    24–72 ч.
+                  </div>
+                  <p className="text-xs text-[#5C5248] font-light leading-relaxed mb-4">
+                    Хабы класса «А» в Москве и Владивостоке · Контроль влажности и терморежима хранения зерна и блендов
+                  </p>
+                </div>
+                <a
+                  href="#b2b-form"
+                  className="text-xs font-semibold text-[#181512] hover:text-[#9B783E] uppercase tracking-wider transition-colors flex items-center gap-1.5"
+                >
+                  <span>КАРТА ЛОГИСТИКИ</span>
+                  <span className="text-sm">→</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ================= SECTION 4: LEGAL & COMPLIANCE VERIFICATION ================= */}
-      <section id="legal-compliance" className="py-24 px-6 md:px-16 max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-widest text-[#B38E46] font-bold">
-            100% БЕЛАЯ ТАМОЖНЯ И СЕРТИФИКАЦИЯ
-          </span>
-          <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mt-2 mb-3">
-            Юридическая чистота для бухгалтерии и аудита
-          </h2>
-          <p className="text-sm text-[#7A7269]">
-            Полный пакет сопроводительных документов, сертификатов и работа с НДС 20%
-          </p>
-        </div>
+      <section id="legal-compliance" className="w-full border-b border-[#E8E2D7]">
+        <div className="pt-10 sm:pt-14 pb-10 sm:pb-12 px-6 md:px-16 max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+            <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mb-3">
+              Юридическая чистота для бухгалтерии и аудита
+            </h2>
+            <p className="text-sm text-[#7A7269]">
+              Полный пакет сопроводительных документов, сертификатов и работа с НДС 20%
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {certificates.map((cert) => (
-            <div key={cert.name} className="bg-white p-8 rounded-3xl border border-[#E8E2D7] shadow-sm flex flex-col justify-between">
-              <div>
-                <span className="inline-block px-2.5 py-1 rounded bg-[#FAF7F2] text-[10px] font-mono text-[#B38E46] font-bold mb-3">
-                  {cert.code}
-                </span>
-                <h3 className="text-lg font-serif text-[#181512] mb-2 font-semibold">{cert.name}</h3>
-                <p className="text-xs text-[#5C5248] leading-relaxed mb-4">{cert.desc}</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 sm:mb-10">
+            {certificates.map((cert) => (
+              <div key={cert.name} className="bg-white p-8 rounded-3xl border border-[#E8E2D7] shadow-sm flex flex-col justify-between">
+                <div>
+                  <span className="inline-block px-2.5 py-1 rounded bg-[#FAF7F2] text-[10px] font-mono text-[#B38E46] font-bold mb-3">
+                    {cert.code}
+                  </span>
+                  <h3 className="text-lg font-serif text-[#181512] mb-2 font-semibold">{cert.name}</h3>
+                  <p className="text-xs text-[#5C5248] leading-relaxed mb-4">{cert.desc}</p>
+                </div>
+                <div className="text-xs text-[#2E7D32] font-semibold flex items-center gap-1 pt-3 border-t border-[#F0EBE1]">
+                  <span>✓</span> Действителен на всей территории ЕАЭС
+                </div>
               </div>
-              <div className="text-xs text-[#2E7D32] font-semibold flex items-center gap-1 pt-3 border-t border-[#F0EBE1]">
-                <span>✓</span> Действителен на всей территории ЕАЭС
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        <div className="text-center">
-          <button
-            onClick={() => alert("PDF презентация будет скачана после загрузки финального файла.")}
-            className="px-8 py-3.5 rounded-2xl bg-[#181512] hover:bg-[#B38E46] text-white text-xs uppercase tracking-wider font-semibold transition-colors shadow-lg"
-          >
-            Скачать презентацию для партнеров (PDF 5 MB) ⤓
-          </button>
+          <div className="text-center">
+            <button
+              onClick={() => alert("PDF презентация будет скачана после загрузки финального файла.")}
+              className="px-8 py-3.5 rounded-2xl bg-[#181512] hover:bg-[#B38E46] text-white text-xs uppercase tracking-wider font-semibold transition-colors shadow-lg"
+            >
+              Скачать презентацию для партнеров (PDF 5 MB) ⤓
+            </button>
+          </div>
         </div>
       </section>
 
       {/* ================= SECTION 5: EXACT IMAGE 4 B2B FORM ================= */}
-      <B2BFormSection />
+      <B2BFormSection className="!pt-10 sm:!pt-12 !pb-14 sm:!pb-16" />
     </div>
   );
 }

@@ -11,6 +11,8 @@ type Product = {
   timeBadge: string;
   format: string;
   detail: string;
+  priceRub: number;
+  priceEstimated?: boolean;
   image: string;
   strength: number;
   badge?: string;
@@ -25,6 +27,7 @@ type Product = {
 const products: Product[] = [
   {
     id: "g7-3in1",
+    priceRub: 450,
     name: "G7 3 в 1",
     subname: "Легендарный растворимый кофе №1",
     ritual: "energy",
@@ -47,6 +50,7 @@ const products: Product[] = [
   },
   {
     id: "creative-4",
+    priceRub: 900,
     name: "Creative 4 (Sáng Tạo 4)",
     subname: "Купаж 4 редких сортов с ароматом шоколада",
     ritual: "zen",
@@ -70,6 +74,7 @@ const products: Product[] = [
   },
   {
     id: "legend-special",
+    priceRub: 8422,
     name: "Legend Special Edition",
     subname: "Шедевр ферментированного кофе",
     ritual: "art",
@@ -92,6 +97,7 @@ const products: Product[] = [
   },
   {
     id: "g7-black",
+    priceRub: 350,
     name: "G7 Чёрный (Pure Black)",
     subname: "100% чистый чёрный кофе без сахара",
     ritual: "energy",
@@ -114,6 +120,8 @@ const products: Product[] = [
   },
   {
     id: "vietnamese-drip",
+    priceRub: 550,
+    priceEstimated: true,
     name: "Vietnamese Drip Coffee",
     subname: "Кофе в индивидуальных фильтр-пакетах",
     ritual: "zen",
@@ -136,6 +144,8 @@ const products: Product[] = [
   },
   {
     id: "premium-culi",
+    priceRub: 950,
+    priceEstimated: true,
     name: "Premium Culi Beans",
     subname: "Редкие круглые зёрна ручного сбора",
     ritual: "art",
@@ -197,7 +207,7 @@ const civilizations: Civilization[] = [
     name: "Османская",
     title: "Османская кофейная цивилизация",
     quote: "«Таинство вековых бесед и медитация на раскалённом кварцевом песке»",
-    desc: "Зародившаяся в кофейнях Стамбула и Каира, османская традиция возвела приготовление кофе в ранг священного ритуала. Это пространство неспешной восточной мудрости, созерцания и искренней душевной беседы.",
+    desc: "Кофе на горячем песке, неспешный разговор и восточное гостеприимство. Османская традиция приглашает остановиться и разделить момент за чашкой кофе.",
     image: "/images/civilization_ottoman.jpg",
     specs: [
       { label: "Способ приготовления:", value: "Традиционная джезва на горячем кварцевом песке" },
@@ -205,7 +215,7 @@ const civilizations: Civilization[] = [
       { label: "Философия ритуала:", value: "Мудрость, остановка времени и уважение к собеседнику" },
     ],
     link: "/filosofiya-kofe",
-    ctaText: "Узнать ритуал Османской цивилизации →",
+    ctaText: "Узнать османский ритуал",
   },
   {
     id: "roman",
@@ -214,7 +224,7 @@ const civilizations: Civilization[] = [
     name: "Римская",
     title: "Римская кофейная цивилизация",
     quote: "«Точность экстракции и динамичный пульс европейского мегаполиса»",
-    desc: "Эпоха Ренессанса и триумф инженерного гения Италии. Римская культура подарила миру эспрессо — концентрат чистой энергии, рождённый под высоким давлением для ясности мысли, лидерства и великих свершений.",
+    desc: "Итальянский эспрессо соединяет точность приготовления с насыщенным вкусом. Короткий кофейный ритуал в ритме европейского города.",
     image: "/images/civilization_roman.jpg",
     specs: [
       { label: "Способ приготовления:", value: "Экстракция под давлением 9 бар (эспрессо)" },
@@ -222,7 +232,7 @@ const civilizations: Civilization[] = [
       { label: "Философия ритуала:", value: "Динамика, точность, лидерство и созидание" },
     ],
     link: "/filosofiya-kofe",
-    ctaText: "Исследовать Римский ритуал →",
+    ctaText: "Открыть римский ритуал",
   },
   {
     id: "zen",
@@ -231,7 +241,7 @@ const civilizations: Civilization[] = [
     name: "Дзэн",
     title: "Цивилизация Дзэн",
     quote: "«Тишина, чистота мысли и озарение для пробуждения духа»",
-    desc: "Уникальное учение Trung Nguyên Legend, объединяющее Восток и Запад. Кофе — это не просто напиток, а проводник осознанности. Медленное капельное заваривание через фин превращается в медитацию, открывающую творческий потенциал.",
+    desc: "В традиции Trung Nguyên Legend кофе становится практикой внимания. Медленные капли из вьетнамского фина помогают замедлиться и почувствовать вкус момента.",
     image: "/images/civilization_zen.jpg",
     specs: [
       { label: "Способ приготовления:", value: "Традиционный вьетнамский фин (капельный метод)" },
@@ -239,7 +249,7 @@ const civilizations: Civilization[] = [
       { label: "Философия ритуала:", value: "Осознанность, внутренняя гармония и озарение" },
     ],
     link: "/filosofiya-kofe",
-    ctaText: "Погрузиться в философию Дзэн →",
+    ctaText: "Открыть философию Дзэн",
   },
 ];
 
@@ -498,18 +508,111 @@ export default function Home() {
         </div>
       )}
 
-      {/* ================= SECTION 1: HERO (FULL-WIDTH SEAMLESS) ================= */}
-      <section className="zen-hero-full" id="top">
-        <div className="zen-hero-full-container">
+      {/* ================= SECTION 1: HERO (FULL-WIDTH SEAMLESS 100DVH - EXACT USER DRAWN CURVE) ================= */}
+      <section className="zen-hero-full min-h-[100dvh] relative overflow-hidden" id="top">
+        {/* Subtle Ambient Terroir SVG Background */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          <svg
+            className="w-full h-full opacity-40"
+            viewBox="0 0 1440 800"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+          >
+            <radialGradient id="hero-terroir-glow" cx="80%" cy="45%" r="60%">
+              <stop offset="0%" stopColor="#EDE4D4" stopOpacity="0.75" />
+              <stop offset="65%" stopColor="#FAF8F5" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#FAF8F5" stopOpacity="0" />
+            </radialGradient>
+            <rect width="1440" height="800" fill="url(#hero-terroir-glow)" />
+
+            <path
+              d="M-100 200 C240 160, 520 260, 850 140 C1100 60, 1320 160, 1550 120"
+              stroke="#B38E46"
+              strokeWidth="1.2"
+              strokeDasharray="4 6"
+              opacity="0.32"
+            />
+            <path
+              d="M-80 320 C280 270, 580 390, 920 260 C1180 180, 1380 290, 1560 250"
+              stroke="#9B783E"
+              strokeWidth="1"
+              opacity="0.22"
+            />
+            <path
+              d="M-50 460 C320 400, 640 540, 990 400 C1240 310, 1420 430, 1580 390"
+              stroke="#B38E46"
+              strokeWidth="0.8"
+              opacity="0.18"
+            />
+          </svg>
+        </div>
+
+        {/* FULL-SCREEN EXACT USER CURVE IMAGE LAYER */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <svg
+            viewBox="0 0 1440 800"
+            preserveAspectRatio="none"
+            className="w-full h-full"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              {/* Exact user-drawn red curve (100% mathematically matched from user drawing) */}
+              <clipPath id="userExactHeroCurve">
+                <path d="M 1253.3 0 C 1236.2 8.9, 1183.1 22.8, 1150.7 32.1 C 1118.4 41.4, 1087.9 50.6, 1059.2 59.9 C 1030.6 69.2, 1000.7 78.4, 978.8 87.7 C 956.9 97.0, 942.7 106.2, 928.0 115.5 C 913.2 124.8, 899.9 134.0, 890.1 143.3 C 880.2 152.6, 874.2 161.9, 868.8 171.1 C 863.4 180.4, 861.1 189.7, 857.7 198.9 C 854.3 208.2, 850.0 217.5, 848.5 226.7 C 846.9 236.0, 848.2 245.3, 848.5 254.5 C 848.8 263.8, 849.4 273.1, 850.3 282.4 C 851.2 291.6, 852.3 300.9, 854.0 310.2 C 855.7 319.4, 857.6 328.7, 860.5 338.0 C 863.4 347.2, 866.8 356.5, 871.6 365.8 C 876.4 375.0, 882.5 384.3, 889.1 393.6 C 895.8 402.9, 903.6 412.1, 911.3 421.4 C 919.0 430.7, 926.3 439.9, 935.4 449.2 C 944.4 458.5, 954.3 467.7, 965.9 477.0 C 977.4 486.3, 994.7 495.5, 1004.7 504.8 C 1014.7 514.1, 1020.8 523.4, 1025.9 532.6 C 1031.0 541.9, 1032.4 551.2, 1035.2 560.4 C 1037.9 569.7, 1040.4 579.0, 1042.6 588.2 C 1044.7 597.5, 1045.6 606.8, 1048.1 616.0 C 1050.6 625.3, 1053.5 634.6, 1057.4 643.9 C 1061.2 653.1, 1064.7 662.4, 1071.2 671.7 C 1077.7 680.9, 1082.5 690.2, 1096.2 699.5 C 1109.9 708.7, 1125.4 718.0, 1153.5 727.3 C 1181.5 736.5, 1234.2 745.8, 1264.4 755.1 C 1294.6 764.3, 1318.5 776.5, 1334.6 782.9 C 1350.8 789.3, 1357.0 791.8, 1361.4 793.6 L 1440 800 L 1440 0 Z" />
+              </clipPath>
+
+              {/* Natural sunlight gradient overlay */}
+              <linearGradient id="userHeroSunlight" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#FFF9EE" stopOpacity="0.2" />
+                <stop offset="60%" stopColor="#FAF8F5" stopOpacity="0" />
+                <stop offset="100%" stopColor="#1A1715" stopOpacity="0.15" />
+              </linearGradient>
+            </defs>
+
+            {/* High-Resolution Authentic Coffee Tree Photograph */}
+            <image
+              href="/images/coffee_tree_hero.jpg"
+              x="0"
+              y="0"
+              width="1440"
+              height="800"
+              preserveAspectRatio="xMidYMid slice"
+              clipPath="url(#userExactHeroCurve)"
+              className="pointer-events-auto"
+            />
+
+            {/* Sunlight overlay along the exact curve */}
+            <path
+              d="M 1253.3 0 C 1236.2 8.9, 1183.1 22.8, 1150.7 32.1 C 1118.4 41.4, 1087.9 50.6, 1059.2 59.9 C 1030.6 69.2, 1000.7 78.4, 978.8 87.7 C 956.9 97.0, 942.7 106.2, 928.0 115.5 C 913.2 124.8, 899.9 134.0, 890.1 143.3 C 880.2 152.6, 874.2 161.9, 868.8 171.1 C 863.4 180.4, 861.1 189.7, 857.7 198.9 C 854.3 208.2, 850.0 217.5, 848.5 226.7 C 846.9 236.0, 848.2 245.3, 848.5 254.5 C 848.8 263.8, 849.4 273.1, 850.3 282.4 C 851.2 291.6, 852.3 300.9, 854.0 310.2 C 855.7 319.4, 857.6 328.7, 860.5 338.0 C 863.4 347.2, 866.8 356.5, 871.6 365.8 C 876.4 375.0, 882.5 384.3, 889.1 393.6 C 895.8 402.9, 903.6 412.1, 911.3 421.4 C 919.0 430.7, 926.3 439.9, 935.4 449.2 C 944.4 458.5, 954.3 467.7, 965.9 477.0 C 977.4 486.3, 994.7 495.5, 1004.7 504.8 C 1014.7 514.1, 1020.8 523.4, 1025.9 532.6 C 1031.0 541.9, 1032.4 551.2, 1035.2 560.4 C 1037.9 569.7, 1040.4 579.0, 1042.6 588.2 C 1044.7 597.5, 1045.6 606.8, 1048.1 616.0 C 1050.6 625.3, 1053.5 634.6, 1057.4 643.9 C 1061.2 653.1, 1064.7 662.4, 1071.2 671.7 C 1077.7 680.9, 1082.5 690.2, 1096.2 699.5 C 1109.9 708.7, 1125.4 718.0, 1153.5 727.3 C 1181.5 736.5, 1234.2 745.8, 1264.4 755.1 C 1294.6 764.3, 1318.5 776.5, 1334.6 782.9 C 1350.8 789.3, 1357.0 791.8, 1361.4 793.6 L 1440 800 L 1440 0 Z"
+              fill="url(#userHeroSunlight)"
+              className="pointer-events-none"
+            />
+
+            {/* Crisp Hairline Border flush along the user's curve */}
+            <path
+              d="M 1253.3 0 C 1236.2 8.9, 1183.1 22.8, 1150.7 32.1 C 1118.4 41.4, 1087.9 50.6, 1059.2 59.9 C 1030.6 69.2, 1000.7 78.4, 978.8 87.7 C 956.9 97.0, 942.7 106.2, 928.0 115.5 C 913.2 124.8, 899.9 134.0, 890.1 143.3 C 880.2 152.6, 874.2 161.9, 868.8 171.1 C 863.4 180.4, 861.1 189.7, 857.7 198.9 C 854.3 208.2, 850.0 217.5, 848.5 226.7 C 846.9 236.0, 848.2 245.3, 848.5 254.5 C 848.8 263.8, 849.4 273.1, 850.3 282.4 C 851.2 291.6, 852.3 300.9, 854.0 310.2 C 855.7 319.4, 857.6 328.7, 860.5 338.0 C 863.4 347.2, 866.8 356.5, 871.6 365.8 C 876.4 375.0, 882.5 384.3, 889.1 393.6 C 895.8 402.9, 903.6 412.1, 911.3 421.4 C 919.0 430.7, 926.3 439.9, 935.4 449.2 C 944.4 458.5, 954.3 467.7, 965.9 477.0 C 977.4 486.3, 994.7 495.5, 1004.7 504.8 C 1014.7 514.1, 1020.8 523.4, 1025.9 532.6 C 1031.0 541.9, 1032.4 551.2, 1035.2 560.4 C 1037.9 569.7, 1040.4 579.0, 1042.6 588.2 C 1044.7 597.5, 1045.6 606.8, 1048.1 616.0 C 1050.6 625.3, 1053.5 634.6, 1057.4 643.9 C 1061.2 653.1, 1064.7 662.4, 1071.2 671.7 C 1077.7 680.9, 1082.5 690.2, 1096.2 699.5 C 1109.9 708.7, 1125.4 718.0, 1153.5 727.3 C 1181.5 736.5, 1234.2 745.8, 1264.4 755.1 C 1294.6 764.3, 1318.5 776.5, 1334.6 782.9 C 1350.8 789.3, 1357.0 791.8, 1361.4 793.6"
+              fill="none"
+              stroke="#FAF8F5"
+              strokeWidth="2.5"
+              className="pointer-events-none"
+            />
+          </svg>
+        </div>
+
+        {/* Hero Content Container (Typography on Left) */}
+        <div className="zen-hero-full-container relative z-10">
           <div className="zen-hero-content-left">
             <h1 className="serif">
               Энергия кофе <br />
               <span className="zen-hero-gold-text">из сердца Вьетнама</span>
             </h1>
+
             <p className="zen-hero-desc">
               Натуральный кофе из Буонметхуота — мировой столицы робусты. Чистая
               энергия мысли, гармония и пробуждение для великих свершений.
             </p>
+
             <div className="zen-hero-actions">
               <button
                 className="zen-btn-gold"
@@ -517,6 +620,17 @@ export default function Home() {
               >
                 Выбрать кофе <span>↘</span>
               </button>
+            </div>
+          </div>
+
+          {/* Authentic Trung Nguyen Legend Product Pack positioned across the curve */}
+          <div className="zen-hero-product-showcase">
+            <div className="zen-hero-product-pack-wrap">
+              <img
+                src="/images/trung_nguyen_product_hero.png"
+                alt="Trung Nguyên Legend Special Edition"
+                className="zen-hero-product-pack-img"
+              />
             </div>
           </div>
         </div>
@@ -548,97 +662,128 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ================= SECTION 3: PRODUCT SPOTLIGHT ================= */}
-      <section className="zen-section" id="catalog">
-        <div className="zen-heading-compact">
-          <h2>Коллекция Энергии Trung Nguyên</h2>
-        </div>
+      {/* ================= SECTION 3: PRODUCT SPOTLIGHT (EDITORIAL COLLAGE & ESSENTIAL INFO) ================= */}
+      <section className="zen-section py-20 lg:py-28 px-6 sm:px-12 lg:px-20 max-w-7xl mx-auto scroll-mt-24" id="catalog">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-        {/* Clean Typographic Filter Tabs (No Icons) */}
-        <div className="zen-filter-bar">
-          {ritualTabs.map((tab) => (
-            <button
-              key={tab.id}
-              className={`zen-pill-btn ${selectedRitual === tab.id ? "active" : ""}`}
-              onClick={() => setSelectedRitual(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+          {/* ================= LEFT COLUMN: PRODUCT COLLAGE (EXACT LAYOUT AS IMAGE 1) ================= */}
+          <div className="lg:col-span-6 relative">
+            {/* Subtle organic decorative backdrop element (like Image 1) */}
+            <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-[#EFE6D4]/50 rounded-[3rem] -rotate-6 pointer-events-none -z-10" />
 
-        {/* Product Cards Grid on Zen Stone Pedestals */}
-        <div className="zen-product-grid">
-          {filteredProducts.map((p) => (
-            <article key={p.id} className="zen-product-card">
-              <div className="zen-product-visual">
+            {/* 3-Product Collage Grid */}
+            <div className="grid grid-cols-12 gap-4 sm:gap-5">
+
+              {/* Product 1: Top-Left (G7 3in1 - Instant Coffee Line) */}
+              <a
+                href="/katalog/rastvorimyj-kofe"
+                className="col-span-6 aspect-square rounded-[2rem] overflow-hidden relative block cursor-pointer group shadow-md hover:shadow-2xl transition-all duration-300 bg-[#FAF8F5] border border-[#E8E2D7] -rotate-1 hover:rotate-0 hover:-translate-y-1"
+                title="Перейти к коллекции растворимого кофе G7"
+              >
                 <img
-                  src={p.image}
-                  alt={p.name}
-                  className="zen-product-img"
-                  loading="lazy"
+                  src="/images/prod_g7.jpg"
+                  alt="Растворимый кофе G7 3 в 1"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
+              </a>
+
+              {/* Product 2: Top-Right (Sáng Tạo 4 - Bean & Specialty Line) */}
+              <a
+                href="/katalog/kofe-v-zernah"
+                className="col-span-6 aspect-[4/5] rounded-[2rem] overflow-hidden relative block cursor-pointer group shadow-md hover:shadow-2xl transition-all duration-300 bg-[#FAF8F5] border border-[#E8E2D7] rotate-1 hover:rotate-0 hover:-translate-y-1"
+                title="Перейти к коллекции кофе Sáng Tạo и зёрнам Culi"
+              >
+                <img
+                  src="/images/prod_creative.jpg"
+                  alt="Кофе Creative 4 (Sáng Tạo 4)"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                />
+              </a>
+
+              {/* Product 3: Bottom Full-Width Landscape (Legend Special Edition Line) */}
+              <a
+                href="/katalog/molotyj-kofe"
+                className="col-span-12 aspect-[16/9] sm:aspect-[2/1] rounded-[2.2rem] overflow-hidden relative block cursor-pointer group shadow-md hover:shadow-2xl transition-all duration-300 bg-[#FAF8F5] border border-[#E8E2D7] hover:-translate-y-1"
+                title="Перейти к премиальной серии молотого кофе Legend"
+              >
+                <img
+                  src="/images/prod_legend.jpg"
+                  alt="Премиальный кофе Legend Special Edition"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                />
+              </a>
+
+            </div>
+          </div>
+
+          {/* ================= RIGHT COLUMN: ESSENTIAL INFO (MINIMALIST & CLEAN) ================= */}
+          <div className="lg:col-span-6 flex flex-col justify-center">
+
+            {/* Editorial Title with Italicized Accent */}
+            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-serif text-[#181512] tracking-tight leading-[1.18] mb-4">
+              Осознанный кофе для тех, <br />
+              кто выбирает <span className="italic text-[#9B783E]">энергию мысли.</span>
+            </h2>
+
+            {/* Concise Editorial Description */}
+            <p className="text-sm sm:text-base text-[#5A524A] font-light leading-relaxed mb-8 max-w-lg">
+              Отборная робуста Буонметхуота и восточные ритуалы заваривания — гармония вкуса, ясность мысли и природная энергия в каждой чашке.
+            </p>
+
+            {/* 4 Feature Pillars with Icons (Clean & Minimalist, No Subtext) */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+
+              {/* Feature 1: Origin */}
+              <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+                <div className="w-12 h-12 rounded-full bg-[#FAF8F5] border border-[#E8E2D7] flex items-center justify-center text-[#9B783E] mb-3 shadow-sm">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 21a9 9 0 01-9-9c0-4.97 4.03-9 9-9 4.14 0 7.64 2.8 8.67 6.64.2.73-.35 1.36-1.1 1.36h-4.07a2 2 0 00-1.74 1.01l-1.04 1.8a2 2 0 01-1.72.99H9" />
+                  </svg>
+                </div>
+                <h4 className="text-sm font-bold text-[#181512] leading-tight">Буонметхуот</h4>
               </div>
 
-              <div className="zen-product-meta">{p.detail}</div>
-              <h3 className="zen-product-title">{p.name}</h3>
-              <p className="zen-product-subname">{p.subname}</p>
-
-              {/* Sensory Profile Box */}
-              <div className="zen-sensory-box">
-                <div className="zen-sensory-item">
-                  <span className="zen-sensory-label">Крепость:</span>
-                  <StrengthMeter value={p.strength} />
+              {/* Feature 2: Certification */}
+              <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+                <div className="w-12 h-12 rounded-full bg-[#FAF8F5] border border-[#E8E2D7] flex items-center justify-center text-[#9B783E] mb-3 shadow-sm">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
                 </div>
-                <div className="zen-sensory-item">
-                  <span className="zen-sensory-label">Аромат:</span>
-                  <span className="zen-sensory-val">{p.aroma}</span>
-                </div>
-                <div className="zen-sensory-item">
-                  <span className="zen-sensory-label">Способ:</span>
-                  <span className="zen-sensory-val">{p.brewMethod}</span>
-                </div>
+                <h4 className="text-sm font-bold text-[#181512] leading-tight">Стандарты РФ</h4>
               </div>
 
-              {/* Actions & Marketplace Direct Links */}
-              <div className="zen-product-actions">
-                <button
-                  className="zen-btn-ritual-view"
-                  onClick={() => setActiveModalProduct(p)}
-                >
-                  О ритуале <span className="arrow">↗</span>
-                </button>
-                <a
-                  href={p.ozonUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="zen-btn-market-sm ozon"
-                  title="Купить на Ozon"
-                >
-                  OZON
-                </a>
-                <a
-                  href={p.wbUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="zen-btn-market-sm wb"
-                  title="Купить на Wildberries"
-                >
-                  WB
-                </a>
+              {/* Feature 3: 3 Rituals */}
+              <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+                <div className="w-12 h-12 rounded-full bg-[#FAF8F5] border border-[#E8E2D7] flex items-center justify-center text-[#9B783E] mb-3 shadow-sm">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </div>
+                <h4 className="text-sm font-bold text-[#181512] leading-tight">3 Ритуала</h4>
               </div>
-            </article>
-          ))}
+
+              {/* Feature 4: Safe delivery */}
+              <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+                <div className="w-12 h-12 rounded-full bg-[#FAF8F5] border border-[#E8E2D7] flex items-center justify-center text-[#9B783E] mb-3 shadow-sm">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                  </svg>
+                </div>
+                <h4 className="text-sm font-bold text-[#181512] leading-tight">Ozon & WB</h4>
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
       </section>
 
       {/* ================= SECTION 4: 3 CIVILIZATIONS ================= */}
-      <section className="zen-section bg-[#F4EFEA]" id="philosophy">
+      <section className="zen-section" id="philosophy">
         <div className="zen-heading centered">
           <h2>Три Кофейные Цивилизации</h2>
-          <p>
-            Кофейное наследие человечества в единой концепции гармонии и созидания.
-          </p>
         </div>
 
         {/* Master-Detail Interactive Showcase */}
@@ -651,45 +796,38 @@ export default function Home() {
               className={`zen-civ-main-img ${civFading ? "fade-out" : "fade-in"}`}
               key={activeCiv.id}
             />
-            <div className="zen-civ-main-badge">{activeCiv.num}</div>
           </div>
 
           {/* Right Column: Information & 2 Remaining Civilizations Dock */}
           <div className="zen-civ-showcase-right">
-            {/* Upper Details (~88% height) */}
+            {/* Editorial details */}
             <article
               className={`zen-civ-detail-card ${civFading ? "fade-out" : "fade-in"}`}
             >
-              <div className="zen-civ-detail-meta">
-                <span className="zen-civ-detail-num">{activeCiv.num}</span>
-                <span className="zen-civ-detail-step">{activeCiv.stepNum}</span>
-              </div>
-
               <h3 className="zen-civ-detail-title">{activeCiv.title}</h3>
 
               <div className="zen-civ-detail-quote">{activeCiv.quote}</div>
 
               <p className="zen-civ-detail-desc">{activeCiv.desc}</p>
 
-              <div className="zen-civ-detail-specs">
-                {activeCiv.specs.map((spec, idx) => (
-                  <div key={idx} className="zen-civ-spec-row">
-                    <span className="zen-civ-spec-label">{spec.label}</span>
-                    <span className="zen-civ-spec-val">{spec.value}</span>
+              <dl className="zen-civ-detail-specs">
+                {activeCiv.specs.map((spec) => (
+                  <div key={spec.label} className="zen-civ-spec-row">
+                    <dt className="zen-civ-spec-label">{spec.label}</dt>
+                    <dd className="zen-civ-spec-val">{spec.value}</dd>
                   </div>
                 ))}
-              </div>
+              </dl>
 
               <a href={activeCiv.link} className="zen-civ-action-btn">
-                {activeCiv.ctaText}
+                <span>{activeCiv.ctaText}</span>
               </a>
             </article>
 
-            {/* Lower Dock: 2 Remaining Civilizations (~10-12% area) */}
+            {/* Other civilizations */}
             <div className="zen-civ-dock">
               <div className="zen-civ-dock-label">
                 <span>Другие цивилизации:</span>
-                <span>Нажмите для перехода ↗</span>
               </div>
               <div className="zen-civ-dock-grid">
                 {otherCivs.map((civ) => (
@@ -706,11 +844,9 @@ export default function Home() {
                       className="zen-civ-thumb-img"
                     />
                     <div className="zen-civ-thumb-info">
-                      <span className="zen-civ-thumb-num">{civ.num}</span>
                       <strong className="zen-civ-thumb-name">{civ.name}</strong>
                       <span className="zen-civ-thumb-hint">Исследовать ритуал</span>
                     </div>
-                    <span className="zen-civ-thumb-arrow">↗</span>
                   </button>
                 ))}
               </div>
@@ -723,19 +859,9 @@ export default function Home() {
       <section className="zen-section" id="buy">
         <div className="zen-retail-box">
           <div className="zen-retail-left">
-            <span className="zen-eyebrow">ОФИЦИАЛЬНАЯ ДИСТРИБЬЮЦИЯ</span>
             <h2 className="serif">
               Оригинальный вьетнамский кофе с доставкой по всей России
             </h2>
-            <p>
-              Заказывайте с гарантией подлинности на крупнейших маркетплейсах или
-              приобретайте в ведущих розничных сетях страны.
-            </p>
-            <div className="zen-trust-tags">
-              <span className="zen-trust-tag">✓ 100% Оригинал</span>
-              <span className="zen-trust-tag">✓ Сертификаты ЕАС / ГОСТ-Р</span>
-              <span className="zen-trust-tag">✓ Склады в РФ</span>
-            </div>
           </div>
 
           <div className="zen-retail-right">
@@ -747,7 +873,7 @@ export default function Home() {
             >
               <b>OZON</b>
               <span>
-                Фирменный магазин <i>↗</i>
+                Фирменный магазин
               </span>
             </a>
             <a
@@ -758,7 +884,7 @@ export default function Home() {
             >
               <b>WILDBERRIES</b>
               <span>
-                Быстрая доставка <i>↗</i>
+                Быстрая доставка
               </span>
             </a>
             <a
@@ -769,56 +895,35 @@ export default function Home() {
             >
               <b>ЯНДЕКС МАРКЕТ</b>
               <span>
-                Экспресс-доставка <i>↗</i>
+                Экспресс-доставка
               </span>
             </a>
             <a href="/kontakty" className="zen-market-card">
               <b className="text-stone-800">СУПЕРМАРКЕТЫ</b>
               <span>
-                Auchan, Magnit, Перекрёсток <i>↗</i>
+                Auchan, Magnit, Перекрёсток
               </span>
             </a>
             <a href="/kontakty" className="zen-map-link">
-              📍 Найти розничные магазины на Яндекс Картах →
+              📍 Найти розничные магазины на Яндекс Картах
             </a>
           </div>
         </div>
       </section>
 
       {/* ================= SECTION 6: B2B BANNER ================= */}
-      <section className="zen-section bg-[#FAF8F5]" id="b2b">
+      <section className="zen-section !pb-10 sm:!pb-12 bg-[#FAF8F5]" id="b2b">
         <div className="zen-b2b-box">
-          <div
-            className="zen-b2b-left"
-            style={{ backgroundImage: `url('/images/b2b_logistics.jpg')` }}
-          >
-            <div className="zen-b2b-overlay" />
-            <div className="zen-b2b-copy">
-              <span className="text-[10px] tracking-widest text-[#B38E46] uppercase font-bold block mb-2">
-                ДЛЯ БИЗНЕСА И HORECA
-              </span>
-              <h3 className="serif">
-                Прямые оптовые поставки от производителя
-              </h3>
-              <p>
-                Официальный импорт в РФ. Выгодные условия для торговых сетей,
-                региональных дистрибьюторов, кофеен и HoReCa.
-              </p>
-              <div className="flex gap-2 flex-wrap">
-                <span className="bg-white/20 backdrop-blur-sm text-xs px-2.5 py-1 rounded">
-                  НДС 20%
-                </span>
-                <span className="bg-white/20 backdrop-blur-sm text-xs px-2.5 py-1 rounded">
-                  Склад в Москве
-                </span>
-                <span className="bg-white/20 backdrop-blur-sm text-xs px-2.5 py-1 rounded">
-                  Маркетинг & POSM
-                </span>
-              </div>
-            </div>
+          <div className="zen-b2b-left">
+            <img className="zen-b2b-photo" src="/images/b2b_logistics.jpg" alt="" loading="lazy" />
           </div>
 
           <div className="zen-b2b-right">
+            <div className="zen-b2b-copy">
+              <h3 className="serif">
+                Прямые оптовые поставки от производителя
+              </h3>
+            </div>
             {b2bSent ? (
               <div className="text-center py-12">
                 <div className="w-16 h-16 rounded-full bg-[#EFE6D4] text-[#B38E46] text-2xl flex items-center justify-center mx-auto mb-4">
@@ -893,14 +998,9 @@ export default function Home() {
       </section>
 
       {/* ================= SECTION 7: EDITORIAL ================= */}
-      <section className="zen-section" id="news">
+      <section className="zen-section !pt-10 sm:!pt-12" id="news">
         <div className="zen-heading centered">
-          <span className="zen-eyebrow">ЖУРНАЛ И СОБЫТИЯ</span>
           <h2>Культура и искусство кофе</h2>
-          <p>
-            Погрузитесь в секреты заваривания, историю кофейных цивилизаций и
-            новости бренда в России.
-          </p>
         </div>
 
         <div className="zen-mag-grid">
@@ -912,14 +1012,9 @@ export default function Home() {
               }}
             />
             <div className="zen-mag-body">
-              <span className="zen-mag-tag">РИТУАЛ ПРИГОТОВЛЕНИЯ</span>
               <h3 className="zen-mag-title serif">
                 Как заварить идеальный вьетнамский кофе в фине
               </h3>
-              <p className="text-xs text-[#6B6259]">
-                4 простых шага для раскрытия глубокого вкуса и медитативного
-                настроения в домашних условиях.
-              </p>
             </div>
           </a>
 
@@ -931,15 +1026,11 @@ export default function Home() {
               }}
             />
             <div className="zen-mag-body">
-              <span className="zen-mag-tag">ПРОИСХОЖДЕНИЕ</span>
               <h3 className="zen-mag-title serif">
                 Буонметхуот: почему вьетнамская робуста покорила мир
               </h3>
-              <p className="text-xs text-[#6B6259]">
-                Особенности базальтовой почвы и климата, создающие неповторимый
-                шоколадно-ореховый профиль.
-              </p>
             </div>
+
           </a>
 
           <a href="/novosti" className="zen-mag-card">
@@ -950,14 +1041,9 @@ export default function Home() {
               }}
             />
             <div className="zen-mag-body">
-              <span className="zen-mag-tag">ФРАНШИЗА & БИЗНЕС</span>
               <h3 className="zen-mag-title serif">
                 Trung Nguyên E-Coffee: открытие новых пространств в РФ
               </h3>
-              <p className="text-xs text-[#6B6259]">
-                Возможности для партнёров по открытию концептуальных кофеен в
-                Москве и Санкт-Петербурге.
-              </p>
             </div>
           </a>
         </div>

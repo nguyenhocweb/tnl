@@ -90,10 +90,7 @@ export default function RoastedCoffeeView() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
         <div className="relative z-10 max-w-4xl">
-          <span className="inline-block px-4 py-1.5 mb-4 rounded-full bg-[#C5A059] text-white text-[11px] font-bold tracking-widest uppercase shadow-xl">
-            TRUNG NGUYÊN LEGEND MASTERPIECE
-          </span>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white tracking-wide font-normal drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] leading-tight mb-3">
+                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif text-white tracking-wide font-normal drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] leading-tight mb-3">
             Высокое Искусство Кофе
           </h1>
           <p className="text-base md:text-xl text-[#F7EFE3] font-light drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] mb-8">
@@ -107,12 +104,6 @@ export default function RoastedCoffeeView() {
             >
               Исследовать коллекцию ↘
             </a>
-            <a
-              href="#corporate-form"
-              className="px-7 py-3.5 rounded-2xl bg-white/20 hover:bg-white/30 backdrop-blur-md text-white border border-white/40 text-xs uppercase tracking-wider font-semibold transition-all"
-            >
-              Корпоративные подарки РФ
-            </a>
           </div>
         </div>
       </section>
@@ -120,10 +111,7 @@ export default function RoastedCoffeeView() {
       {/* ================= SECTION 2: TRIPTYCH LUXURY GALLERY (EXACT IMAGE 3 LAYOUT) ================= */}
       <section id="masterpieces" className="py-24 px-6 md:px-16 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-widest text-[#C5A059] font-bold">
-            ШЕДЕВРЫ ВКУСА
-          </span>
-          <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mt-2 mb-3">
+          <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mb-3">
             Трилогия совершенства Legend
           </h2>
           <p className="text-sm text-[#7A7269]">
@@ -145,7 +133,6 @@ export default function RoastedCoffeeView() {
 
               <div className="zen-product-meta">{p.detail}</div>
               <h3 className="zen-product-title">{p.name}</h3>
-              <p className="zen-product-subname">{p.subname}</p>
 
               {/* Sensory Profile Box */}
               <div className="zen-sensory-box">
@@ -173,7 +160,7 @@ export default function RoastedCoffeeView() {
                   className="zen-btn-ritual-view"
                   onClick={() => setActiveModalProduct(p)}
                 >
-                  О ритуале <span className="arrow">↗</span>
+                  О ритуале
                 </button>
                 <a
                   href={p.ozonUrl}
@@ -203,10 +190,7 @@ export default function RoastedCoffeeView() {
       <section className="py-24 px-6 md:px-16 bg-[#FAF7F2] border-y border-[#E8E2D7]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs uppercase tracking-widest text-[#C5A059] font-bold">
-              ВЫСШИЙ ПРОТОКОЛ РФ
-            </span>
-            <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mt-2 mb-3">
+            <h2 className="text-3xl md:text-5xl font-serif text-[#181512] mb-3">
               Корпоративные подарочные наборы
             </h2>
             <p className="text-sm text-[#7A7269]">
@@ -226,9 +210,6 @@ export default function RoastedCoffeeView() {
                     alt={gift.titleRu}
                     className="w-full h-full object-cover object-center"
                   />
-                  <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#C5A059] text-white text-[10px] font-bold uppercase tracking-wider">
-                    {gift.badge}
-                  </span>
                 </div>
                 <div className="w-full sm:w-1/2 p-8">
                   <h3 className="text-xl font-serif text-[#181512] mb-1 font-semibold">{gift.titleRu}</h3>
@@ -319,11 +300,9 @@ export default function RoastedCoffeeView() {
       {/* ================= SECTION 5: EXACT IMAGE 4 B2B FORM ================= */}
       <B2BFormSection
         id="corporate-form"
-        eyebrow="КОРПОРАТИВНЫЕ РЕШЕНИЯ РФ"
         title="Заказ корпоративных подарков и прайс для компаний"
         desc="Поставки кофе Legend, брендированных наборов и подарочных корзин с тиснением логотипа вашей компании для праздников и деловых партнеров."
         buttonText="ПОЛУЧИТЬ КОРПОРАТИВНЫЙ ПРАЙС-ЛИСТ (PDF) ↗"
-        badges={["НДС 20%", "Брендирование", "Доставка по РФ"]}
       />
 
       {/* ================= MODAL QUICK VIEW ================= */}

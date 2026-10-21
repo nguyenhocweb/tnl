@@ -10,81 +10,117 @@ interface B2BFormSectionProps {
   buttonText?: string;
   badges?: string[];
   bgImage?: string;
+  className?: string;
+  initialMode?: "b2b" | "b2c";
 }
 
 export default function B2BFormSection({
   id = "b2b",
-  eyebrow = "ДЛЯ БИЗНЕСА И HORECA",
+  eyebrow = "",
   title = "Прямые оптовые поставки от производителя",
-  desc = "Официальный импорт в РФ. Выгодные условия для торговых сетей, региональных дистрибьюторов, кофеен и HoReCa.",
+  desc = "",
   buttonText = "Получить коммерческое предложение (PDF) ↗",
-  badges = ["НДС 20%", "Склад в Москве", "Маркетинг & POSM"],
+  badges = [],
   bgImage = "/images/b2b_logistics.jpg",
+  className = "",
+  initialMode = "b2b",
 }: B2BFormSectionProps) {
-  const [b2bSent, setB2bSent] = useState(false);
+  const [formMode, setFormMode] = useState<"b2b" | "b2c">(initialMode);
+  const [isSent, setIsSent] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setB2bSent(true);
+    setIsSent(true);
   };
 
   return (
-    <section className="zen-section bg-[#FAF8F5]" id={id}>
+    <section className={`zen-section bg-[#FAF8F5] ${className}`} id={id}>
       <div className="zen-b2b-box">
-        {/* Left Column with Logistics Photo & Overlay */}
-        <div
-          className="zen-b2b-left"
-          style={{ backgroundImage: `url('${bgImage}')` }}
-        >
-          <div className="zen-b2b-overlay" />
+        {/* Photo */}
+        <div className="zen-b2b-left">
+          <img className="zen-b2b-photo" src={bgImage} alt="" loading="lazy" />
+        </div>
+
+        {/* Heading and form */}
+        <div className="zen-b2b-right">
           <div className="zen-b2b-copy">
-            <span className="text-[10px] tracking-widest text-[#B38E46] uppercase font-bold block mb-2">
-              {eyebrow}
-            </span>
+            {eyebrow && (
+              <span className="text-[10px] tracking-widest text-[#B38E46] uppercase font-bold block mb-2">
+                {eyebrow}
+              </span>
+            )}
             <h3 className="serif">
               {title}
             </h3>
-            <p>
-              {desc}
-            </p>
-            <div className="flex gap-2 flex-wrap">
-              {badges.map((badge) => (
-                <span
-                  key={badge}
-                  className="bg-white/20 backdrop-blur-sm text-xs px-2.5 py-1 rounded"
-                >
-                  {badge}
-                </span>
-              ))}
-            </div>
+            {desc && <p>{desc}</p>}
+            {badges && badges.length > 0 && (
+              <div className="flex gap-2 flex-wrap">
+                {badges.map((badge) => (
+                  <span
+                    key={badge}
+                    className="bg-white/20 backdrop-blur-sm text-xs px-2.5 py-1 rounded"
+                  >
+                    {badge}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
-        </div>
+          {/* Dual-Mode Selector Tabs */}
+          <div className="flex items-center gap-2 p-1.5 bg-[#F2ECE1] rounded-xl mb-6">
+            <button
+              type="button"
+              onClick={() => { setFormMode("b2b"); setIsSent(false); }}
+              className={`flex-1 py-2.5 px-3 rounded-lg text-xs font-semibold tracking-wider transition-all ${
+                formMode === "b2b"
+                  ? "bg-[#181512] text-white shadow-sm"
+                  : "text-[#5A524A] hover:text-[#181512]"
+              }`}
+            >
+              ДЛЯ ПАРТНЁРОВ (B2B)
+            </button>
+            <button
+              type="button"
+              onClick={() => { setFormMode("b2c"); setIsSent(false); }}
+              className={`flex-1 py-2.5 px-3 rounded-lg text-xs font-semibold tracking-wider transition-all ${
+                formMode === "b2c"
+                  ? "bg-[#181512] text-white shadow-sm"
+                  : "text-[#5A524A] hover:text-[#181512]"
+              }`}
+            >
+              ЧАСТНЫМ КЛИЕНТАМ (B2C)
+            </button>
+          </div>
 
-        {/* Right Column with Form Inputs */}
-        <div className="zen-b2b-right">
-          {b2bSent ? (
-            <div className="text-center py-12">
-              <div className="w-16 h-16 rounded-full bg-[#EFE6D4] text-[#B38E46] text-2xl flex items-center justify-center mx-auto mb-4">
+          {isSent ? (
+            <div className="text-center py-10">
+              <div className="w-16 h-16 rounded-full bg-[#EFE6D4] text-[#B38E46] text-2xl flex items-center justify-center mx-auto mb-4 font-bold">
                 ✓
               </div>
-              <h3 className="serif text-2xl mb-2">Заявка успешно принята</h3>
+              <h3 className="serif text-2xl mb-2 text-[#181512]">
+                {formMode === "b2b" ? "Заявка B2B успешно принята" : "Сообщение успешно отправлено"}
+              </h3>
               <p className="text-sm text-[#6B6259] max-w-sm mx-auto mb-6">
-                Наш менеджер по работе с ключевыми клиентами свяжется с вами в течение 2 часов рабочего времени.
+                {formMode === "b2b"
+                  ? "Наш менеджер по работе с ключевыми партнёрами свяжется с вами в течение 2 часов рабочего времени."
+                  : "Благодарим за интерес к Trung Nguyên Legend! Наша клиентская служба ответит вам в течение рабочего дня."}
               </p>
               <button
+                type="button"
                 className="zen-btn-outline"
-                onClick={() => setB2bSent(false)}
+                onClick={() => setIsSent(false)}
               >
-                Отправить ещё одну заявку
+                Отправить ещё одно обращение
               </button>
             </div>
-          ) : (
+          ) : formMode === "b2b" ? (
+            /* B2B CORPORATE FORM (WITH INN) */
             <form onSubmit={handleSubmit} className="zen-form-grid">
               <div className="zen-field">
                 <label>Компания / ИП *</label>
                 <input
                   required
-                  placeholder="ООО «Название компании»"
+                  placeholder="ООО «Кофейная Компания»"
                 />
               </div>
 
@@ -99,15 +135,15 @@ export default function B2BFormSection({
               </div>
 
               <div className="zen-field">
-                <label>Тип бизнеса *</label>
+                <label>Формат бизнеса *</label>
                 <select required defaultValue="">
                   <option value="" disabled>
                     Выберите категорию
                   </option>
-                  <option>Дистрибьютор / Опт</option>
-                  <option>Торговая сеть / Ритейл</option>
-                  <option>HoReCa / Кофейня</option>
-                  <option>Корпоративные подарки</option>
+                  <option>HoReCa / Сеть кофеен / Ресторан</option>
+                  <option>Дистрибьютор / Оптовая база</option>
+                  <option>Федеральная / Региональная торговая сеть</option>
+                  <option>Корпоративные клиенты / Подарки</option>
                 </select>
               </div>
 
@@ -121,16 +157,75 @@ export default function B2BFormSection({
               </div>
 
               <div className="zen-field full">
-                <label>Комментарий / Планируемый объём</label>
-                <textarea
-                  rows={2}
-                  placeholder="Город, интересующие позиции (G7, зерно, молотый), объём заказа..."
+                <label>Контактное лицо и телефон *</label>
+                <input
+                  required
+                  placeholder="Иван Иванов · +7 (999) 000-00-00 · Telegram/WhatsApp"
                 />
               </div>
 
               <div className="zen-field full">
-                <button type="submit" className="zen-btn-gold w-full py-3.5">
+                <label>Комментарий / Планируемый объём</label>
+                <textarea
+                  rows={2}
+                  placeholder="Город поставки, интересующие линейки (G7, зерно Culi, Legend), объём кг/мес..."
+                />
+              </div>
+
+              <div className="zen-field full">
+                <button type="submit" className="zen-btn-gold w-full py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase">
                   {buttonText}
+                </button>
+              </div>
+            </form>
+          ) : (
+            /* B2C RETAIL INQUIRY FORM (NO INN REQUIRED) */
+            <form onSubmit={handleSubmit} className="zen-form-grid">
+              <div className="zen-field">
+                <label>Ваше Имя *</label>
+                <input
+                  required
+                  placeholder="Алексей"
+                />
+              </div>
+
+              <div className="zen-field">
+                <label>Город *</label>
+                <input
+                  required
+                  placeholder="Москва / Санкт-Петербург..."
+                />
+              </div>
+
+              <div className="zen-field">
+                <label>Телефон / Telegram *</label>
+                <input
+                  required
+                  placeholder="+7 (999) 123-45-67"
+                />
+              </div>
+
+              <div className="zen-field">
+                <label>Ваш E-mail *</label>
+                <input
+                  required
+                  type="email"
+                  placeholder="alex@mail.ru"
+                />
+              </div>
+
+              <div className="zen-field full">
+                <label>Ваш вопрос / Интересующий продукт</label>
+                <textarea
+                  rows={3}
+                  required
+                  placeholder="Где купить кофе G7 в моём районе, особенности заваривания в фине или розничный вопрос..."
+                />
+              </div>
+
+              <div className="zen-field full">
+                <button type="submit" className="zen-btn-gold w-full py-3.5 rounded-xl text-xs font-semibold tracking-wider uppercase">
+                  Отправить вопрос в клиентскую службу ↗
                 </button>
               </div>
             </form>
